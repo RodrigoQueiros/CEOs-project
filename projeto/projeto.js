@@ -1,21 +1,25 @@
-//Classe Utilizador
-let utilizadores=[]
-class Utilizador{
-    constructor(username,password,tipo,email,foto)
+let arrayUser=[]
+let arrayEvents=[]
+
+//Cass User
+
+class User{
+    constructor(username,password,type,email,picture="https://d2w4qhtqw2dbsq.cloudfront.net/profile_live/2070689/large.jpg")
     {
-        this._id= Utilizador.getLastId()+1
+        this._id= arrayUser.getLastId()+1
         this.username=username 
         this.password=password
-        this.tipo=tipo
+        this.type=type
         this.email=email
-        this.foto=foto
+        this.picture=picture
 
     }
-    //propriedade Id
+//Id
     get id() {
         return this._id
         }
-    //Propriedade username
+
+//Username
     get username()
      {
         return this._username
@@ -25,7 +29,8 @@ class Utilizador{
     {
         this._username = newUsername
     }
-    //Propriedade password
+
+//Password
     get password()
      {
         return this._password
@@ -35,16 +40,94 @@ class Utilizador{
      {
         this._password = newPassoword
      }
-      // Propriedade email
-    get email() 
+     
+//Type
+    get type() 
      {
-      return this._email
+      return this._type
      }
    
-    set email(newEmail) 
+    set type(newType) 
     {
-     this._email = newEmail
+     this._type = newType
     }
-    // Propriedade email
-         
+
+//Email
+    get email() 
+    {
+     return this._email
+    }
+  
+   set email(newEmail) 
+   {
+    this._email = newEmail
+   }
+//Picture
+   get picture() 
+   {
+    return this._picture
+   }
+ 
+  set picture(newPicture) 
+  {
+   this._picture = newPicture
+  }
+
 }
+
+//Class Events
+
+//Class Coments
+
+//Class Category
+
+//Class teachers
+
+//Class testimonials
+
+//Class partnerships
+
+//Class course
+
+
+
+//Window on Load
+
+window.onload = function(){
+
+//Admin
+let newAdmin = new User("RL","projeto","admin","","")
+
+
+
+//Get elements by ids
+let formFilter = document.getElementById("") //Form dos filtros 
+let formSingIn = document.getElementById("") //Form de registo
+let formLogIn = document.getElementById("") //Form de Log in
+
+//Filtrar eventos
+formFilter.addEventListener("submit", function(event){
+
+
+
+
+})
+
+
+//Registar user
+formSingIn.addEventListener("submit", function(event){
+
+
+
+
+
+})
+
+
+
+
+}
+
+
+
+
