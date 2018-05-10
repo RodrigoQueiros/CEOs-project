@@ -37,11 +37,11 @@
       <div class="collapse navbar-collapse" id="collapsibleNavId">
           <ul class="navbar-nav">
               <!--OPÇÃO Eventos-->
-              <li class="nav-item">
+              <li class="nav-item" >
                   <a class="nav-link" href="#">Eventos</a>
               </li>
               <!--OPÇÃO Calendario -->
-              <li class="nav-item">
+              <li class="nav-item" >
                   <a class="nav-link" href="#">Calendario</a>
               </li>                  
           
@@ -50,11 +50,11 @@
                 <a class="nav-link" href="#">Parcerias</a>
             </li>
             <!--OPÇÃO Docentes-->
-            <li id="optRegister" class="nav-item">
+            <li id="optRegister" class="nav-item" >
                 <a class="nav-link" href="#">Docentes</a>
             </li>
             <!--OPÇÃO Login-->
-            <li id="optLogout" class="nav-item">
+            <li id="optLogout" class="nav-item" >
                 <a class="nav-link" href="#">Login</a>
             </li>                 
                             
@@ -96,51 +96,58 @@
  
 </div>
 
-
-<!--Filtro-->
-<div class="container-fluid">
-    <form id="formFilter">       
-       
-
-      <div class="form-row"> 
-
-          <div class="form-group col-md-2">
-              
-              <input type="text"
-                class="form-control" name="" id="eventName" aria-describedby="helpId" placeholder="Procurar eventos">
-              
-            </div>        
+<!--Panel-->
+<div class="card col-md-7" style=" text-align: center; margin: auto;" >
+    <div class="card-body">
+       <!-- <div class="container-fluid" style="display: block;
+        margin-left: auto;
+        margin-right: auto;">-->
+            <form id="formFilter" style="display: block; margin-left: auto; margin-right: auto;">       
+               
         
-            <div class="form-group col-md-2">
-              
-                <input type="date"
-                  class="form-control" name="" id="eventDate" aria-describedby="helpId" placeholder="">
+              <div class="form-row"> 
+        
+                  <div class="form-group col-md-3">
+                      
+                      <input type="text"
+                        class="form-control" name="" id="eventName" aria-describedby="helpId" placeholder="Procurar eventos">
+                      
+                    </div>        
                 
-              </div>     
+                    <div class="form-group col-md-3">
+                      
+                        <input type="date"
+                          class="form-control" name="" id="eventDate" aria-describedby="helpId" placeholder="">
+                        
+                      </div>     
+        
+                      <div class="form-group col-md-3">
+                      
+                          <input type="text"
+                            class="form-control" name="" id="eventCategory" aria-describedby="helpId" placeholder="">
+                          
+                        </div>
+        
+                        <div class="form-group col-md-3"><input type="submit" class="btn btn-primary form-control" value="Procurar"/></div>
+                        
+        
+              </div>
+                         
+        
+                </form>
+        <!--</div>-->
+    </div>
+  </div>
+<!--Filtro-->
 
-              <div class="form-group col-md-2">
-              
-                  <input type="text"
-                    class="form-control" name="" id="eventCategory" aria-describedby="helpId" placeholder="">
-                  
-                </div>
-
-                <div class="form-group col-md-2"><input type="submit" class="btn btn-primary " value="Procurar"/></div>
-                
-
-      </div>
-                 
-
-        </form>
-</div>
 
   
 
 <!--Footer-->
-<footer class="page-footer font-small stylish-color-dark pt-4 mt-4">
+<footer class="page-footer font-small stylish-color-dark pt-4 mt-4" style="background-color: blue; ">
 
     <!--Footer Links-->
-    <div class="container text-center text-md-left">
+    <div class="container text-center text-md-left" >
         <div class="row">
 
             <!--First column-->
