@@ -554,7 +554,14 @@ set code(newCode)
 {
 this._code = newCode
 }
-
+//get id
+static getLastId() {
+    let lastId = 0
+    if(arrayPartnerships.length != 0) {
+    lastId = arrayPartnerships[arrayPartnerships.length-1].id
+    }
+    return lastId
+    }
 
 }
 //Class course
