@@ -10,7 +10,7 @@ let arrayPartnerships=[]
 class User{
     constructor(username,password,type,email,picture="https://d2w4qhtqw2dbsq.cloudfront.net/profile_live/2070689/large.jpg")
     {
-        this._id= arrayUser.getLastId()+1
+        this._id= 0 //Id ainda por fazer
         this.username=username 
         this.password=password
         this.type=type
@@ -578,39 +578,39 @@ let newAdmin = new User("RL","projeto","admin","","")
 
 
 //Get elements by ids
-let formFilter = document.getElementById("") //Form dos filtros 
-let formSingIn = document.getElementById("formSingIn") //Form de registo
-let formLogIn = document.getElementById("") //Form de Log in
+let formFilter = document.getElementById("a") //Form dos filtros 
+let formSignIn = document.getElementById("formSignIn") //Form de registo
+let formLogIn = document.getElementById("a") //Form de Log in
 
 //Filtrar eventos
-formFilter.addEventListener("submit", function(event){
+/*formFilter.addEventListener("submit", function(event){
 
 
 
 
-})
+})*/
 
 let rUser = document.getElementById("rUser")
 let rEmail = document.getElementById("rEmail")
 let rPass = document.getElementById("rPass")
-let rPass2 = document.getElementById("rPass2")
+let rcPass = document.getElementById("rcPass")
 
 //Registar user
-formSingIn.addEventListener("submit", function(event){
-console.log(rPass.value)
-if(rPass.value != rPass2.value) //Verificar se a passe e a sua confirmação coincidem
+formSignIn.addEventListener("submit", function(event){
+    let strError = ""
+
+//Validar o email
+
+
+if(rPass.value != rcPass.value) //Verificar se a passe e a sua confirmação coincidem
 {
     console.log(rPass.value)
-    alert("As palvras-passes não coincidem")
-    rPass.value = ""
-    rPass2.value = ""
+    strError = "As palavras-passes não coincidem"
+    rcPass.value=""
+    rPass.value=""
     event.preventDefault()
 }
-else //avança, nao precisamos mais nenhuma confirmação
-{
 
-
-}
 
 
 event.preventDefault()
