@@ -600,7 +600,16 @@ formSignIn.addEventListener("submit", function(event){
     let strError = ""
 
 //Validar o email
+let userExist = false
+for (var i = 0; i < users.length; i++) {
+if (arrayUser[i].email == rEmail.value) {
+userExist = true
+} 
+}
 
+if(userExist == true) {
+strError += "\nEmail já existente!"
+}
 
 if(rPass.value != rcPass.value) //Verificar se a passe e a sua confirmação coincidem
 {
@@ -611,7 +620,19 @@ if(rPass.value != rcPass.value) //Verificar se a passe e a sua confirmação coi
     event.preventDefault()
 }
 
+//Criar user
 
+if (strError=="") 
+{
+
+
+}
+else{ //Se n tiver tudo bem
+
+    alert(strError)
+    formSignIn.reset()
+    rUser.focus()
+}
 
 event.preventDefault()
 })
