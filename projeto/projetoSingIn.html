@@ -14,38 +14,39 @@
 
 
         <div class="container-fluid">
-                <form id="formLogIn">
+                <form id="formSingIn">
                     <h1>Registar</h1>
         
                     <div class="form-group col-md-3">
-                            <label for="logInUser">Nome de Utilizador</label>
+                            <label for="rUser">Nome de Utilizador</label>
                             <input type="text" required
-                              class="form-control" name="" id="logInUser" aria-describedby="helpId" placeholder="">
+                              class="form-control" name="" id="rUser" aria-describedby="helpId" placeholder="">
                             
                           </div>  
                           <div class="form-group col-md-3">
-                                <label for="logInPass">Email</label>
+                                <label for="rEmail">Email</label>
                                 <input type="email" required
-                                  class="form-control" name="" id="logInPass" aria-describedby="helpId" placeholder="">
+                                  class="form-control" name="" id="rEmail" aria-describedby="helpId" placeholder="">
                                 
                               </div>    
                           
                           <div class="form-group col-md-3">
-                                <label for="logInPass">Palavra-passe</label>
-                                <input type="text" required
-                                  class="form-control" name="" id="logInPass" aria-describedby="helpId" placeholder="">
+                                <label for="rPass">Palavra-passe</label>
+                                <input type="password" required minlength="4" maxlength="16"
+                                  class="form-control" name="" id="rPass" aria-describedby="helpId" placeholder="">
                                 
                               </div>    
                               <div class="form-group col-md-3">
-                                    <label for="logInPass">Confirmar palavra-passe</label>
-                                    <input type="text" required
-                                      class="form-control" name="" id="logInPass" aria-describedby="helpId" placeholder="">
-                                    
+                                    <label for="rPass2">Confirmar palavra-passe</label>
+                                    <input type="password" required minlength="4" maxlength="16"
+                                      class="form-control" name="" id="rPass2" aria-describedby="helpId" placeholder="">
+                                      
                                   </div>    
                           
         
-                          <div class="form-group col-md-3"><input type="submit" class="btn btn-primary " value="Iniciar sessão"/>
-                            <button type="button" class="btn btn-secondary">Registar</button>
+                          <div class="form-group col-md-3">
+                            <input type="submit" class="btn btn-primary col-md-12 " value="Registar" />
+                            
                         
                         </div>
                           

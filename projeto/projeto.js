@@ -579,7 +579,7 @@ let newAdmin = new User("RL","projeto","admin","","")
 
 //Get elements by ids
 let formFilter = document.getElementById("") //Form dos filtros 
-let formSingIn = document.getElementById("") //Form de registo
+let formSingIn = document.getElementById("formSingIn") //Form de registo
 let formLogIn = document.getElementById("") //Form de Log in
 
 //Filtrar eventos
@@ -590,14 +590,30 @@ formFilter.addEventListener("submit", function(event){
 
 })
 
+let rUser = document.getElementById("rUser")
+let rEmail = document.getElementById("rEmail")
+let rPass = document.getElementById("rPass")
+let rPass2 = document.getElementById("rPass2")
 
 //Registar user
 formSingIn.addEventListener("submit", function(event){
+console.log(rPass.value)
+if(rPass.value != rPass2.value) //Verificar se a passe e a sua confirmação coincidem
+{
+    console.log(rPass.value)
+    alert("As palvras-passes não coincidem")
+    rPass.value = ""
+    rPass2.value = ""
+    event.preventDefault()
+}
+else //avança, nao precisamos mais nenhuma confirmação
+{
 
 
+}
 
 
-
+event.preventDefault()
 })
 
 
