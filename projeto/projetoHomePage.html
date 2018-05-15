@@ -8,13 +8,15 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  </head>
+      <!--Custom JS-->
+      <script src="projeto.js"></script>
+</head>
   <body>
 
 
 
 
-      
+    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -25,58 +27,58 @@
 
 
 
+<!--Navbar
+-->
 
-
-    <!-- Nav tabs -->
     <nav class="navbar navbar-expand-sm navbar bg">
-      <a class="navbar-brand" href="#"><img src="Outros/logotipo.png" width="130" height="40" alt=""></a>
-      <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
-          aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="collapsibleNavId">
-          <ul class="navbar-nav">
-              <!--OPÇÃO Eventos-->
-              <li class="nav-item" >
-                  <a class="nav-link" href="#">Eventos</a>
+        <a class="navbar-brand" href="#"><img src="Outros/logotipo.png" width="130" height="40" alt=""></a>
+        <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId"  >
+            <ul class="navbar-nav ml-auto "  >
+                <!--OPÇÃO Eventos-->
+                <li class="nav-item" >
+                    <a class="nav-link" href="#">Eventos</a>
+                </li>
+                <!--OPÇÃO Calendario -->
+                <li class="nav-item" >
+                    <a class="nav-link" href="#">Calendario</a>
+                </li>                  
+            
+              <!--OPÇÃO Parcerias-->
+              <li id="optLogin" class="nav-item">
+                  <a class="nav-link" href="#">Parcerias</a>
               </li>
-              <!--OPÇÃO Calendario -->
-              <li class="nav-item" >
-                  <a class="nav-link" href="#">Calendario</a>
-              </li>                  
-          
-            <!--OPÇÃO Parcerias-->
-            <li id="optLogin" class="nav-item">
-                <a class="nav-link" href="#">Parcerias</a>
-            </li>
-            <!--OPÇÃO Docentes-->
-            <li id="optRegister" class="nav-item" >
-                <a class="nav-link" href="#">Docentes</a>
-            </li>
-            <!--OPÇÃO Login-->
-            <li id="optLogout" class="nav-item" >
-                <a class="nav-link" href="#">Login</a>
-            </li>                 
-                            
-        </ul>              
+              <!--OPÇÃO Docentes-->
+              <li id="optRegister" class="nav-item" >
+                  <a class="nav-link" href="#">Docentes</a>
+              </li>
+              <!--OPÇÃO Login-->
+              <li id="optLogout" class="nav-item" >
+                  <a class="nav-link" href="#">Login</a>
+              </li>                 
+                              
+          </ul>              
+        </div>
+    </nav>
+      
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div class="tab-pane fade in active" id="tab1Id" role="tabpanel"></div>
+        <div class="tab-pane fade" id="tab2Id" role="tabpanel"></div>
+        <div class="tab-pane fade" id="tab3Id" role="tabpanel"></div>
+        <div class="tab-pane fade" id="tab4Id" role="tabpanel"></div>
+        <div class="tab-pane fade" id="tab5Id" role="tabpanel"></div>
       </div>
-  </nav>
-    
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <div class="tab-pane fade in active" id="tab1Id" role="tabpanel"></div>
-      <div class="tab-pane fade" id="tab2Id" role="tabpanel"></div>
-      <div class="tab-pane fade" id="tab3Id" role="tabpanel"></div>
-      <div class="tab-pane fade" id="tab4Id" role="tabpanel"></div>
-      <div class="tab-pane fade" id="tab5Id" role="tabpanel"></div>
-    </div>
-    
-    <script>
-      $('#navId a').click(e => {
-        e.preventDefault();
-        $(this).tab('show');
-      });
-    </script>
+      
+      <script>
+        $('#navId a').click(e => {
+          e.preventDefault();
+          $(this).tab('show');
+        });
+      </script>
 
 
 <!-- Carrossel-->
@@ -138,9 +140,12 @@
         <!--</div>-->
     </div>
   </div>
-<!--Filtro-->
 
 
+<!--catalogo-->
+<div id="eventsCatalog" class="container">
+             
+</div>
   
 
 <!--Footer-->
@@ -150,15 +155,9 @@
     <div class="container text-center text-md-left" >
         <div class="row">
 
-            <!--First column-->
-            <div class="col-md-4">
-                <h5 class="text-uppercase mb-4 mt-3 font-weight-bold">Footer Content</h5>
-                <p>Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit
-                    amet, consectetur adipisicing elit.</p>
-            </div>
-            <!--/.First column-->
+            
 
-            <hr class="clearfix w-100 d-md-none">
+           
 
             <!--Second column-->
             <div class="col-md-2 mx-auto">
@@ -223,6 +222,15 @@
                 </ul>
             </div>
             <!--/.Fourth column-->
+
+            <!--First column-->
+            <div class="col-md-4">
+                <h5 class="text-uppercase mb-4 mt-3 font-weight-bold">Footer Content</h5>
+                <p>Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit
+                    amet, consectetur adipisicing elit.</p>
+            </div>
+            <!--/.First column-->
+            <hr class="clearfix w-100 d-md-none">
         </div>
     </div>
     <!--/.Footer Links-->
