@@ -1,0 +1,22 @@
+#carouselId {
+
+z-index: 0;
+
+}
+
+
+#filtro {
+
+z-index: 5;
+
+
+}
+
+/* 
+Usar position relative no container com os dois, e mudar o que queremos por a frente para position absolute e depois sobrepor por exemplo com:
+top: 8px;
+left: 16px;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+*/
