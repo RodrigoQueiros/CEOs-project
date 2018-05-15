@@ -8,14 +8,14 @@ let arrayPartnerships=[]
 // ############ Cass User ############
 
 class User{
-    constructor(username,password,type,email,picture="https://d2w4qhtqw2dbsq.cloudfront.net/profile_live/2070689/large.jpg")
+    constructor(username,password,type,email)
     {
-        this._id= 0 //Id ainda por fazer
+        this._id= 0
         this.username=username 
         this.password=password
         this.type=type
         this.email=email
-        this.picture=picture
+        this._picture="https://d2w4qhtqw2dbsq.cloudfront.net/profile_live/2070689/large.jpg"
 
     }
 //Id
@@ -72,10 +72,7 @@ class User{
     return this._picture
    }
  
-  set picture(newPicture) 
-  {
-   this._picture = newPicture
-  }
+  
 
   static getLastId() {
     let lastId = 0
@@ -574,7 +571,7 @@ window.onload = function(){
 
 //Admin
 let newAdmin = new User("RL","projeto","admin","","")
-
+arrayUser.push(newAdmin)
 
 
 //Get elements by ids
@@ -598,10 +595,10 @@ let rcPass = document.getElementById("rcPass")
 //Registar user
 formSignIn.addEventListener("submit", function(event){
     let strError = ""
-
+    event.preventDefault()
 //Validar o email
 let userExist = false
-for (var i = 0; i < users.length; i++) {
+for (var i = 0; i < arrayUser.length; i++) {
 if (arrayUser[i].email == rEmail.value) {
 userExist = true
 } 
@@ -610,11 +607,11 @@ userExist = true
 if(userExist == true) {
 strError += "\nEmail já existente!"
 }
-
+event.preventDefault()
 if(rPass.value != rcPass.value) //Verificar se a passe e a sua confirmação coincidem
 {
     console.log(rPass.value)
-    strError = "As palavras-passes não coincidem"
+    strError += "As palavras-passes não coincidem"
     rcPass.value=""
     rPass.value=""
     event.preventDefault()
@@ -624,8 +621,10 @@ if(rPass.value != rcPass.value) //Verificar se a passe e a sua confirmação coi
 
 if (strError=="") 
 {
-
-
+let newUser = new User(rUser.value,rPass.value,"standard",rEmail.value) //Fazer o Objeto
+arrayUser.push(newUser) //Por dentro do array
+alert("Registo efetuado com sucesso!!")
+event.preventDefault()
 }
 else{ //Se n tiver tudo bem
 
