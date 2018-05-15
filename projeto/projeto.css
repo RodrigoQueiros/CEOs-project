@@ -1,14 +1,15 @@
-#carouselId {
+#carrosselFiltro {
 
-z-index: 0;
+position: relative
+;
 
 }
 
 
-#filtro {
+#homeFiltro {
 
-z-index: 5;
-
+position: absolute;
+transform: translate(40%, -50px)
 
 }
 
