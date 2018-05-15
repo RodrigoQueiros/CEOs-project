@@ -92,7 +92,7 @@ class User{
 class Events{
     constructor(eventname,description,date,event_time,creat_time,state,space,category,responsable,image,coments,rating,views)
     {
-        this._id= arrayEvents.getLastId()+1
+        this._id=Events.getLastId()+1
         this.eventname=eventname
         this.description=description
         this.date=date
@@ -571,7 +571,15 @@ static getLastId() {
 //Window on Load
 
 window.onload = function(){
-
+//eventos
+let eventoUm= new Events ("queima","vai ser Top","11/05/2018","","","","queimodromo","","","Outros/evente1.jpg","","","")
+arrayEvents.push(eventoUm)
+let eventoDois= new Events ("Ressaca","vai ser Top","12/05/2018","","","","Rua Alto do Parque,Penamaior","","","Outros/evente1.jpg","","","")
+arrayEvents.push(eventoDois)
+let eventoTres= new Events ("SecondRound","vai ser Top","12/05/2018","","","","queimodromo","","","Outros/evente1.jpg","","","")
+arrayEvents.push(eventoTres)
+console.log(arrayEvents)
+updateEvents()
 //Admin
 let newAdmin = new User("RL","projeto","admin","","")
 
@@ -605,6 +613,32 @@ formSingIn.addEventListener("submit", function(event){
 
 }
 
-
-
+function updateEvents(){
+    let strHtmlCard = ""
+    //iterar sobre o array de eventos
+    for(let i=1;i<4;i++)
+    {
+        if(i==1){
+            strHtmlCard += `<div class="row">`
+        }
+        strHtmlCard += `<div class="col-sm-6">
+        <div class="card" style="width: 18rem;">
+         <img class="card-img-top" src="${arrayEvents[arrayEvents.length-i].image}" alt="Card image cap">
+         <div class="card-body">
+          <h5 class="card-title">${arrayEvents[arrayEvents.length-i].eventname}</h5>
+          <p class="card-text">${arrayEvents[arrayEvents.length-i].description}</p>
+          <p class="card-text">${arrayEvents[arrayEvents.length-i].date}</p>
+          <p class="card-text">${arrayEvents[arrayEvents.length-i].space}</p>
+          <a href="#" class="btn btn-primary">Check</a>
+        </div>
+        </div>
+        </div>`
+        // Fecha a linha
+        if(i== 3) {
+            strHtmlCard += `</div>`    
+        }  
+    }
+    let eventsCatalog = document.getElementById("eventsCatalog")
+    eventsCatalog.innerHTML = strHtmlCard
+}
 

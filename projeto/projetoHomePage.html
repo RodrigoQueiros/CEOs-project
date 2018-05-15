@@ -80,67 +80,70 @@
         });
       </script>
 
+<!--Carrossel e filtro-->
+<div id="carrosselFilrto">
+        <!-- Carrossel-->
+            <div id="carouselId" class="carousel slide " data-ride="carousel" >
 
-<!-- Carrossel-->
-<div id="carouselId" class="carousel slide " data-ride="carousel" >
+                <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item active" >
+                        <img class="d-block w-100" src="Outros/header1.jpg" alt="First slide">
+                    </div>
 
-  <div class="carousel-inner" role="listbox">
-    <div class="carousel-item active" >
-      <img class="d-block w-100" src="Outros/header1.jpg" alt="First slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="Outros/header2.jpg" alt="Second slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="Outros/header3.jpg" alt="Third slide">
-    </div>
-  </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="Outros/header2.jpg" alt="Second slide">
+                    </div>
+
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="Outros/header3.jpg" alt="Third slide">
+                    </div>
+                </div>
  
-</div>
+            </div>
 
-<!--Panel-->
-<div class="card col-md-7" style=" text-align: center; margin: auto;" >
-    <div class="card-body">
-       <!-- <div class="container-fluid" style="display: block;
-        margin-left: auto;
-        margin-right: auto;">-->
-            <form id="formFilter" style="display: block; margin-left: auto; margin-right: auto;">       
+        <!--Filtro-->
+            <div class="card col-md-7" style=" text-align: center; margin: auto;" >
+                <div class="card-body">
+                    <!-- <div class="container-fluid" style="display: block;
+                        margin-left: auto;
+                        margin-right: auto;">-->
+                 <form id="formFilter" style="display: block; margin-left: auto; margin-right: auto;">       
                
         
-              <div class="form-row"> 
+                    <div class="form-row"> 
         
-                  <div class="form-group col-md-3">
+                        <div class="form-group col-md-3">
                       
-                      <input type="text"
-                        class="form-control" name="" id="eventName" aria-describedby="helpId" placeholder="Procurar eventos">
+                            <input type="text"
+                            class="form-control" name="" id="eventName" aria-describedby="helpId" placeholder="Procurar eventos">
                       
-                    </div>        
+                        </div>        
                 
-                    <div class="form-group col-md-3">
+                        <div class="form-group col-md-3">
                       
-                        <input type="date"
-                          class="form-control" name="" id="eventDate" aria-describedby="helpId" placeholder="">
+                            <input type="date"
+                            class="form-control" name="" id="eventDate" aria-describedby="helpId" placeholder="">
                         
-                      </div>     
+                        </div>     
         
-                      <div class="form-group col-md-3">
+                        <div class="form-group col-md-3">
                       
-                          <input type="text"
-                            class="form-control" name="" id="eventCategory" aria-describedby="helpId" placeholder="">
+                            <input type="text"
+                                class="form-control" name="" id="eventCategory" aria-describedby="helpId" placeholder="">
                           
                         </div>
         
                         <div class="form-group col-md-3"><input type="submit" class="btn btn-primary form-control" value="Procurar"/></div>
                         
         
-              </div>
+                    </div>
                          
         
                 </form>
         <!--</div>-->
-    </div>
-  </div>
-
+            </div>
+        </div>
+</div>
 
 <!--catalogo-->
 <div id="eventsCatalog" class="container">
