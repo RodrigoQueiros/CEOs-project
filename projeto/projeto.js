@@ -657,7 +657,7 @@ function updateEvents(){
         if(i==1){
             strHtmlCard += `<div class="row">`
         }
-        strHtmlCard += `<div class="col-sm-6">
+        strHtmlCard += `<div class="col-md-6">
         <div class="card" style="width: 18rem;">
          <img class="card-img-top" src="${arrayEvents[arrayEvents.length-i].image}" alt="Card image cap">
          <div class="card-body">
