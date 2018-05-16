@@ -435,7 +435,7 @@ static getLastId() {
 
 class Testimonial{
     constructor(identification,testimonial){
-        this._id= arrayTestimonial.getLastId()+1 
+        this._id= Testimonial.getLastId()+1 
         this.identification=identification
         this.testimonial=testimonial
 
@@ -569,14 +569,21 @@ static getLastId() {
 
 window.onload = function(){
 //eventos
-let eventoUm= new Events ("queima","vai ser Top","11/05/2018","","","","queimodromo","","","Outros/evente1.jpg","","","")
+let eventoUm= new Events ("queima","vai ser Top","11/05/2018","","","","queimodromo","","","Outros/event5.jpg","","","")
 arrayEvents.push(eventoUm)
-let eventoDois= new Events ("Ressaca","vai ser Top","12/05/2018","","","","Rua Alto do Parque,Penamaior","","","Outros/evente1.jpg","","","")
+let eventoDois= new Events ("Ressaca","vai ser Top","12/05/2018","","","","Rua Alto do Parque,Penamaior","","","Outros/event5.jpg","","","")
 arrayEvents.push(eventoDois)
-let eventoTres= new Events ("SecondRound","vai ser Top","12/05/2018","","","","queimodromo","","","Outros/evente1.jpg","","","")
+let eventoTres= new Events ("SecondRound","vai ser Top","12/05/2018","","","","queimodromo","","","Outros/event5.jpg","","","")
 arrayEvents.push(eventoTres)
-console.log(arrayEvents)
+let eventoQuatro= new Events("projeto","esta a ser foda","16/05/2018","","","","biblioteca","","","Outros/event5.jpg","","","")
+arrayEvents.push(eventoQuatro)
 updateEvents()
+console.log(arrayEvents)
+//testemunho
+let testemunho= new Testimonial("Roloi","Este site esta no ponto mesmo! Feito por grandes futuros CEOs sem duvida")
+arrayTestimonial.push(testemunho)
+updateTestimonial()
+console.log(arrayTestimonial)
 //Admin
 let newAdmin = new User("RL","projeto","admin","","")
 arrayUser.push(newAdmin)
@@ -652,13 +659,13 @@ event.preventDefault()
 function updateEvents(){
     let strHtmlCard = ""
     //iterar sobre o array de eventos
-    for(let i=1;i<4;i++)
+    for(let i=1;i<5;i++)
     {
         if(i==1){
             strHtmlCard += `<div class="row">`
         }
-        strHtmlCard += `<div class="col-sm-6">
-        <div class="card" style="width: 18rem;">
+        strHtmlCard += `<br><br><div class="col-sm-6">
+        <div class="card" style="width: 26rem;">
          <img class="card-img-top" src="${arrayEvents[arrayEvents.length-i].image}" alt="Card image cap">
          <div class="card-body">
           <h5 class="card-title">${arrayEvents[arrayEvents.length-i].eventname}</h5>
@@ -670,11 +677,34 @@ function updateEvents(){
         </div>
         </div>`
         // Fecha a linha
-        if(i== 3) {
+        if(i== 4) {
             strHtmlCard += `</div>`    
         }  
     }
     let eventsCatalog = document.getElementById("eventsCatalog")
     eventsCatalog.innerHTML = strHtmlCard
+}
+function updateTestimonial()
+{
+
+    let strHtmlTest = ""
+    //iterar sobre o array de testemunhos
+  
+            strHtmlTest += `<div class="row">
+        <br><br><div class="col-sm-12">
+        <div class="card" style="width: 26rem;">
+         
+         <div class="card-body">
+          <h5 class="card-title">${arrayTestimonial[arrayTestimonial.length-1].identification}</h5>
+          <p class="card-text">${arrayTestimonial[arrayTestimonial.length-1].testimonial}</p>
+          
+        </div>
+        </div>
+        </div>
+        </div>`    
+         
+    
+    let testemunhosCatalog = document.getElementById("testemunhosCatalog")
+    testemunhosCatalog.innerHTML = strHtmlTest
 }
 

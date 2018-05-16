@@ -7,11 +7,19 @@ position: relative
 
 
 #homeFiltro {
-
+   
 position: absolute;
-transform: translate(40%, -50px)
+transform: translate(35%, -50px)
 
 }
+#catalogoId{
+    margin-right: 50px;
+    margin-left: 50px;
+    margin-top:40px;
+}
+   
+    
+    
 
 /* 
 Usar position relative no container com os dois, e mudar o que queremos por a frente para position absolute e depois sobrepor por exemplo com:
