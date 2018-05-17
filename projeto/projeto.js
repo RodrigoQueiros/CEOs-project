@@ -577,12 +577,12 @@ let eventoTres= new Events ("SecondRound","vai ser Top","12/05/2018","","","","q
 arrayEvents.push(eventoTres)
 let eventoQuatro= new Events("projeto","esta a ser foda","16/05/2018","","","","biblioteca","","","Outros/event5.jpg","","","")
 arrayEvents.push(eventoQuatro)
-updateEvents()
+//updateEvents()
 console.log(arrayEvents)
 //testemunho
 let testemunho= new Testimonial("Roloi","Este site esta no ponto mesmo! Feito por grandes futuros CEOs sem duvida")
 arrayTestimonial.push(testemunho)
-updateTestimonial()
+//updateTestimonial()
 console.log(arrayTestimonial)
 //Admin
 let newAdmin = new User("RL","projeto","admin","","")
@@ -637,7 +637,24 @@ if(rPass.value != rcPass.value) //Verificar se a passe e a sua confirmação coi
 if (strError=="") 
 {
 let newUser = new User(rUser.value,rPass.value,"standard",rEmail.value) //Fazer o Objeto
-arrayUser.push(newUser) //Por dentro do array
+
+
+//Local Storage
+let userStorageSTR = JSON.stringify(newUser)
+
+localStorage.setItem(newUser.id,userStorageSTR)
+
+
+for(let i = 0; i<localStorage.length;i++){
+console.log(localStorage.key[i])
+console.log(localStorage.getItem(localStorage.key[i]))
+console.log(JSON.parse(localStorage.getItem(localStorage.key[i])))
+
+}
+
+
+
+
 alert("Registo efetuado com sucesso!!")
 event.preventDefault()
 }
@@ -656,7 +673,7 @@ event.preventDefault()
 
 }
 
-function updateEvents(){
+/*function updateEvents(){
     let strHtmlCard = ""
     //iterar sobre o array de eventos
     for(let i=1;i<5;i++)
@@ -707,4 +724,4 @@ function updateTestimonial()
     let testemunhosCatalog = document.getElementById("testemunhosCatalog")
     testemunhosCatalog.innerHTML = strHtmlTest
 }
-
+*/
