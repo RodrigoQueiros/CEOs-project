@@ -9,7 +9,7 @@ let arrayPartnerships = []
 
 class User {
     constructor(username, password, type, email) {
-        this._id = 0
+        this._id = User.getLastId()+1
         this.username = username
         this.password = password
         this.type = type
@@ -65,9 +65,10 @@ class User {
 
 
     static getLastId() {
+        loadFromStorage()
         let lastId = 0
-        if (arrayUser.length != 0) {
-            lastId = arrayUser[arrayUser.length - 1].id
+        if (myUsers.length != 0) {
+            lastId = myUser[myUser.length - 1].id
         }
         return lastId
     }
@@ -533,7 +534,7 @@ window.onload = function () {
     //Get elements by ids
     let formFilter = document.getElementById("a") //Form dos filtros 
     let formSignIn = document.getElementById("formSignIn") //Form de registo
-    let formLogIn = document.getElementById("a") //Form de Log in
+    let formLogIn = document.getElementById("formLogIn") //Form de Log in
 
     //Filtrar eventos
     /*formFilter.addEventListener("submit", function(event){
@@ -610,7 +611,20 @@ window.onload = function () {
         event.preventDefault()
     })
 
+    //Login
 
+    formLogIn.addEventListener("submit",function(event){
+
+        let loginEmail = document.getElementById("logInEmail")
+        let loginPass = document.getElementById("logInPass")
+
+        
+    
+
+
+
+        event.preventDefault()
+    })
 
 
 }
