@@ -614,7 +614,7 @@ window.onload = function () {
 
     //Login
 
-   /* formLogIn.addEventListener("submit",function(event){
+   formLogIn.addEventListener("submit",function(event){
 
         let loginEmail = document.getElementById("logInEmail")
         let loginPass = document.getElementById("logInPass")
@@ -625,7 +625,7 @@ window.onload = function () {
 
 
         event.preventDefault()
-    })*/
+    })
 
 
 }

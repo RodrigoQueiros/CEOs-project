@@ -70,6 +70,7 @@ class User {
 
 window.onload = function () {
     loadFromStorage()
+    //Criar um admin
     let a = false
     if (localStorage.getItem("User")){
         
