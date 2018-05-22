@@ -65,10 +65,10 @@ class User {
 
 
     static getLastId() {
-        loadFromStorage()
+        
         let lastId = 0
         if (myUsers.length != 0) {
-            lastId = myUser[myUser.length - 1].id
+            lastId = myUsers[myUsers.length - 1].id
         }
         return lastId
     }
@@ -501,8 +501,7 @@ function loadFromStorage() {
     let tempArray = JSON.parse(localStorage.getItem("standart"))
     for (var i = 0; i < myUsers.length; i++) {
         let newUser =  new User(tempArray._username, tempArray._password,tempArray._type,tempArray._email)
-        myUsers.push(newUser)
-        return myUsers
+        myUsers.push(newUser)       
     }
 }
 
@@ -510,6 +509,8 @@ function loadFromStorage() {
 //Window on Load
 
 window.onload = function () {
+    loadFromStorage()
+    
     //eventos
     let eventoUm = new Events("queima", "vai ser Top", "11/05/2018", "", "", "", "queimodromo", "", "", "Outros/event5.jpg", "", "", "")
     arrayEvents.push(eventoUm)
@@ -557,7 +558,7 @@ window.onload = function () {
         let userExist = false       
 
         if (localStorage.getItem("standart")) {
-            loadFromStorage() //Função que le o local storage devolve o array myUsers 
+             //Função que le o local storage devolve o array myUsers 
             
 
             for (var i = 0; i < myUsers.length; i++) {
@@ -613,7 +614,7 @@ window.onload = function () {
 
     //Login
 
-    formLogIn.addEventListener("submit",function(event){
+   /* formLogIn.addEventListener("submit",function(event){
 
         let loginEmail = document.getElementById("logInEmail")
         let loginPass = document.getElementById("logInPass")
@@ -624,7 +625,7 @@ window.onload = function () {
 
 
         event.preventDefault()
-    })
+    })*/
 
 
 }
