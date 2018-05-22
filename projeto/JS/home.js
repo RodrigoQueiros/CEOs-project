@@ -683,22 +683,22 @@ function updateEvents(){
     for(let i=1;i<5;i++)
     {
         if(i==1){
-            strHtmlCard += `<p style="display: block;color: #1D76CE">Eventos:</p>
+            strHtmlCard += `<h5 style="display: block;color: #1D76CE">Eventos:</h5>
             <div class="row" >`
         }
-        strHtmlCard += `<div class="card m-3" style="width: 40rem;" >
+        strHtmlCard += `<div class="card m-3" style="width: 40rem; border-radius:5px;" >
         <a id="zeLink" href="#">
         <div class="row " >
           <div class="col-md-4" >
-              <img src="${arrayEvents[arrayEvents.length-i].image}" style="width:100%;height:100%" >
+              <img src="${arrayEvents[arrayEvents.length-i].image}" style="width:100%;height:100%; border-radius:5px 0px 0px 5px" >
             </div>
             <div class="col-md-8">
               <div id="NomeData" class="row ">
                  <div id="eventoNome" class="mr-auto col-md-6">
                  <h5 class="" style="margin-top:10px">${arrayEvents[arrayEvents.length-i].eventname}</h5>
                  </div>
-                 <div id="eventoData" class=" col-md-4" >
-                 <p>${arrayEvents[arrayEvents.length-i].date}</p>
+                 <div id="eventoData" class="mr-2 col-md-4" style=" font-size:12px;">
+                 <p style="float:right;">${arrayEvents[arrayEvents.length-i].date}</p>
                  </div>
                 
               </div>
@@ -735,27 +735,28 @@ function updateTestimonial()
     //iterar sobre o array de testemunhos
   
             strHtmlTest += 
-             ` <p style="display: block;color: #1D76CE">Testemunho:</p>
-            
+             ` <h5 style="display: block;color: #1D76CE">Testemunho:</h5>
+         <div class="row"> 
          <div class="card m-3" style="width: 40rm;" >
             <a id="zeLink" href="#">
              <div class="row " style="height:5rm;">
               <div class="col-md-3" >
-                  <img src="${arrayTestimonial[arrayTestimonial.length-1].image}" style="width:100%;height:100%" >
+                  <img src="${arrayTestimonial[arrayTestimonial.length-1].image}" style="width:100%;height:100%; border-radius:5px;" >
               </div>
               <div class="ml-0 col-md-9">
-                  <h5 id="IdentificaçãoTest"  style="margin-top:10px;margin-left:0px;">${arrayTestimonial[arrayTestimonial.length-1].identification}</h5>
+                  <h5 id="IdentificaçãoTest"  style="float:left; margin-top:10px;margin-left:0px;">${arrayTestimonial[arrayTestimonial.length-1].identification}</h5>
               </div>
              </div>
              <div class="row ml-1 col-md-12" style="height:30rm;">   
                  <p style="margin-top:10px;">${arrayTestimonial[arrayTestimonial.length-1].testimonial} </p>
              </div>  
-             <div id="TestDate" class"row col-md-12">
-              <p>${arrayTestimonial[arrayTestimonial.length-1].date}</p>
+             <div id="TestDate" class"row mr-2 col-md-12" style="font-size:12px;">
+              <p style="float:right;margin-right:5px;">${arrayTestimonial[arrayTestimonial.length-1].date}</p>
               </div>
  
            </a>
         </div> 
+        </div>
            `
     
     let testemunhosCatalog = document.getElementById("testemunhosCatalog")
