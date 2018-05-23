@@ -365,10 +365,11 @@ static getLastId() {
 class Teachers{
     constructor(name,photo,formation,uc,shortCV)
     {
-        this._id= arrayTeachers.getLastId()+1
+        this._id= Teachers.getLastId()+1
         this.name=name
         this.photo=photo
         this.formation=formation
+        this.uc=uc
         this.shortCV=shortCV
     }
   //id
@@ -407,6 +408,17 @@ get formation()
 set formation(newFormation) 
 {
 this._formation = newFormation
+}
+
+//uc
+get uc() 
+{
+ return this._uc
+}
+
+set uc(newUc) 
+{
+this._uc = newUc
 }
 
 //shortCV
@@ -603,8 +615,14 @@ console.log(arrayEvents)
 //testemunho
 let testemunho= new Testimonial("Roloi","Este site esta no ponto mesmo! Feito por grandes futuros CEOs sem duvida","../Outros/event5.jpg","12/05/2018")
 arrayTestimonial.push(testemunho)
-updateTestimonial()
+
 console.log(arrayTestimonial)
+//docente
+
+let teacher= new Teachers("Ricardo Queiros", "../Outros/event5.jpg","","POO","")
+arrayTeachers.push(teacher)
+updateTestimonial_Docente()
+
 //Admin
 let newAdmin = new User("RL","projeto","admin","","")
 arrayUser.push(newAdmin)
@@ -728,7 +746,7 @@ function updateEvents(){
 
 
 
-function updateTestimonial()
+function updateTestimonial_Docente()
 {
 
     let strHtmlTest = ""
@@ -757,9 +775,38 @@ function updateTestimonial()
            </a>
         </div> 
         </div>
+
+
+        <h5 style="display: block;color: #1D76CE">Docente:</h5>
+        <div class="row"> 
+         <div class="card m-3" style="width: 40rm;" >
+            <a id="zeLink" href="#">
+             <div class="row col-md-12">
+              <div class="col-md-4 mr-auto mt-2 " >
+                  <img src="${arrayTeachers[arrayTeachers.length-1].photo}" style="float:left;border-radius:5px;width:95%;height:95%;" >
+              </div>
+              <div class="mr-auto col-md-8 mt-2" id="docNameDesc" style="float:left;">
+                 <div class="mr-auto" >
+                     <h5 id="doncenteName" style="margin-left:0px;margin-top">${arrayTeachers[arrayTeachers.length-1].name}</h5>
+                 </div>
+
+                 <div class="mr-auto" >
+                      <p id="docenteDescrição">${arrayTeachers[arrayTeachers.length-1].uc}</p>
+                 </div>
+              </div>
+             </div>
+             
+ 
+           </a>
+        </div> 
+        </div>
            `
     
     let testemunhosCatalog = document.getElementById("testemunhosCatalog")
     testemunhosCatalog.innerHTML = strHtmlTest
 }
 
+function updateDocente()
+{
+    let strHtmlTest = ""  
+}
