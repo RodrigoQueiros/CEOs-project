@@ -78,7 +78,8 @@ function loadFromStorage() {
         for (var i = 0; i < tempArray.length; i++) {
             
             let newUser =  new User(tempArray[i]._username, tempArray[i]._password,tempArray[i]._type,tempArray[i]._email)
-            myUsers.push(newUser)       
+            myUsers.push(newUser)    
+              
         }
 
     }
@@ -124,10 +125,11 @@ formLogIn.addEventListener("submit",function(event){
     if (localStorage.getItem("User")) {
             
        for (var i = 0; i < myUsers.length; i++) {
-        console.log(myUsers[i])
-        event.preventDefault()
-           if (myUsers[i].email == loginEmail.value) {
             
+            console.log(loginEmail.value)
+           if (myUsers[i].email == loginEmail.value) {
+           
+
                if(myUsers[i].password == loginPass.value ){
                 
                 alert("Ok!")
@@ -153,10 +155,11 @@ formLogIn.addEventListener("submit",function(event){
    }
    if(loginError==""){
     localStorage.setItem("LoggedUser", JSON.stringify(loggedUser))
+    
     // Fazer função de user logged
     loginChances()
     console.log(userType)
-    event.preventDefault()
+    
 
 
 
@@ -175,14 +178,14 @@ formLogIn.addEventListener("submit",function(event){
 
 function loginChances(){
     let verifyType = JSON.parse(localStorage.getItem("LoggedUser"))            
-            console.log(verifyType) 
+            
            if (verifyType._type == "admin") {
            userType = "admin"
            }
-           else if (verifyType[i]._type == "teacher"){
+           else if (verifyType._type == "teacher"){
             userType = "teacher"
            }
-           else if(verifyType[i]._type == "standard"){
+           else if(verifyType._type == "standard"){
             userType = "standard"
            }
        
