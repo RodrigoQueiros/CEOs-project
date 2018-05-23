@@ -1,4 +1,7 @@
 let myUsers = []
+let userType = ""
+
+
 
 class User {
     constructor(username, password, type, email) {
@@ -84,7 +87,7 @@ function loadFromStorage() {
 
 window.onload = function () {
     loadFromStorage()
-
+    
 //Criar um admin
 let a = false
 if (localStorage.getItem("User")){
@@ -102,7 +105,7 @@ if (localStorage.getItem("User")){
 }
 if(a==false){
 
-    let newAdmin = new User("RL", "projeto", "admin", "")
+    let newAdmin = new User("RL", "projeto", "admin", "rl@projeto.pt")
     myUsers.push(newAdmin)
     localStorage.setItem("User", JSON.stringify(myUsers))
 
@@ -116,24 +119,34 @@ formLogIn.addEventListener("submit",function(event){
     let loginPass = document.getElementById("logInPass")
     let loginError = ""
     let loggedUser = []
+
+    console.log()
     if (localStorage.getItem("User")) {
             
        for (var i = 0; i < myUsers.length; i++) {
-           if (myUsers[i].email == loginEmail) {
-               if(myUser[i].password == loginPass ){
+        console.log(myUsers[i])
+        event.preventDefault()
+           if (myUsers[i].email == loginEmail.value) {
+            
+               if(myUsers[i].password == loginPass.value ){
+                
                 alert("Ok!")
-                loggedUser = myUser[i]
+                loggedUser = myUsers[i]
 
                }
                else{
                 loginError="A palavra passe não esta certa"
                 //Limpa passe, foca passe
+                loginPass.value = ""
+                loginPass.focus()
                }
                break
            }
            else{
             loginError="O User não existe"
             //Limpa tudo
+            loginEmail.value = ""
+            loginPass.value = ""
            }
        }
        
@@ -141,6 +154,11 @@ formLogIn.addEventListener("submit",function(event){
    if(loginError==""){
     localStorage.setItem("LoggedUser", JSON.stringify(loggedUser))
     // Fazer função de user logged
+    loginChances()
+    console.log(userType)
+    event.preventDefault()
+
+
 
    }
    else
@@ -153,13 +171,25 @@ formLogIn.addEventListener("submit",function(event){
 })
 
 
+}
 
-
-
+function loginChances(){
+    let verifyType = JSON.parse(localStorage.getItem("LoggedUser"))            
+            console.log(verifyType) 
+           if (verifyType._type == "admin") {
+           userType = "admin"
+           }
+           else if (verifyType[i]._type == "teacher"){
+            userType = "teacher"
+           }
+           else if(verifyType[i]._type == "standard"){
+            userType = "standard"
+           }
+       
+   
 
 
 
 
 }
-
 
