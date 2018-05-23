@@ -499,7 +499,7 @@ class Partnerships {
 
 function loadFromStorage() {
     let tempArray = JSON.parse(localStorage.getItem("standart"))
-    for (var i = 0; i < myUsers.length; i++) {
+    for (var i = 0; i < tempArray.length; i++) {
         let newUser =  new User(tempArray._username, tempArray._password,tempArray._type,tempArray._email)
         myUsers.push(newUser)       
     }
@@ -614,7 +614,7 @@ window.onload = function () {
 
     //Login
 
-   /* formLogIn.addEventListener("submit",function(event){
+   formLogIn.addEventListener("submit",function(event){
 
         let loginEmail = document.getElementById("logInEmail")
         let loginPass = document.getElementById("logInPass")
@@ -625,7 +625,7 @@ window.onload = function () {
 
 
         event.preventDefault()
-    })*/
+    })
 
 
 }

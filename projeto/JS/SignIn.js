@@ -70,12 +70,28 @@ class User {
 
 window.onload = function () {
     loadFromStorage()
+    //Criar um admin
+    let a = false
+    if (localStorage.getItem("User")){
+        
+        for (var i = 0; i < myUsers.length; i++) {
+            
+            if (myUsers[i].username == "RL") {
+                a = true
+                
+            }
+        }
 
-    if(1==1)//Se dmin ainda nao existir, criar
-    {
-        let newAdmin = new User("RL", "projeto", "admin", "", "")
-        //Guardar local storage
+            
+                    
     }
+    if(a==false){
+
+        let newAdmin = new User("RL", "projeto", "admin", "")
+        myUsers.push(newAdmin)
+        localStorage.setItem("User", JSON.stringify(myUsers))
+
+    }  
 
     let formSignIn = document.getElementById("formSignIn") //Form de registo
     let rUser = document.getElementById("rUser")
@@ -91,7 +107,7 @@ window.onload = function () {
         //Validar o email
         let userExist = false       
 
-        if (localStorage.getItem("standart")) {
+        if (localStorage.getItem("User")) {
              //Função que le o local storage devolve o array myUsers 
             
 
@@ -125,12 +141,10 @@ window.onload = function () {
             //Local Storage
             
             
-            if (localStorage.getItem("standart")) {
-            myUsers = JSON.parse(localStorage.getItem("standart"))
-            }
+            
 
             myUsers.push(newUser)
-            localStorage.setItem("standart", JSON.stringify(myUsers))
+            localStorage.setItem("User", JSON.stringify(myUsers))
             
 
             alert("Registo efetuado com sucesso!!")
@@ -151,4 +165,18 @@ window.onload = function () {
 
 
 
+}
+
+function loadFromStorage() {
+
+    if(localStorage.User){
+        let tempArray = JSON.parse(localStorage.getItem("User"))
+        for (var i = 0; i < tempArray.length; i++) {
+            
+            let newUser =  new User(tempArray[i]._username, tempArray[i]._password,tempArray[i]._type,tempArray[i]._email)
+            myUsers.push(newUser)       
+        }
+
+    }
+    
 }
