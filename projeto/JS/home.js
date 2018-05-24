@@ -758,8 +758,8 @@ function updateTestimonial_Docente()
          <div class="card m-3" style="width: 40rm;" >
             <a id="zeLink" href="#">
              <div class="row " style="height:5rm;">
-              <div class="col-md-3" >
-                  <img src="${arrayTestimonial[arrayTestimonial.length-1].image}" style="width:100%;height:100%; border-radius:5px;" >
+              <div class="col-md-3 " >
+                  <img src="${arrayTestimonial[arrayTestimonial.length-1].image}" style="width:100%;height:100%; border-radius:5px;margin-left:3px;margin-top:3px;" >
               </div>
               <div class="ml-0 col-md-9">
                   <h5 id="IdentificaçãoTest"  style="float:left; margin-top:10px;margin-left:0px;">${arrayTestimonial[arrayTestimonial.length-1].identification}</h5>
