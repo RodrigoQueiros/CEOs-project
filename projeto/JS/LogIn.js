@@ -120,21 +120,23 @@ formLogIn.addEventListener("submit",function(event){
     let loginPass = document.getElementById("logInPass")
     let loginError = ""
     let loggedUser = []
-
+    let boolVerify
     console.log()
     if (localStorage.getItem("User")) {
-            
+        console.log(loginEmail.value) 
+        console.log(myUsers[1]._email) 
        for (var i = 0; i < myUsers.length; i++) {
             
-            console.log(loginEmail.value)
-           if (myUsers[i].email == loginEmail.value) {
+            
+            //console.log(myUsers[i]._email)
+           if (myUsers[i]._email == loginEmail.value) {
            
 
                if(myUsers[i].password == loginPass.value ){
                 
                 alert("Ok!")
                 loggedUser = myUsers[i]
-
+                loginError = ""
                }
                else{
                 loginError="A palavra passe não esta certa"
@@ -142,13 +144,13 @@ formLogIn.addEventListener("submit",function(event){
                 loginPass.value = ""
                 loginPass.focus()
                }
+               
                break
            }
            else{
             loginError="O User não existe"
             //Limpa tudo
-            loginEmail.value = ""
-            loginPass.value = ""
+            
            }
        }
        
@@ -166,6 +168,8 @@ formLogIn.addEventListener("submit",function(event){
    }
    else
    {
+    loginEmail.value = ""
+    loginPass.value = ""
        alert(loginError)
    }
 
@@ -187,8 +191,7 @@ function loginChances(){
            }
            else if(verifyType._type == "standard"){
             userType = "standard"
-           }
-       
+           }    
    
 
 
