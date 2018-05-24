@@ -182,7 +182,9 @@ formLogIn.addEventListener("submit",function(event){
 
 function loginChances(){
     let verifyType = JSON.parse(localStorage.getItem("LoggedUser"))            
-            
+    let changeLogin = document.getElementById("optLogout")
+
+
            if (verifyType._type == "admin") {
            userType = "admin"
            }
@@ -191,6 +193,7 @@ function loginChances(){
            }
            else if(verifyType._type == "standard"){
             userType = "standard"
+            changeLogin.value = "Oi"
            }    
    
 
