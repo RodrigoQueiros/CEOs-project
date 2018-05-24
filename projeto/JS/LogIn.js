@@ -1,7 +1,7 @@
 let myUsers = []
 let userType = ""
-
-
+let loggedUser = []
+let changeLogin = document.getElementById("textLogin")
 
 class User {
     constructor(username, password, type, email) {
@@ -71,24 +71,13 @@ class User {
 
 }
 
-function loadFromStorage() {
 
-    if(localStorage.User){
-        let tempArray = JSON.parse(localStorage.getItem("User"))
-        for (var i = 0; i < tempArray.length; i++) {
-            
-            let newUser =  new User(tempArray[i]._username, tempArray[i]._password,tempArray[i]._type,tempArray[i]._email)
-            myUsers.push(newUser)    
-              
-        }
-
-    }
-    
-}
 
 window.onload = function () {
+    loginChances()
     loadFromStorage()
     
+
 //Criar um admin
 let a = false
 if (localStorage.getItem("User")){
@@ -119,14 +108,14 @@ formLogIn.addEventListener("submit",function(event){
     let loginEmail = document.getElementById("logInEmail")
     let loginPass = document.getElementById("logInPass")
     let loginError = ""
-    let loggedUser = []
+    
     let boolVerify
     console.log()
     if (localStorage.getItem("User")) {
         console.log(loginEmail.value) 
-        console.log(myUsers[1]._email) 
+        
        for (var i = 0; i < myUsers.length; i++) {
-            
+        console.log(myUsers[i]._email) 
             
             //console.log(myUsers[i]._email)
            if (myUsers[i]._email == loginEmail.value) {
@@ -179,33 +168,85 @@ formLogIn.addEventListener("submit",function(event){
 
 
 }
+function loadFromStorage() {
+
+    if(localStorage.User){
+        let tempArray = JSON.parse(localStorage.getItem("User"))
+        for (var i = 0; i < tempArray.length; i++) {
+            
+            let newUser =  new User(tempArray[i]._username, tempArray[i]._password,tempArray[i]._type,tempArray[i]._email)
+            myUsers.push(newUser)    
+              
+        }
+
+    }
+    
+}
+
+function buttonLogOut(){
+    localStorage.removeItem("LoggedUser")
+    changeLogin.innerHTML = "Login"
+    
+}
+
 
 function loginChances(){
-    let verifyType = JSON.parse(localStorage.getItem("LoggedUser"))            
+   
+    let verifyType
+    
+if(localStorage.LoggedUser){
+    verifyType = JSON.parse(localStorage.getItem("LoggedUser"))
+
     let changeLogin = document.getElementById("textLogin")
 
 
-           if (verifyType._type == "admin") {
-           userType = "admin"
-           }
-           else if (verifyType._type == "teacher"){
-            userType = "teacher"
-           }
-           else if(verifyType._type == "standard"){
-            userType = "standard"
-            changeLogin.innerHTML = `<li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              ` + verifyType._username+ `
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Perfil</a>
-              <a class="dropdown-item" href="#">Logout</a>           
-              </div>
-          </li>`
+    if (verifyType._type == "admin") {
+    userType = "admin"
+    changeLogin.innerHTML = `<li class="nav-item dropdown">
+     <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
+     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+       <a class="dropdown-item" href="#">Perfil</a>
+       <a class="dropdown-item" href="#">Registar evento</a>   
+       <a class="dropdown-item" href="#">Gerir Docentes</a>  
+       <a class="dropdown-item" href="#">Gerir Parcerias</a>  
+       <a class="dropdown-item" href="#">Definições</a>  
+       <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>         
+       </div>
+   </li>`
+    }
+    else if (verifyType._type == "teacher"){
+     userType = "teacher"
+     changeLogin.innerHTML = `<li class="nav-item dropdown">
+     <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
+     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+       <a class="dropdown-item" href="#">Perfil</a>
+       <a class="dropdown-item" href="#">Registar evento</a>   
+       <a class="dropdown-item" href="#">Gerir Docentes</a>  
+       <a class="dropdown-item" href="#">Gerir Parcerias</a>  
+       <a class="dropdown-item" href="#">Logout</a>         
+       </div>
+   </li>`
+    }
+    else if(verifyType._type == "standard"){
+     userType = "standard"
+     changeLogin.innerHTML = `<li class="nav-item dropdown">
+     <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
+     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+       <a class="dropdown-item" href="#">Perfil</a>
+       <a class="dropdown-item" href="#">Logout</a>           
+       </div>
+   </li>`
 
 
 
-           }    
+    }   
+}
+               
+    
+
+   
+   
+    
    
 
 
