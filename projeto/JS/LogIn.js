@@ -184,8 +184,11 @@ function loadFromStorage() {
 }
 
 function buttonLogOut(){
+    let changeLogin = document.getElementById("textLogin")  
     localStorage.removeItem("LoggedUser")
     changeLogin.innerHTML = "Login"
+    location.reload(true);
+    
     
 }
 
@@ -202,6 +205,7 @@ if(localStorage.LoggedUser){
 
     if (verifyType._type == "admin") {
     userType = "admin"
+
     changeLogin.innerHTML = `<li class="nav-item dropdown">
      <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">

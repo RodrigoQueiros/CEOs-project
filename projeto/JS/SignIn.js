@@ -1,4 +1,6 @@
 let myUsers = []
+let loggedUser = []
+let changeLogin = document.getElementById("textLogin")
 
 class User {
     constructor(username, password, type, email) {
@@ -69,6 +71,7 @@ class User {
 }
 
 window.onload = function () {
+    loginChances()
     loadFromStorage()
     //Criar um admin
     let a = false
@@ -180,3 +183,63 @@ function loadFromStorage() {
     }
     
 }
+
+function buttonLogOut(){
+    let changeLogin = document.getElementById("textLogin")
+    localStorage.removeItem("LoggedUser")
+    changeLogin.innerHTML = "Login"
+    location.reload(true);
+}
+
+
+function loginChances(){
+   
+    let verifyType
+    
+if(localStorage.LoggedUser){
+    verifyType = JSON.parse(localStorage.getItem("LoggedUser"))
+
+    let changeLogin = document.getElementById("textLogin")
+
+
+    if (verifyType._type == "admin") {
+    userType = "admin"
+    changeLogin.innerHTML = `<li class="nav-item dropdown">
+     <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
+     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+       <a class="dropdown-item" href="#">Perfil</a>
+       <a class="dropdown-item" href="#">Registar evento</a>   
+       <a class="dropdown-item" href="#">Gerir Docentes</a>  
+       <a class="dropdown-item" href="#">Gerir Parcerias</a>  
+       <a class="dropdown-item" href="#">Definições</a>  
+       <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>         
+       </div>
+   </li>`
+    }
+    else if (verifyType._type == "teacher"){
+     userType = "teacher"
+     changeLogin.innerHTML = `<li class="nav-item dropdown">
+     <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
+     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+       <a class="dropdown-item" href="#">Perfil</a>
+       <a class="dropdown-item" href="#">Registar evento</a>   
+       <a class="dropdown-item" href="#">Gerir Docentes</a>  
+       <a class="dropdown-item" href="#">Gerir Parcerias</a>  
+       <a class="dropdown-item" href="#">Logout</a>         
+       </div>
+   </li>`
+    }
+    else if(verifyType._type == "standard"){
+     userType = "standard"
+     changeLogin.innerHTML = `<li class="nav-item dropdown">
+     <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
+     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+       <a class="dropdown-item" href="#">Perfil</a>
+       <a class="dropdown-item" href="#">Logout</a>           
+       </div>
+   </li>`
+
+
+
+    }   
+}}
