@@ -227,7 +227,7 @@ if(localStorage.LoggedUser){
        <a class="dropdown-item" href="#">Registar evento</a>   
        <a class="dropdown-item" href="#">Gerir Docentes</a>  
        <a class="dropdown-item" href="#">Gerir Parcerias</a>  
-       <a class="dropdown-item" href="#">Logout</a>         
+       <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>              
        </div>
    </li>`
     }
@@ -237,7 +237,7 @@ if(localStorage.LoggedUser){
      <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
        <a class="dropdown-item" href="#">Perfil</a>
-       <a class="dropdown-item" href="#">Logout</a>           
+       <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>             
        </div>
    </li>`
 
