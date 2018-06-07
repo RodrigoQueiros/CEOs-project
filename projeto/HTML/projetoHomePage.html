@@ -202,7 +202,7 @@
 
             <!--Third column-->
             <div class="col-md-2 mx-auto">
-                <h5 class="text-uppercase mb-4 mt-3 font-weight-bold" style="color:#002A75">Mapa</h5>
+                <h5 class="text-uppercase mb-4 mt-3 font-weight-bold" style="color:#002A75">Estrutura</h5>
                 <ul class="list-unstyled">
                     <li>
                         <a href="#!" style="color: white">Pagina Inicial</a>
@@ -243,10 +243,30 @@
             <!--/.Fourth column-->
 
             <!--First column-->
-            <div class="col-md-4">
-                <h5 class="text-uppercase mb-4 mt-3 font-weight-bold" style="color:#002A75">Footer Content</h5>
-                <p>Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit
-                    amet, consectetur adipisicing elit.</p>
+            <div class="col-md-4" >
+                <h5 class="text-uppercase mb-4 mt-3 font-weight-bold" style="color:#002A75">Mapa</h5>
+                <div id="myMap" style="width:300px; height:120px" ></div>
+            <script>            
+                let map
+                let myMap = document.getElementById("myMap")
+                function initMap() {
+                    let mapProp= {
+                        center:new google.maps.LatLng(41.366687, -8.738844),
+                        mapTypeId: google.maps.MapTypeId.HYBRID,
+                        zoom:15
+                    }
+                    map = new google.maps.Map(myMap, mapProp)
+                    
+                    let spot1 = new google.maps.LatLng(41.366687, -8.738844)
+                    let marker = new google.maps.Marker({
+                    position: spot1,
+                    map: map,
+                   
+                    })
+                    
+                }                    
+            </script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMfRYKPXOiNoVuomVzmyHdXpG4g5g1dQw&callback=initMap" async></script>
             </div>
             <!--/.First column-->
             <hr class="clearfix w-100 d-md-none">
@@ -267,6 +287,9 @@
        
 
 </div>
+
+
+
 
 
 
