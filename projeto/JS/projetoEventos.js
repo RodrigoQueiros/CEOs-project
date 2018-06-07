@@ -235,7 +235,7 @@ function events()
             <div class="row" >`
         }
         strHtmlCard += `<div class="card m-3" style="width: 40rem; border-radius:5px;" >
-        <a id="zeLink" href="#">
+        <a id="zeLink" href="../HTML/Eventos.html>
         <div class="row " >
           <div class="col-md-4" >
               <img src="${arrayEvents[i].image}" style="width:100%;height:100%; border-radius:5px 0px 0px 5px" >
