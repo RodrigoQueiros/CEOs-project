@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>CEOs TSIW</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <!--Custom JS-->
+      <script src="../JS/Eventos.js"></script>
+      <link rel="stylesheet" type="text/css" href="../CSS/projeto.css">
+</head>
+  <body>
+
+
+
+
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+
+
+<!--Navbar
+-->
+
+    <nav class="navbar navbar-expand-sm navbar bg sticky-top"  style="background: white;border-bottom: 1px solid rgb(201, 196, 196);">
+        <a class="navbar-brand" style="margin-left: 3%;" href="projetoHomePage.html"><img src="../Outros/logotipo.png" width="130" height="40" alt=""></a>
+        <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId"  >
+            <ul class="navbar-nav ml-auto " style="margin-right: 20%;" >
+                <!--OPÇÃO Eventos-->
+                <li class="nav-item" style="margin-right: 5%; font-size:14pt;margin-top: 1%;color:#1D76CE">
+                    <b><a class="nav-link" id="navEventos" href="projetoEventos.html"><label>Eventos</label></a></b>
+                </li>
+                <!--OPÇÃO Calendario -->
+                <li class="nav-item" style="margin-right: 5%; font-size:14pt;margin-top: 1%;color:#1D76CE" >
+                    <b><a class="nav-link" id="navCalendario" href="#"><label>Calendario</label></a></b>
+                </li>                  
+            
+              <!--OPÇÃO Parcerias-->
+              <li id="optLogin" class="nav-item" style="margin-right: 5%; font-size:14pt;margin-top: 1%;color:#1D76CE">
+                <b><a class="nav-link" id="navParcerias" href="#"><label>Parcerias</label></a></b>
+              </li>
+              <!--OPÇÃO Docentes-->
+              <li id="optRegister" class="nav-item" style="margin-right: 5%; font-size:14pt;margin-top: 1%;color:#1D76CE" >
+                  <b><a class="nav-link" id="navDocentes" href="#">Docentes</a></b>
+              </li>
+              <!--OPÇÃO Login-->
+              <li id="optLogout" class="nav-item"  style="margin-right: 5%; font-size:14pt;margin-top: 1%;color:#1D76CE">
+                <b id="textLogin"><a class="nav-link" href="projetoLogIn.html">Login</a></b> 
+              </li>                 
+                              
+          </ul>              
+        </div>
+    </nav>
+      
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div class="tab-pane fade in active" id="tab1Id" role="tabpanel"></div>
+        <div class="tab-pane fade" id="tab2Id" role="tabpanel"></div>
+        <div class="tab-pane fade" id="tab3Id" role="tabpanel"></div>
+        <div class="tab-pane fade" id="tab4Id" role="tabpanel"></div>
+        <div class="tab-pane fade" id="tab5Id" role="tabpanel"></div>
+      </div>
+      
+      <script>
+        $('#navId a').click(e => {
+          e.preventDefault();
+          $(this).tab('show');
+        });
+      </script>
+
+
+<div class="container" style="margin-top: 50px">
+    <div id=catalogoId class="row">
+        <div id="eventsPagCatalog" class="col-8">
+          
+        </div>
+        
+        <div id="Admin/Doc/AddEvent" class="col-md-4">
+            
+        </div>
+    
+                 
+    </div>
+
+ </body>
+</html>
