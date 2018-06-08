@@ -181,7 +181,11 @@ this._views = newViews
 }
 
 window.onload = function () {
-
+    //verificar se um evento ja tinha sido clicado
+    if(localStorage.getItem("EventClick"))
+    {
+     localStorage.removeItem("EventClick")
+    }
 //verificar se ja ha eventos predefinidos
 
 
@@ -235,7 +239,7 @@ function events()
             <div class="row" >`
         }
         strHtmlCard += `<div class="card m-3" style="width: 40rem; border-radius:5px;" >
-        <a id="zeLink" href="../HTML/Eventos.html>
+        <a id="zeLink" class="eventoclick" href="Evento.html" >
         <div class="row " >
           <div class="col-md-4" >
               <img src="${arrayEvents[i].image}" style="width:100%;height:100%; border-radius:5px 0px 0px 5px" >
@@ -267,10 +271,25 @@ function events()
         // Fecha a linha
         if(i==0) {
             strHtmlCard += `</div>`    
-        }  
+        }
+        
+        
     }
     let eventsCatalog = document.getElementById("eventsPagCatalog")
     eventsCatalog.innerHTML = strHtmlCard
+    ////
+    let arrayClick=document.getElementsByClassName("eventoclick")
+    for(let i=0;i<arrayClick.length;i++)
+    {
+        arrayClick[i].addEventListener("click",
+        function (){
+                let eventoClicado=arrayEvents[arrayClick.length-1-i] 
+                localStorage.setItem("EventClick", JSON.stringify(eventoClicado))
+                console.log("ola")
+        
+                 })
+    }
+    
 }
 
 function loginChangesPagEvent(){
@@ -491,7 +510,7 @@ function loadEventFromStorage() {
         let tempEveArray = JSON.parse(localStorage.getItem("Event"))
         for (var i = 0; i < tempEveArray.length; i++) {
             
-            let newEvent =  new Events(tempEveArray[i]._name, tempEveArray[i]._description,tempEveArray[i]._date,"","","",tempEveArray[i]._space,"","",tempEveArray[i]._image,"","","")
+            let newEvent =  new Events(tempEveArray[i]._eventname, tempEveArray[i]._description,tempEveArray[i]._date,"","","",tempEveArray[i]._space,"","",tempEveArray[i]._image,"","","")
             arrayEvents.push(newEvent)    
               
         }
@@ -514,4 +533,5 @@ function loadUsersFromStorage() {
     }
     
 }
+
              
