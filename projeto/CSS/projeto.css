@@ -18,7 +18,12 @@ color: #002A75
 
 }
 
-    
+.cardParceria:link {
+    color:black;
+    text-decoration: none;
+
+}   
+
     
 
 /* 
