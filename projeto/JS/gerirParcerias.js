@@ -200,9 +200,9 @@ function renderTableParc() {
         "<td>" + arrayPartnerships[i].link + "</td>" +
        
         "<td>" +
-        "<a id='" +arrayPartnerships[i]._id + "' class='edit'><i class='fas fa-edit'></i></a> " +
+        "<a id='" +arrayPartnerships[i]._id + "' class='edit'data-toggle='modal' data-target='#parcModalEdit'><i class='fas fa-edit'></i></a> " +
         "<a id='" + arrayPartnerships[i]._id + "' class='remove'><i class='fas fa-trash-alt'></i></a> " +
-        "<a id='" + arrayPartnerships[i]._id + "' class='view' data-toggle='modal' data-target='#gameModal'><i class='fas fa-eye'></i></a>" +
+        "<a id='" + arrayPartnerships[i]._id + "' class='view' data-toggle='modal' data-target='#parcModal'><i class='fas fa-eye'></i></a>" +
     "</td>" + 
         "</tr>"
     }
@@ -218,11 +218,36 @@ function renderTableParc() {
            // By clicking in a specific partnership remove it from the array
            let parceriaId= tdRemove[i].getAttribute("id")
            removePartById(parceriaId)
+           //atualizar storage
            localStorage.removeItem("Parcerias")
            localStorage.setItem("Parcerias", JSON.stringify(arrayPartnerships))
 
            renderTableParc()
-       })        
+       }) 
+
+       // Get all the view links from the table
+    let tdView = document.getElementsByClassName("view")
+    // For each link, add a listener to listen the click event
+    for (let i = 0; i < tdView.length; i++) {
+        tdView[i].addEventListener("click", function() {
+            // By clicking in a specific game, view it in a modal
+            let parceId = tdView[i].getAttribute("id")
+            viewParcById(parceId)                
+        })        
+    }
+     
+     // Get all the edit links from the table
+     let tdEdit = document.getElementsByClassName("edit")
+     // For each link, add a listener to listen the click event
+     for (let i = 0; i < tdEdit.length; i++) {
+         tdEdit[i].addEventListener("click", function() {
+             // By clicking in a specific game, edit in the form
+             let parceId = tdEdit[i].getAttribute("id")
+             editParceById(parceId)
+                       
+         })        
+     }
+       
 
 
 }
@@ -234,3 +259,57 @@ function removePartById(id) {
         }                  
     }
 }}
+
+// View game based on its ID
+ //name,image,local,link,code
+function viewParcById(id) {        
+    for (let i = 0; i < arrayPartnerships.length; i++) {
+        if(arrayPartnerships[i].id == id) {
+            let  modalParcName=document.getElementById("modalParcName")
+            let  modalParcLink=document.getElementById("modalParcLink")
+            let  modalParcLocal=document.getElementById("modalParcLocal")
+            let  modalparcCover=document.getElementById("modalparcCover")
+
+            modalParcName.innerHTML= arrayPartnerships[i].name                
+            modalParcLink.innerHTML = arrayPartnerships[i].link
+            modalParcLocal.innerHTML =  arrayPartnerships[i].local
+            modalparcCover.setAttribute("src", arrayPartnerships[i].image)                
+        }                  
+    }
+}
+
+// Edit game based on its ID
+function editParceById(id) {    
+    // Update global variable
+  let modalparcEdiNome=document.getElementById("modalparcEdiNome")
+  let modalparcEdiLocal=document.getElementById("modalparcEdiLocal")
+  let modalparcEdiLink=document.getElementById("modalparcEdiLink")
+  let modalparcEdiImag=document.getElementById("modalparcEdiImag")
+  let modalparcEdiCover=document.getElementById("modalparcEdiCover")
+  let btnEdit=document.getElementById("btnEdit")
+  // Iterate from all the games and fill the form with the games data
+    for (let i = 0; i < arrayPartnerships.length; i++) {
+        if(arrayPartnerships[i].id == id) {
+            modalparcEdiNome.setAttribute("value", arrayPartnerships[i].name)
+            modalparcEdiLocal.setAttribute("value", arrayPartnerships[i].local)
+            modalparcEdiLink.setAttribute("value", arrayPartnerships[i].link)
+            modalparcEdiImag.setAttribute("value", arrayPartnerships[i].image)
+            modalparcEdiCover.setAttribute("src", arrayPartnerships[i].image)
+            btnEdit.addEventListener("click",function(){
+                arrayPartnerships[i].name=modalparcEdiNome.value
+                arrayPartnerships[i].local=modalparcEdiLocal.value
+                arrayPartnerships[i].link=modalparcEdiLink.value
+                arrayPartnerships[i].image= modalparcEdiImag.value
+                modalparcEdiCover.setAttribute("src", arrayPartnerships[i].image)
+                 //atualizar storage
+                 localStorage.removeItem("Parcerias")
+                 localStorage.setItem("Parcerias", JSON.stringify(arrayPartnerships))   
+                 renderTableParc()
+
+
+
+            })
+            
+        }                  
+    }
+}

@@ -150,7 +150,7 @@ function updateParc(){
     {
     str+=`
     
-    <div class="row" style="margin-top:5%;">` 
+    <div class="row" style="margin-top:5%; margin-bottom:20px;">` 
     }
     str+=`<div class="col-4"><div class="card" style="width: 18rem;margin-right:2%">
            <a href="${arrayPartnerships[i].link}" class="cardParceria">

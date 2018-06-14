@@ -212,7 +212,7 @@ if(localStorage.LoggedUser){
        <a class="dropdown-item" href="#">Perfil</a>
        <a class="dropdown-item" href="#">Registar evento</a>   
        <a class="dropdown-item" href="#">Gerir Docentes</a>  
-       <a class="dropdown-item" href="AddParcerias.html">Gerir Parcerias</a>  
+       <a class="dropdown-item" href="gerirParcerias.html">Gerir Parcerias</a>  
        <a class="dropdown-item" href="#">Definições</a>  
        <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>         
        </div>
@@ -226,7 +226,7 @@ if(localStorage.LoggedUser){
        <a class="dropdown-item" href="#">Perfil</a>
        <a class="dropdown-item" href="#">Registar evento</a>   
        <a class="dropdown-item" href="#">Gerir Docentes</a>  
-       <a class="dropdown-item" href="#">Gerir Parcerias</a>  
+       <a class="dropdown-item" href="gerirParcerias.html">Gerir Parcerias</a>  
        <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>              
        </div>
    </li>`
