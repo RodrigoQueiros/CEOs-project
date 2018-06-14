@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Adicionar Parceria</title>
+
+
+   <script src="../JS/Add.Parcerias.js"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Font Awesome -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+  <body>
+
+      <nav class="navbar navbar-expand-sm navbar bg sticky-top "  style="background: white;border-bottom: 1px solid rgb(201, 196, 196);">
+          <a class="navbar-brand" style="margin-left: 3%;" href="projetoHomePage.html"><img src="../Outros/logotipo.png" width="130" height="40" alt="" ></a>
+          <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+              aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="collapsibleNavId"  >
+              <ul class="navbar-nav ml-auto " style="margin-right:25%;" >
+                  <!--OPÇÃO Eventos-->
+                  <li class="nav-item" style="margin-right: 5%; font-size:14pt;margin-top: 1%;color:#1D76CE">
+                      <b><a class="nav-link" id="navEventos" href="projetoEventos.html"><label>Eventos </label></a></b>
+                  </li>
+                  <!--OPÇÃO Calendario -->
+                  <li class="nav-item" style="margin-right: 5%; font-size:14pt;margin-top: 1%;color:#1D76CE" >
+                        <b><a class="nav-link" id="navCalendario" href="#"><label>Calendario</label></a></b>
+                    </li>                  
+              
+                <!--OPÇÃO Parcerias-->
+                <li id="optLogin" class="nav-item" style="margin-right: 5%; font-size:14pt;margin-top: 1%;color:#1D76CE">
+                  <b><a class="nav-link" id="navParcerias" href="Parcerias.html"><label>Parcerias</label></a></b>
+                </li>
+                <!--OPÇÃO Docentes-->
+                <li id="optRegister" class="nav-item" style="margin-right: 5%; font-size:14pt;margin-top: 1%;color:#1D76CE" >
+                    <b><a class="nav-link" id="navDocentes" href="Docentes.html">Docentes</a></b>
+                </li>
+                <!--OPÇÃO Login-->
+                <li id="optLogout" class="nav-item"  style="margin-right: 5%; font-size:14pt;margin-top: 1%;color:#1D76CE">
+                    <b id="textLogin"><a class="nav-link" href="projetoLogIn.html">Login</a></b> 
+                </li>                 
+                                
+            </ul>              
+          </div>
+      </nav>
+<!--form e tabela-->
+<div class="row" style="margin-top: 5%;">
+<!--Tabela-->
+<div  class="table-responsive col-md-8">
+<table id="tableParc" class="table table-bordered">
+   
+  </table>
+</div>
+      <!--Formalario AddParc  style="margin-left:35%;margin-top:5%"-->
+      <div class="container-fluid col-md-4">
+        <form id="formAddParc">
+            <h1 style="color:#1D76CE">Adicionar Parceria</h1>
+
+            <div class="form-group col-10 ">
+                    <label for="nameParc">Nome da Parceria</label>
+                    <input type="text"
+                      class="form-control" name="" id="nameParc" aria-describedby="helpId" value="" required>
+                    
+                  </div>        
+                  <div class="form-group col-10">
+                        <label for="ImagParc">Imagem</label>
+                        <input type="src"
+                          class="form-control" name="" id="ImagParc" aria-describedby="helpId"  required>                        
+                      </div>  
+
+             <div class="form-group col-10">
+              <label for="localParc">Local</label>
+               <input type="src"
+                class="form-control" name="" id="localParc" aria-describedby="helpId" > 
+            </div>
+            
+            <div class="form-group col-10">
+              <label for="linkParc">Link</label>
+              <input type="url"
+               class="form-control" name="" id="linkParc" aria-describedby="helpId"  required>                        
+            </div>  
+
+            <div class="form-group col-10">
+                <label for="codeParc">Code</label>
+                <input type="url"
+                 class="form-control" value="" name="" id="codeParc" aria-describedby="helpId" >                        
+            </div>                     
+                      
+                  
+                  
+
+                  <div class="form-group col-10"><input  type="submit" class="btn btn-primary col-12 " value="Adicionar">
+                    
+                    
+                
+                </div>
+                  
+
+        </form>
+ 
+    </div>
+
+</div>
+
+<!--Modal-->
+<div class="modal fade" id="gameModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Game Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <h5>Name</h5>
+              <p id="modalGameName"></p>
+          <hr>
+          <h5>Genre</h5>
+              <p id="modalGameGenre"></p>
+          <hr>
+          <h5>Platforms</h5>
+              <p id="modalGamePlatforms"></p>
+          <hr>
+          <h5>Cover</h5>
+              <img id="modalGameCover" class="img-thumbnail" src="" alt="">
+
+      </div>
+     
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+         <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
