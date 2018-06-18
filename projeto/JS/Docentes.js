@@ -103,11 +103,11 @@ if(b==false){
     console.log("ola")
     //parcerias adicionadas hardcode
     //name,photo,formation,uc,shortCV
-    let newDocc1= new Teachers ("Ricardo Queiros","http://bandai-a.akamaihd.net/bc/img/model/b/1000085989_1.jpg ","","POO","")
+    let newDocc1= new Teachers ("Ricardo Queiros","http://bandai-a.akamaihd.net/bc/img/model/b/1000085989_1.jpg ","333","POO"," ")
     arrayTeachers.push(newDocc1)
-    let newDocc2= new Teachers ("Ricardo Queiros","http://bandai-a.akamaihd.net/bc/img/model/b/1000085989_1.jpg ","","POO","")
+    let newDocc2= new Teachers ("Ricardo Queiros","http://bandai-a.akamaihd.net/bc/img/model/b/1000085989_1.jpg "," ","POO"," ")
     arrayTeachers.push(newDocc2)
-    let newDocc3= new Teachers ("Ricardo Queiros","http://bandai-a.akamaihd.net/bc/img/model/b/1000085989_1.jpg ","","POO","")
+    let newDocc3= new Teachers ("Ricardo Queiros","http://bandai-a.akamaihd.net/bc/img/model/b/1000085989_1.jpg "," ","POO"," ")
     arrayTeachers.push(newDocc3)
     
 
@@ -126,7 +126,7 @@ function loadDocFromStorage()
             let tempDocArray = JSON.parse(localStorage.getItem("Docentes"))
             for (var i = 0; i < tempDocArray.length; i++) 
             {
-                //name,image,local,link,code
+                //name,image,formartion,uc,shortCV
                 let newDoc =  new Teachers(tempDocArray[i]._name, tempDocArray[i]._photo,tempDocArray[i]._formation,tempDocArray[i]._uc,tempDocArray[i]._shortCV)
                 arrayTeachers.push(newDoc)    
                   
@@ -194,8 +194,8 @@ if(localStorage.LoggedUser){
      <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
        <a class="dropdown-item" href="#">Perfil</a>
-       <a class="dropdown-item" href="#">Registar evento</a>   
-       <a class="dropdown-item" href="#">Gerir Docentes</a>  
+       <a class="dropdown-item" href="gerirEventos.html">Gerir Eventos</a>   
+       <a class="dropdown-item" href="gerirDocentes.html">Gerir Docentes</a>  
        <a class="dropdown-item" href="gerirParcerias.html">Gerir Parcerias</a>  
        <a class="dropdown-item" href="#">Definições</a>  
        <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>         
@@ -208,8 +208,8 @@ if(localStorage.LoggedUser){
      <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
        <a class="dropdown-item" href="#">Perfil</a>
-       <a class="dropdown-item" href="#">Registar evento</a>   
-       <a class="dropdown-item" href="#">Gerir Docentes</a>  
+       <a class="dropdown-item" href="gerirEventos.html">Gerir Eventos</a>   
+       <a class="dropdown-item" href="gerirDocentes.html">Gerir Docentes</a>  
        <a class="dropdown-item" href="gerirParcerias.html">Gerir Parcerias</a>  
        <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>              
        </div>

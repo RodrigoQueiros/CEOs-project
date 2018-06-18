@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Gerir Parcerias</title>
+    <title>Gerir Docentes</title>
 
 
-   <script src="../JS/Admin.js"></script>
+   <script src="../JS/gerirDocentes.js"></script>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -52,91 +52,137 @@
 <!--form e tabela-->
 <div class="row" style="margin-left:3px; margin-top: 5%;">
 <!--Tabela-->
-
-<div  class="table-responsive col-12 col-md-12 col-sm-12" >
-    <h1 style="color:#1D76CE" >Users</h1>
-<table id="tableUsers" class="table table-bordered">
+<div  class="table-responsive col-md-8" >
+<table id="tableDoce" class="table table-bordered">
    
   </table>
 </div>
+      <!--Formalario AddParc  style="margin-left:35%;margin-top:5%"-->
+      <!--name,image,formartion,uc,shortCV -->
+      <div class="container-fluid col-md-4">
+        <form id="formAddDoc">
+            <h1 style="color:#1D76CE">Adicionar Docente</h1>
+
+            <div class="form-group col-10 ">
+                    <label for="nameDoc">Nome do Docente</label>
+                    <input type="text"
+                      class="form-control" name="" id="nameDoc" aria-describedby="helpId" value="" required>
+                    
+                  </div>        
+                  <div class="form-group col-10">
+                        <label for="ImagDoc">Imagem</label>
+                        <input type="src"
+                          class="form-control" name="" id="ImagDoc" aria-describedby="helpId"  required>                        
+                      </div>  
+
+             <div class="form-group col-10">
+              <label for="FormDoc">Formação</label>
+               <input type="text"
+                class="form-control" name="" id="FormDoc" aria-describedby="helpId" > 
+            </div>
+            
+            <div class="form-group col-10">
+              <label for="UniDoc">Unidade Curricular</label>
+              <input type="text"
+               class="form-control" name="" id="UniDoc" aria-describedby="helpId"  required>                        
+            </div>  
+
+            <div class="form-group col-10">
+                <label for="shortCVDoc">shortCV</label>
+                <input type="text"
+                 class="form-control" value="" name="" id="shortCVDoc" aria-describedby="helpId" >                        
+            </div>                     
+                      
+                  
+                  
+
+                  <div class="form-group col-10"><input  type="submit" class="btn btn-primary col-12 " value="Adicionar">
+                    
+                    
+                
+                </div>
+                  
+
+        </form>
+ 
+    </div>
+
+</div>
+
 <!--Modal view-->
-<div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="parcModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalDocName" style="color:#1D76CE"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <h5>Unidade Curricular</h5>
+              <p id="modalDocUc"></p>
+          <hr>
+          <h5>Formação</h5>
+              <p id="modalDocFormação"></p>
+          <hr>
+          <h5>ShortCV</h5>
+              <p id="modalDocShort"></p>
+          <hr>
+          
+          <h5>Imagem</h5>
+              <img id="modalDocCover" class="img-thumbnail" src="" alt="">
+
+      </div>
+     
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal edit-->
+<div class="modal fade" id="parcModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="" style="color:#1D76CE"></h5>
+          <h5 class="modal-title" id="" style="color:#1D76CE">Editar Parceria </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-            <!--username,password,type,email,picture -->
-            <h5>Username</h5>
-                <p id="modalUserName"></p>
+            <h5>Nome</h5>
+                <input id="modalDoccEdiNome" type="text" >
             <hr>
-            <h5>Password</h5>
-                <p id="modalUserPassword"></p>
+            <h5>Formação</h5>
+                <input id="modalDoccEdiformaçao" type="text" >
             <hr>
-            <h5>Type</h5>
-            <p id="modalUsertype"></p>
+            <h5>Unidade Curricular</h5>
+               <input id="modalDoccEdiUc" type="text" >
             <hr>
-            <h5>Email</h5>
-            <p id="modalUserEmail"></p>
+            <h5>ShortCV</h5>
+               <input id="modalDoccEdiShort" type="text" >
             <hr>
             
             <h5>Imagem</h5>
-                <img id="modalUserCover" class="img-thumbnail" src="" alt="">
+                <input id="modalDoccEdiphoto" type="url" >
+                <br>
+                <img id="modalDoccEdiCover" class="img-thumbnail" src="" alt="">
   
         </div>
        
         <div class="modal-footer">
+            <button id="btnEdit" type="button" class="btn btn-secondary">Editar</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
   
         </div>
       </div>
     </div>
   </div>
-  
-  <!--Modal edit-->
-  <div class="modal fade" id="userModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="" style="color:#1D76CE">Editar User </h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-              <h5>UserName</h5>
-                  <input id="modaluserEdiNome" type="text" >
-              <hr>
-              <h5>Password</h5>
-                  <input id="modaluserEdiPass" type="text" >
-              <hr>
-              <h5>Type</h5>
-                 <input id="modaluserEdiType" type="text" >
-              <hr>
-              <h5>Email</h5>
-                 <input id="modaluserEdiEmail" type="text" >
-              <hr>
-              
-              <h5>Imagem</h5>
-                  <input id="modaluserEdiImag" type="url" >
-                  <br>
-                  <img id="modaluserEdiCover" class="img-thumbnail" src="" alt="">
-    
-          </div>
-         
-          <div class="modal-footer">
-              <button id="btnEdit" type="button" class="btn btn-secondary">Editar</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-    
-          </div>
-        </div>
-      </div>
-    </div>
-  
+
 
 
 

@@ -227,7 +227,7 @@ if(localStorage.LoggedUser){
        <a class="dropdown-item" href="#">Registar evento</a>   
        <a class="dropdown-item" href="#">Gerir Docentes</a>  
        <a class="dropdown-item" href="gerirParcerias.html">Gerir Parcerias</a>  
-       <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>              
+       <a class="dropdown-item" href="projetoHomePage.html" onclick="buttonLogOut()" >Logout</a>              
        </div>
    </li>`
     }

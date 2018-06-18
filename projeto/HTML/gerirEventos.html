@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Gerir Parcerias</title>
+    <title>Gerir Eventos</title>
 
 
-   <script src="../JS/gerirParcerias.js"></script>
+   <script src="../JS/gerirEventos.js"></script>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -53,44 +53,57 @@
 <div class="row" style="margin-left:3px; margin-top: 5%;">
 <!--Tabela-->
 <div  class="table-responsive col-md-8" >
-<table id="tableParc" class="table table-bordered">
+<table id="tableEve" class="table table-bordered">
    
   </table>
 </div>
-      <!--Formalario AddParc  style="margin-left:35%;margin-top:5%"-->
+      <!--Formalario AddEve style="margin-left:35%;margin-top:5%"-->
+      <!--(eventname * ,description * ,date * ,event_time * ,creat_time,state,space * ,category ,responsable,image * ,coments,rating,views)-->
       <div class="container-fluid col-md-4">
-        <form id="formAddParc">
-            <h1 style="color:#1D76CE">Adicionar Parceria</h1>
+        <form id="formAddEve">
+            <h1 style="color:#1D76CE">Gerir Eventos</h1>
 
             <div class="form-group col-10 ">
-                    <label for="nameParc">Nome da Parceria</label>
+                    <label for="nameEve">Nome do Evento</label>
                     <input type="text"
-                      class="form-control" name="" id="nameParc" aria-describedby="helpId" value="" required>
+                      class="form-control" name="" id="nameEve" aria-describedby="helpId" value="" required>
                     
                   </div>        
                   <div class="form-group col-10">
-                        <label for="ImagParc">Imagem</label>
+                        <label for="ImagEve">Imagem</label>
                         <input type="src"
-                          class="form-control" name="" id="ImagParc" aria-describedby="helpId"  required>                        
+                          class="form-control" name="" id="ImagEve" aria-describedby="helpId"  required>                        
                       </div>  
 
              <div class="form-group col-10">
-              <label for="localParc">Local</label>
-               <input type="src"
-                class="form-control" name="" id="localParc" aria-describedby="helpId" > 
+              <label for="localEve">Local</label>
+               <input type="text"
+                class="form-control" name="" id="localEve" aria-describedby="helpId" > 
             </div>
             
             <div class="form-group col-10">
-              <label for="linkParc">Link</label>
-              <input type="url"
-               class="form-control" name="" id="linkParc" aria-describedby="helpId"  required>                        
+              <label for="descriçãoEve">Descrição</label>
+              <input type="text"
+               class="form-control" name="" id="descriçãoEve" aria-describedby="helpId"  required>                        
             </div>  
 
             <div class="form-group col-10">
-                <label for="codeParc">Code</label>
-                <input type="url"
-                 class="form-control" value="" name="" id="codeParc" aria-describedby="helpId" >                        
-            </div>                     
+                <label for="dataEve">Data</label>
+                <input type="date"
+                 class="form-control" value="" name="" id="dataEve" aria-describedby="helpId" >                        
+            </div>   
+
+            <div class="form-group col-10">
+                <label for="horasEve">Horas</label>
+                <input type="time"
+                 class="form-control" value="" name="" id="horasEve" aria-describedby="helpId" >                        
+            </div> 
+            
+            <div class="form-group col-10">
+                <label for="docEve">Docente Responsavel</label>
+                <input type="text"
+                 class="form-control" value="" name="" id="docEve" aria-describedby="helpId" >                        
+            </div> 
                       
                   
                   
@@ -109,25 +122,37 @@
 </div>
 
 <!--Modal view-->
-<div class="modal fade" id="parcModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="eveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalParcName" style="color:#1D76CE"></h5>
+        <h5 class="modal-title" id="modalEveName" style="color:#1D76CE"></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
           <h5>Local</h5>
-              <p id="modalParcLocal"></p>
+              <p id="modalEveLocal"></p>
           <hr>
-          <h5>Link</h5>
-              <p id="modalParcLink"></p>
+          <h5>Data</h5>
+              <p id="modalEveData"></p>
           <hr>
-          
+
+          <h5>Horas</h5>
+              <p id="modalEveHoras"></p>
+          <hr>
+
+          <h5>Responsavel</h5>
+              <p id="modalEveResp"></p>
+          <hr>
+          <h5>Descrição</h5>
+              <p id="modalEvedescrição"></p>
+          <hr>
+       
+
           <h5>Imagem</h5>
-              <img id="modalparcCover" class="img-thumbnail" src="" alt="">
+              <img id="modalEveCover" class="img-thumbnail" src="" alt="">
 
       </div>
      
@@ -140,30 +165,41 @@
 </div>
 
 <!--Modal edit-->
-<div class="modal fade" id="parcModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="eveModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="" style="color:#1D76CE">Editar Parceria </h5>
+          <h5 class="modal-title" id="" style="color:#1D76CE">Editar Evento </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
             <h5>Nome</h5>
-                <input id="modalparcEdiNome" type="text" >
+                <input id="modalEveEdiNome" type="text" >
             <hr>
             <h5>Local</h5>
-                <input id="modalparcEdiLocal" type="text" >
+                <input id="modalEveEdiLocal" type="text" >
             <hr>
-            <h5>Link</h5>
-               <input id="modalparcEdiLink" type="text" >
+            <h5>Data</h5>
+               <input id="modalEveEdiData" type="date" >
             <hr>
+            <h5>Horas</h5>
+               <input id="modalEveEdiTime" type="time" >
+            <hr>
+            <h5>Responsavel</h5>
+               <input id="modalEveEdiResponsavel" type="text" >
+            <hr>
+            <h5>Descrição</h5>
+               <input id="modalEveEdiDesc" type="text" >
+            <hr>
+
+
             
             <h5>Imagem</h5>
-                <input id="modalparcEdiImag" type="url" >
+                <input id="modalEveEdiImag" type="url" >
                 <br>
-                <img id="modalparcEdiCover" class="img-thumbnail" src="" alt="">
+                <img id="modalEveEdiCover" class="img-thumbnail" src="" alt="">
   
         </div>
        
