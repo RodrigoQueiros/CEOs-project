@@ -1,3 +1,47 @@
+let arrayTags=[]
+/////class Tag
+class Tag{
+    constructor(tagname)
+    {
+        this._id=Tag.getLastId()+1
+        this.tagname=tagname
+    }
+
+    //Id
+    get id() {
+        return this._id
+    }
+    ///tag name
+    get tagname()
+    {
+        return this._tagname  
+    }
+    set tagname(newTagname)
+    {
+        this._tagname=newTagname
+    }
+
+
+    static getLastId() {
+        
+        let lastId = 0
+        if (arrayTags.length != 0) {
+            lastId =arrayTags[arrayTags.length - 1].id
+        }
+        return lastId
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 let myUsers = []
 //Classe User
 class User {
@@ -73,7 +117,9 @@ window.onload = function () {
     loginChangesNav()
     loadUsersFromStorage()
     renderTableUser()
-
+    loadTagsFromStorage()  
+    renserTagTable()
+    addTag()
 
 }
 
@@ -308,4 +354,100 @@ function buttonLogOut(){
     location.reload(true);
     
     
+}
+//loadTagsFromStorage
+ function loadTagsFromStorage(){
+     
+    
+    arrayTags=[]
+    let tempTagsArray = JSON.parse(localStorage.getItem("Tags"))
+        for (var i = 0; i < tempTagsArray.length; i++) 
+        {
+            //tagname
+            let newtag =  new Tag(tempTagsArray[i]._tagname)
+            arrayTags.push(newtag)    
+              
+        }
+    
+    
+}
+////Adicionar Tag
+function addTag()
+{
+    let formTag=document.getElementById("formTag")
+    let btnTag=document.getElementById("btnTag")
+    let tagName=document.getElementById("tagName")
+    btnTag.addEventListener("click", function(){
+       
+      let newTag= new Tag(tagName.value)
+      arrayTags.push(newTag)
+       //atualizar storage
+       console.log("ola")
+       localStorage.removeItem("Tags")
+       localStorage.setItem("Tags", JSON.stringify(arrayTags)) 
+       loadTagsFromStorage()  
+       renserTagTable()
+    })
+}
+//Atualizar tabela de tags
+function renserTagTable()
+{
+    
+//username,password,type,email,picture 
+let tableTags = document.getElementById("tableTags")
+
+let strHtml = ` <thead class="bg-primary">
+<tr>
+  <th scope="col">id#</th>
+  <th scope="col">Name</th>
+
+  
+  <th scope="col"></th>
+</tr>
+</thead>
+<tbody>`
+
+for (let i = 0; i < arrayTags.length; i++) {
+    
+    strHtml += "<tr>" +
+    "<td>" + arrayTags[i].id + "</td>" +
+    "<td>" + arrayTags[i]._tagname + "</td>" +
+    
+    
+
+    "<td>" +
+   
+    "<a id='" + arrayTags[i]._id + "' class='remove'><i class='fas fa-trash-alt'></i></a> " +
+    
+"</td>" + 
+    "</tr>"
+}
+strHtml += "</tbody>"
+
+tableTags.innerHTML = strHtml
+
+// Get all the remove links from the table
+let tdRemove = document.getElementsByClassName("remove")
+// For each link, add a listener to listen the click event
+for (let i = 0; i < tdRemove.length; i++) {
+tdRemove[i].addEventListener("click", function() {
+    // By clicking in a specific partnership remove it from the array
+    let tagId= tdRemove[i].getAttribute("id")
+    removeTagById(tagId)
+    //atualizar storage
+    localStorage.removeItem("Tags")
+    localStorage.setItem("Tags", JSON.stringify(arrayTags))
+    loadTagsFromStorage()  
+    renserTagTable()
+}) }
+
+
+}
+// Remove tag based on its ID
+function  removeTagById(id) {
+    for (let i = 0; i < arrayTags.length; i++) {
+        if(arrayTags[i]._id == id) {
+            arrayTags.splice(i, 1)
+        }                  
+    }
 }

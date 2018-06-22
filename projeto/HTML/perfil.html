@@ -8,7 +8,9 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+   <!--Custom JS-->
+    <script src="../JS/perfil.js"></script>
+    <link rel="stylesheet" type="text/css" href="../CSS/projeto.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   </head>
@@ -62,12 +64,7 @@
         <div class="tab-pane fade" id="tab5Id" role="tabpanel"></div>
       </div>
       
-      <script>
-        $('#navId a').click(e => {
-          e.preventDefault();
-          $(this).tab('show');
-        });
-      </script>
+      
 
 
 
@@ -84,13 +81,16 @@
                     <a name="" id="" class="btn btn-primary col-12" href="#" role="button" >Alterar Foto</a>
                 <div style="margin-top: 3%;"> <a name="" id="" class="btn btn-primary col-12" href="#" role="button"  >Log out</a></div>
                         <h4 style="margin-top: 5%;color:#1D76CE">Notificações</h3>
-                            <p>x</p> <!-- Escrever aqui as notificações -->
+                            <p id="notificaçõesId"></p> <!-- Escrever aqui as notificações -->
                 
                 </div>
                     <div class="col-9" >
-                            <h3 style="margin-top: 6%;color:#1D76CE;margin-left:40%">Recentes</h3>
-                
-                            <!-- Eventos que  pessoa se inscreveu -->
+                      <!-- Eventos que  pessoa se inscreveu -->
+                      <div id="eventosadd">
+                            <!--<h3 style="margin-top: 6%;color:#1D76CE;margin-left:40%">Os meus Eventos</h3>-->
+                            
+                      </div>
+                            
                     </div>
                 
                 
