@@ -1,21 +1,21 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Perfil</title>
-    <link rel="icon" href="../Outros/favicon.png" type="image/x-icon"/>
-
-
+    <title>Testemunhos</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   <!--Custom JS-->
-    <script src="../JS/perfil.js"></script>
+
+
+    <script src="../JS/testemunhos.js"></script>
     <link rel="stylesheet" type="text/css" href="../CSS/projeto.css">
+    <link rel="icon" href="../Outros/favicon.png" type="image/x-icon"/>
+
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   </head>
   <body>
-
 
 
 <!--Navbar
@@ -64,105 +64,57 @@
         <div class="tab-pane fade" id="tab5Id" role="tabpanel"></div>
       </div>
       
-      
+      <script>
+        $('#navId a').click(e => {
+          e.preventDefault();
+          $(this).tab('show');
+        });
+      </script>
 
 
-      
-      <!-- Perfil -->
+<div class="container" >
 
-      <div class="container">
-          <div class="row">
+        <div style="margin-left:40%;margin-top:5%"><h1 style="color:#1D76CE" >Testemunhos</h1></div>
+        <div id="testemunhosCard" style="margin-top:50px">
+<div class="row">
 
-                <div class="col-3">
-                        <div style="margin-top: 20%;">
-                            <img class="img-thumbnail " id="ImagemPerfil" alt="Foto de perfil" src="">
-                        </div>
-                        <div style="margin-top: 5%;"></div>
-                    <a name="" id="btnEditar" class="btn btn-primary col-12" href="#" role="button" data-toggle='modal' data-target='#modelId'>Editar</a>
-                    
-                <div style="margin-top: 3%;"> <a name="" id="" class="btn btn-primary col-12" href="#" role="button"  >Log out</a></div>
-                        <h4 style="margin-top: 5%;color:#1D76CE">Notificações</h3>
-                            <p id="notificaçõesId"></p> <!-- Escrever aqui as notificações -->
-                
+        <div class="card bg-light mb-3" style="max-width: 18rem;margin-left:10%">
+                <div class="card-header"> Nome  <p style="position:absolute;right:20px;font-size:14px;color:grey;top:15px">Data</p></div>
+                <div class="card-body">
+                  
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 </div>
-                    <div class="col-9" >
-                      <!-- Eventos que  pessoa se inscreveu -->
-                      <div id="eventosadd">
-                            <!--<h3 style="margin-top: 6%;color:#1D76CE;margin-left:40%">Os meus Eventos</h3>-->
-                            
-                      </div>
-                            
+              </div>
+
+            <div class="card bg-light mb-3" style="max-width: 18rem;margin-left:2%">
+                    <div class="card-header"> Nome  <p style="position:absolute;right:20px;font-size:14px;color:grey;top:15px">Data</p></div>
+                    <div class="card-body">
+                      
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
-                
-                
-                
-            </div> 
-                       
-
-
-          </div>
-       
-
-
-
-      </div>
-
-
-
-<!-- Button trigger modal -->
-
-  
-  <!-- Modal Editar Perfil -->
-  <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-          <div class="modal-content">
-              <div class="modal-header">
-                    <h4 class="modal-title" id="modelTitleId">Editar</h4>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-                  
-              </div>
-              <div class="modal-body">
-                  
-                <div class="form-group">
-                  <label for="a">Nome</label>
-                  <input type="text"
-                    class="form-control" name="" id="a" aria-describedby="helpId" placeholder="">
-                  
                 </div>
 
-                <div class="form-group">
-                        <label for="b">Palavra-passe</label>
-                        <input type="text"
-                          class="form-control" name="" id="b" aria-describedby="helpId" placeholder="">
-                        
+                <div class="card bg-light mb-3" style="max-width: 18rem;margin-left:2%">
+                        <div class="card-header"> Nome  <p style="position:absolute;right:20px;font-size:14px;color:grey;top:15px">Data</p></div>
+                        <div class="card-body">
+                          
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
                       </div>
 
-                <div class="form-group">
-                        <label for="c">Email</label>
-                        <input type="text"
-                        class="form-control" name="" id="c" aria-describedby="helpId" placeholder="">
-                           
-                     </div>        
-
-                     <div class="form-group">
-                            <label for="d">Imagem</label>
-                            <input type="text"
-                            class="form-control" name="" id="d" aria-describedby="helpId" placeholder="">
-                               
-                         </div> 
 
 
-              </div>
-              <div class="modal-footer">
-                    <button type="submit" id="saveEdit" class="btn btn-primary">Save</button>
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  
-              </div>
-          </div>
-      </div>
-  </div>
+
+
+</div>
+               
+
+        </div>
+
+</div>
+
+
+
 
 
 
@@ -183,6 +135,3 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
 </html>
-
-
-
