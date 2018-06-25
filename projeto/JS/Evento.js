@@ -474,7 +474,7 @@ class EventosAddNew{
     static getEventId()
     {
        let tempEventClick=JSON.parse(localStorage.getItem("eventId"))
-       let EveClickId=tempEventClick._id
+       let EveClickId=tempEventClick
        return EveClickId
     }
 }
@@ -649,7 +649,7 @@ window.onload = function () {
     loadEventClickFromStorage()
     comentarioRemove()
     verificarAddEve()
-    loginChangesNav()
+    loginChances()
     verificarRatEve()
     GlobalRate()
     console.log(localStorage.LoggedUser.id)
@@ -725,12 +725,14 @@ function loadEventClickFromStorage() {
              
              <hr class="my-4">
              
-             <p class="lead">
-             
+             <p class="lead">`
+             if(localStorage.LoggedUser){
+                strHtmlClickEve+=`
              <button id="btnAdd" class="btn btn-primary btn-lg">Adicionar aos eventos</button>
              <button id="btnCom" class="btn btn-primary btn-lg"  >Comentar</button>
              <button id="btnRate" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#rateModal" onclick="AddRatinge()">Classificar</button>
-             </p>
+             `}
+             strHtmlClickEve+= `</p>
              
              <div id="comentar">
              </div>
@@ -813,7 +815,7 @@ function verificarAddEve()
     loadAddEventosFromStorage()
     let tempLoggedUser = JSON.parse(localStorage.getItem("LoggedUser"))
     let userId=tempLoggedUser._id
-    let tempEventClick=JSON.parse(localStorage.getItem("eventClick"))
+    let tempEventClick=JSON.parse(localStorage.getItem("eventId"))
        let EveClickId=tempEventClick
     for(let i=0;i<arrayEventosAdd.length;i++)
     {
@@ -1015,7 +1017,7 @@ function loadAddEventosFromStorage(){
 }
 
 //função para aplicar as changes a navbar quando esta logado
-function loginChangesNav(){
+function loginChances(){
    
     let verifyType
     
@@ -1032,10 +1034,10 @@ if(localStorage.LoggedUser){
      <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
        <a class="dropdown-item" href="perfil.html">Perfil</a>
-       <a class="dropdown-item" href="gerirEventos.html">Gerir Eventos</a>   
+       <a class="dropdown-item" href="gerirEventos.html">Registar evento</a>   
        <a class="dropdown-item" href="gerirDocentes.html">Gerir Docentes</a>  
        <a class="dropdown-item" href="gerirParcerias.html">Gerir Parcerias</a>  
-       <a class="dropdown-item" href="#">Definições</a>  
+       <a class="dropdown-item" href="Admin.html">Definições</a>  
        <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>         
        </div>
    </li>`
@@ -1046,10 +1048,10 @@ if(localStorage.LoggedUser){
      <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
        <a class="dropdown-item" href="perfil.html">Perfil</a>
-       <a class="dropdown-item" href="gerirEventos.html">Gerir evento</a>   
+       <a class="dropdown-item" href="gerirEventos.html">Registar evento</a>   
        <a class="dropdown-item" href="gerirDocentes.html">Gerir Docentes</a>  
        <a class="dropdown-item" href="gerirParcerias.html">Gerir Parcerias</a>  
-       <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>              
+       <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>       
        </div>
    </li>`
     }
@@ -1058,15 +1060,16 @@ if(localStorage.LoggedUser){
      changeLogin.innerHTML = `<li class="nav-item dropdown">
      <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-       <a class="dropdown-item" href="perfil.html">Perfil</a>
-       <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>             
+     <a class="dropdown-item" href="perfil.html">Perfil</a>
+       <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>              
        </div>
    </li>`
 
 
 
     }   
-}}
+}      
+}
 //função para dar logout
 function buttonLogOut(){
     let changeLogin = document.getElementById("textLogin")  

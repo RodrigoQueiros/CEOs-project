@@ -204,14 +204,15 @@ if(localStorage.LoggedUser){
 
     if (verifyType._type == "admin") {
     userType = "admin"
+
     changeLogin.innerHTML = `<li class="nav-item dropdown">
      <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-       <a class="dropdown-item" href="#">Perfil</a>
-       <a class="dropdown-item" href="#">Registar evento</a>   
-       <a class="dropdown-item" href="#">Gerir Docentes</a>  
+       <a class="dropdown-item" href="perfil.html">Perfil</a>
+       <a class="dropdown-item" href="gerirEventos.html">Registar evento</a>   
+       <a class="dropdown-item" href="gerirDocentes.html">Gerir Docentes</a>  
        <a class="dropdown-item" href="gerirParcerias.html">Gerir Parcerias</a>  
-       <a class="dropdown-item" href="#">Definições</a>  
+       <a class="dropdown-item" href="Admin.html">Definições</a>  
        <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>         
        </div>
    </li>`
@@ -221,11 +222,11 @@ if(localStorage.LoggedUser){
      changeLogin.innerHTML = `<li class="nav-item dropdown">
      <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-       <a class="dropdown-item" href="#">Perfil</a>
-       <a class="dropdown-item" href="#">Registar evento</a>   
-       <a class="dropdown-item" href="#">Gerir Docentes</a>  
+       <a class="dropdown-item" href="perfil.html">Perfil</a>
+       <a class="dropdown-item" href="gerirEventos.html">Registar evento</a>   
+       <a class="dropdown-item" href="gerirDocentes.html">Gerir Docentes</a>  
        <a class="dropdown-item" href="gerirParcerias.html">Gerir Parcerias</a>  
-       <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>             
+       <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>       
        </div>
    </li>`
     }
@@ -234,12 +235,13 @@ if(localStorage.LoggedUser){
      changeLogin.innerHTML = `<li class="nav-item dropdown">
      <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-       <a class="dropdown-item" href="#">Perfil</a>
-       <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>         
+     <a class="dropdown-item" href="perfil.html">Perfil</a>
+       <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>              
        </div>
    </li>`
 
 
 
     }   
-}}
+}      
+}

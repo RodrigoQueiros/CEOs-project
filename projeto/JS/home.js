@@ -642,6 +642,7 @@ static getLastId() {
 
 window.onload = function(){
     updateTagsFiltro()
+    verificarDoc()
     loginChances()
     loadFromStorage()
     ///apagar no storage os filtros anteriores
@@ -866,7 +867,8 @@ function loadDocFromStorage()
 {
    
 
-      
+      if(localStorage.Docentes)
+      {arrayTeachers=[]
             let tempDocArray = JSON.parse(localStorage.getItem("Docentes"))
             for (var i = 0; i < tempDocArray.length; i++) 
             {
@@ -877,7 +879,7 @@ function loadDocFromStorage()
                    
                   
             }
-    
+        }
         
      
         
@@ -1048,3 +1050,29 @@ function filtroHome()
     filterTagHome.value=""
     eventDateHome.value=""
 }
+function verificarDoc()
+{
+    let b = false
+if (localStorage.getItem("Docentes")){
+    loadDocFromStorage()
+    b=true
+        
+                
+}
+if(b==false){
+
+    console.log("ola")
+    //parcerias adicionadas hardcode
+    //name,photo,formation,uc,shortCV
+    let newDocc1= new Teachers ("Ricardo Queiros","https://scontent.flis1-1.fna.fbcdn.net/v/t1.0-9/21317517_10212941804634127_2533581123657042195_n.jpg?_nc_cat=0&oh=f399c82d3692c0af6db39709942bf919&oe=5BA37C68 ","","POO"," ")
+    arrayTeachers.push(newDocc1)
+    let newDocc2= new Teachers ("Mario Pinto","https://scontent.flis1-1.fna.fbcdn.net/v/t1.0-9/22852969_1686309991379118_1792211636139421050_n.jpg?_nc_cat=0&oh=8885dde4f53bda197fcfde60c87a33a6&oe=5BE3D50A"," ","AED"," ")
+    arrayTeachers.push(newDocc2)
+    let newDocc3= new Teachers ("Lino Oliveira","https://scontent.flis1-1.fna.fbcdn.net/v/t1.0-9/1005812_10202054191375221_1395673250_n.jpg?_nc_cat=0&oh=7ac79c784d748caf350a25e4c9c46627&oe=5BBA2671"," ","TAW"," ")
+    arrayTeachers.push(newDocc3)
+    
+
+    //colocar no storage
+    localStorage.setItem("Docentes", JSON.stringify(arrayTeachers))
+   
+}}

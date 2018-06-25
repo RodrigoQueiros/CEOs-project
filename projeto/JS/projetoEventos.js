@@ -255,7 +255,7 @@ if(b==false){
     localStorage.setItem("Event", JSON.stringify(arrayEvents))
    
 }
-loginChangesNav()
+loginChances()
 events()
 updateTagsFiltro()
 updateFiltro()
@@ -478,7 +478,7 @@ events()
 }
 
 //função para aplicar as changes a navbar quando esta logado
-function loginChangesNav(){
+function loginChances(){
    
     let verifyType
     
@@ -494,11 +494,11 @@ if(localStorage.LoggedUser){
     changeLogin.innerHTML = `<li class="nav-item dropdown">
      <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-       <a class="dropdown-item" href="#">Perfil</a>
-       <a class="dropdown-item" href="gerirEventos.html">Gerir Eventos</a>   
+       <a class="dropdown-item" href="perfil.html">Perfil</a>
+       <a class="dropdown-item" href="gerirEventos.html">Registar evento</a>   
        <a class="dropdown-item" href="gerirDocentes.html">Gerir Docentes</a>  
        <a class="dropdown-item" href="gerirParcerias.html">Gerir Parcerias</a>  
-       <a class="dropdown-item" href="#">Definições</a>  
+       <a class="dropdown-item" href="Admin.html">Definições</a>  
        <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>         
        </div>
    </li>`
@@ -508,11 +508,11 @@ if(localStorage.LoggedUser){
      changeLogin.innerHTML = `<li class="nav-item dropdown">
      <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-       <a class="dropdown-item" href="#">Perfil</a>
-       <a class="dropdown-item" href="gerirEventos.html">Gerir evento</a>   
+       <a class="dropdown-item" href="perfil.html">Perfil</a>
+       <a class="dropdown-item" href="gerirEventos.html">Registar evento</a>   
        <a class="dropdown-item" href="gerirDocentes.html">Gerir Docentes</a>  
        <a class="dropdown-item" href="gerirParcerias.html">Gerir Parcerias</a>  
-       <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>              
+       <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>       
        </div>
    </li>`
     }
@@ -521,15 +521,16 @@ if(localStorage.LoggedUser){
      changeLogin.innerHTML = `<li class="nav-item dropdown">
      <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-       <a class="dropdown-item" href="#">Perfil</a>
-       <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>             
+     <a class="dropdown-item" href="perfil.html">Perfil</a>
+       <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>              
        </div>
    </li>`
 
 
 
     }   
-}}
+}      
+}
 //função para dar logout
 function buttonLogOut(){
     let changeLogin = document.getElementById("textLogin")  
