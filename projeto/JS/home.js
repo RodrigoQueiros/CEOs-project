@@ -89,6 +89,41 @@ class User{
    
 }
 
+
+/////class Tag
+let arrayTags=[]
+class Tag{
+    constructor(tagname)
+    {
+        this._id=Tag.getLastId()+1
+        this.tagname=tagname
+    }
+
+    //Id
+    get id() {
+        return this._id
+    }
+    ///tag name
+    get tagname()
+    {
+        return this._tagname  
+    }
+    set tagname(newTagname)
+    {
+        this._tagname=newTagname
+    }
+
+
+    static getLastId() {
+        
+        let lastId = 0
+        if (arrayTags.length != 0) {
+            lastId =arrayTags[arrayTags.length - 1].id
+        }
+        return lastId
+    }
+}
+
 //############ Class Events ############
 
 class Events{
@@ -606,18 +641,12 @@ static getLastId() {
 //Window on Load
 
 window.onload = function(){
-
+    updateTagsFiltro()
     loginChances()
     loadFromStorage()
+    filtroHome()
 //eventos
-let eventoUm= new Events ("Queima","vai ser Top  v Top Top Top Top Top Top Top Top v v Top Top sfasfasfasfa asfas fafa awwfaws afgasfasdgfsg  ","11/05/2018","","","","queimodromo","","","../Outros/event5.jpg","","","")
-arrayEvents.push(eventoUm)
-let eventoDois= new Events ("Ressaca","vai ser Top","12/05/2018","","","","Rua Alto do Parque,Penamaior","","","../Outros/event5.jpg","","","")
-arrayEvents.push(eventoDois)
-let eventoTres= new Events ("SecondRound","vai ser Top","12/05/2018","","","","queimodromo","","","../Outros/event5.jpg","","","")
-arrayEvents.push(eventoTres)
-let eventoQuatro= new Events("projeto","esta a ser complicado","16/05/2018","","","","biblioteca","","","../Outros/event5.jpg","","","")
-arrayEvents.push(eventoQuatro)
+
 updateEvents()
 console.log(arrayEvents)
 //testemunho
@@ -637,6 +666,7 @@ arrayUser.push(newAdmin)
 
 
 //Get elements by ids
+/*
 let formFilter = document.getElementById("a") //Form dos filtros 
 let formSignIn = document.getElementById("formSignIn") //Form de registo
 let formLogIn = document.getElementById("a") //Form de Log in
@@ -647,7 +677,7 @@ let formLogIn = document.getElementById("a") //Form de Log in
 
 
 
-})*/
+})
 
 let rUser = document.getElementById("rUser")
 let rEmail = document.getElementById("rEmail")
@@ -698,21 +728,23 @@ else{ //Se n tiver tudo bem
 event.preventDefault()
 })
 
-
+*/
 
 
 }
 
 function updateEvents(){
-    let strHtmlCard = ""
+    loadEventFromStorage()
+    console.log(arrayEvents)
     //iterar sobre o array de eventos
+    let strHtmlCard = ""
     for(let i=1;i<5;i++)
     {
         if(i==1){
             strHtmlCard += `<h5 style="display: block;color: #1D76CE">Eventos:</h5>
             <div class="row" >`
         }
-        strHtmlCard += `<div class="card m-3" style="width: 40rem; border-radius:5px;" >
+        strHtmlCard += `<div class="card m-3" style="width: 40rem; border-radius:5px;border-width:3px" >
         <a id="zeLink" href="#">
         <div class="row " >
           <div class="col-md-4" >
@@ -745,10 +777,12 @@ function updateEvents(){
         // Fecha a linha
         if(i== 4) {
             strHtmlCard += `</div>`    
-        }  
-    }
+            //Console.log(strHtmlCard)
     let eventsCatalog = document.getElementById("eventsCatalog")
     eventsCatalog.innerHTML = strHtmlCard
+        }  
+    }
+    
 }
 
 
@@ -756,7 +790,7 @@ function updateEvents(){
 
 function updateTestimonial_Docente()
 {
-
+    loadDocFromStorage()
     let strHtmlTest = ""
     //iterar sobre o array de testemunhos
   
@@ -790,12 +824,12 @@ function updateTestimonial_Docente()
          <div class="card m-3" style="width: 40rm;" >
             <a id="zeLink" href="#">
              <div class="row col-md-12">
-              <div class="col-md-4 mr-auto mt-2 " >
+              <div class="col-md-4 mr-auto mt-2 " style="padding:10px">
                   <img src="${arrayTeachers[arrayTeachers.length-1].photo}" style="float:left;border-radius:5px;width:95%;height:95%;" >
               </div>
               <div class="mr-auto col-md-8 mt-2" id="docNameDesc" style="float:left;">
                  <div class="mr-auto" >
-                     <h5 id="doncenteName" style="margin-left:0px;margin-top">${arrayTeachers[arrayTeachers.length-1].name}</h5>
+                     <h5 id="doncenteName" style="margin-left:0px;margin-top:10px">${arrayTeachers[arrayTeachers.length-1].name}</h5>
                  </div>
 
                  <div class="mr-auto" >
@@ -814,9 +848,27 @@ function updateTestimonial_Docente()
     testemunhosCatalog.innerHTML = strHtmlTest
 }
 
-function updateDocente()
+///carregar Docentes do storage para o arrayTeachers
+function loadDocFromStorage()
 {
-    let strHtmlTest = ""  
+   
+
+      
+            let tempDocArray = JSON.parse(localStorage.getItem("Docentes"))
+            for (var i = 0; i < tempDocArray.length; i++) 
+            {
+                
+                //name,photo,formaçao,Uc,short cv
+                let newDocc =  new Teachers(tempDocArray[i]._name, tempDocArray[i]._photo,tempDocArray[i]._formation,tempDocArray[i]._uc,tempDocArray[i]._shortCV)
+                arrayTeachers.push(newDocc) 
+                   
+                  
+            }
+    
+        
+     
+        
+    
 }
 
 function loadFromStorage() {
@@ -830,6 +882,36 @@ function loadFromStorage() {
               
         }
 
+    }
+    
+}
+
+
+//carregar eventos do storage
+function loadEventFromStorage() {
+
+    if(localStorage.Event){
+        let tempEveArray = JSON.parse(localStorage.getItem("Event"))
+        arrayEvents=[]
+        for (var i = 0; i < tempEveArray.length; i++) {
+            
+            let newEvent =  new Events(tempEveArray[i]._eventname, tempEveArray[i]._description,tempEveArray[i]._date,"","","",tempEveArray[i]._space,"","",tempEveArray[i]._image,"","","")
+            arrayEvents.push(newEvent)    
+              
+        }
+
+    }
+    else
+    {
+        arrayEvents=[]
+        let eventoUm= new Events ("ioAcademy Challenge","O ioAcademy Challenge é apoiado pela ESMAD e é direcionada para um público estudantil, mas que deve desde logo quer tomar contacto com empresas e o mundo do trabalho.","27-06-2018","","","","ESMAD","","","https://scontent.flis1-1.fna.fbcdn.net/v/t1.0-9/35923109_387772041735241_8475168770883584000_o.jpg?_nc_cat=0&oh=25580f9bf5716027728ad293092c1e16&oe=5BB2D1EF","","","")
+        arrayEvents.push(eventoUm)
+        let eventoDois= new Events ("Ressaca","vai ser Top","12/05/2018","","","","Rua Alto do Parque,Penamaior","","","../Outros/event5.jpg","","","")
+        arrayEvents.push(eventoDois)
+        let eventoTres= new Events ("SecondRound","vai ser Top","12/05/2018","","","","queimodromo","","","../Outros/event5.jpg","","","")
+        arrayEvents.push(eventoTres)
+        let eventoQuatro= new Events("projeto","esta a ser complicado","16/05/2018","","","","biblioteca","","","../Outros/event5.jpg","","","")
+        arrayEvents.push(eventoQuatro)  
     }
     
 }
@@ -904,3 +986,53 @@ if(localStorage.LoggedUser){
 
 }
 
+//função update tags do filtro
+function updateTagsFiltro()
+{
+    let filterTag=document.getElementById("filterTag")
+    loadTagsFromStorage()
+    let strTagFiltro=""
+    console.log(arrayTags)
+    for(let i=0;i<arrayTags.length;i++)
+    {
+        strTagFiltro+= `<option value="${arrayTags[i]._tagname}">${arrayTags[i]._tagname}</option>`
+    }
+    filterTag.innerHTML=strTagFiltro
+}
+//loadTagsFromStorage
+function loadTagsFromStorage(){
+     
+    
+    arrayTags=[]
+    let tempTagsArray = JSON.parse(localStorage.getItem("Tags"))
+        for (var i = 0; i < tempTagsArray.length; i++) 
+        {
+            //tagname
+            let newtag =  new Tag(tempTagsArray[i]._tagname)
+            arrayTags.push(newtag)    
+              
+        }
+    
+    
+}
+//função filtrar
+function filtroHome()
+{
+   let btnFiltroHome=document.getElementById("btnFiltroHome")
+   let eventNameHome = document.getElementById("eventName")
+   let eventDateHome = document.getElementById("eventDate")
+   let filterTagHome = document.getElementById("filterTag")
+   let formFilter=document.getElementById("formFilter")
+   btnFiltroHome.addEventListener("click",function(){
+       let eventname=eventNameHome.value
+       let eventDate=eventDateHome.value
+       let filterTag=filterTagHome.value
+    //Colocar no storage para depois carregar na seguinte pagina
+    localStorage.setItem("eventname", JSON.stringify(eventname))
+    localStorage.setItem("eventDate",JSON.stringify(eventDate))
+    localStorage.setItem("filterTag",JSON.stringify(filterTag))
+    })
+    eventNameHome.value=""
+    filterTagHome.value=""
+    eventDateHome.value=""
+}

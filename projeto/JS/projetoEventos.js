@@ -1,3 +1,38 @@
+
+/////class Tag
+let arrayTags=[]
+class Tag{
+    constructor(tagname)
+    {
+        this._id=Tag.getLastId()+1
+        this.tagname=tagname
+    }
+
+    //Id
+    get id() {
+        return this._id
+    }
+    ///tag name
+    get tagname()
+    {
+        return this._tagname  
+    }
+    set tagname(newTagname)
+    {
+        this._tagname=newTagname
+    }
+
+
+    static getLastId() {
+        
+        let lastId = 0
+        if (arrayTags.length != 0) {
+            lastId =arrayTags[arrayTags.length - 1].id
+        }
+        return lastId
+    }
+}
+
 let arrayEvents=[]
 let myUsers = []
 
@@ -223,6 +258,8 @@ if(b==false){
 }
 loginChangesNav()
 events()
+updateTagsFiltro()
+updateFiltro()
 //loginChangesPagEvent()
 
 
@@ -534,4 +571,143 @@ function loadUsersFromStorage() {
     
 }
 
-             
+//função para carregar os elementos do filtro do storage caso eles existam
+function updateFiltro()
+{
+    let eventNameFilt=""
+    let eventDateFilt=""
+    let eventTagFilt=""
+    ////eventName
+    if(localStorage.eventname)
+    {
+        eventNameFilt=JSON.parse(localStorage.getItem("eventname"))
+    }
+    
+  
+    ///eventDate
+    if(localStorage.eventDate)
+    {
+        eventDateFilt=JSON.parse(localStorage.getItem("eventDate"))   
+    }
+
+   
+    //eventTag
+    if(localStorage.filterTag)
+    {
+        eventTagFilt=JSON.parse(localStorage.getItem("filterTag"))  
+    }
+
+
+    ///substituir no filtro
+     let eventName=document.getElementById("eventName")
+     let eventDate=document.getElementById("eventDate")
+     let filterTag=document.getElementById("filterTag")
+     let btnFiltroEvent=document.getElementById("btnFiltroEvent")
+
+     eventName.value=eventNameFilt
+     eventDate.value=eventDateFilt
+     filterTag.value=eventTagFilt
+
+    //E carregar filtro
+    btnFiltroEvent.addEventListener("click", function(){
+      
+            let strHtmlCard = ""
+    //iterar sobre o array de eventos
+    let b=0
+    for(let i=arrayEvents.length-1;i>=0;i--)
+    {
+        if((eventName.value==arrayEvents[i].eventname||eventName.value=="") && (eventDate.value==arrayEvents[i].date||eventDate.value=="") && (filterTag.value==arrayEvents[i].category||filterTag.value=="") )
+        {
+         b=i
+        if(i==arrayEvents.length-1){
+            strHtmlCard += `<h5 style="display: block;color: #1D76CE">Eventos:</h5>
+            <div class="row" >`
+        }
+        strHtmlCard += `<div class="card m-3" style="width: 40rem; border-radius:5px;" >
+        <a id="${arrayEvents[i].id}" class="eventoclick" href="Evento.html" >
+        <div class="row " >
+          <div class="col-md-4" >
+              <img src="${arrayEvents[i].image}" style="width:100%;height:100%; border-radius:5px 0px 0px 5px" >
+            </div>
+            <div class="col-md-8">
+              <div id="NomeData" class="row ">
+                 <div id="eventoNome" class="mr-auto col-md-6">
+                 <h5 class="" style="margin-top:10px">${arrayEvents[i].eventname}</h5>
+                 </div>
+                 <div id="eventoData" class="mr-2 col-md-4" style=" font-size:12px;">
+                 <p style="float:right;">${arrayEvents[i].date}</p>
+                 </div>
+                
+              </div>
+              <div id="descrição" class="row col-md-12">
+              <p style="height:40px">${arrayEvents[i].description}</p>
+              </div>
+              <div id="localição" class"row col-md-12">
+              <p>${arrayEvents[i].space}</p>
+              </div>
+
+            </div>
+        
+          </div>
+          </a>
+        </div>
+        
+        `
+        // Fecha a linha
+        if(i==0) {
+            strHtmlCard += `</div>`    
+        }
+        
+        
+    }
+    let eventsCatalog = document.getElementById("eventsPagCatalog")
+    eventsCatalog.innerHTML = strHtmlCard
+        }
+    
+    
+    
+        ////
+        let arrayClick=document.getElementsByClassName("eventoclick")
+        for(let i=0;i<arrayClick.length;i++)
+        {
+            arrayClick[i].addEventListener("click",
+            function (){
+                    let eventId = arrayClick[i].id 
+                    localStorage.setItem("eventId", eventId)
+                    console.log("ola")
+            
+                     })
+        }}
+    )
+
+   
+}
+//função update tags do filtro
+function updateTagsFiltro()
+{
+    let filterTag=document.getElementById("filterTag")
+    loadTagsFromStorage()
+    let strTagFiltro=""
+    console.log(arrayTags)
+    for(let i=0;i<arrayTags.length;i++)
+    {
+        strTagFiltro+= `<option value="${arrayTags[i]._tagname}">${arrayTags[i]._tagname}</option>`
+    }
+    filterTag.innerHTML=strTagFiltro
+}
+//loadTagsFromStorage
+function loadTagsFromStorage(){
+     
+    
+    arrayTags=[]
+    let tempTagsArray = JSON.parse(localStorage.getItem("Tags"))
+        for (var i = 0; i < tempTagsArray.length; i++) 
+        {
+            //tagname
+            let newtag =  new Tag(tempTagsArray[i]._tagname)
+            arrayTags.push(newtag)    
+              
+        }
+    
+    
+}

@@ -495,32 +495,165 @@ class EventosAdd{
             return lastId
             }
 }
+
+////
+let arrayrating=[]
+class AddRating
+{
+    constructor(points)
+    {
+        this._id=AddRating.getLastId()+1
+        this._userId= AddRating.getUserId()
+        this._eventId=AddRating.getEventId()
+        this.points=points  
+    }
+
+
+     //Id
+     get id() {
+        return this._id
+        }
+        
+        //userId
+        get userId(){
+            return this._userId
+        }
+        
+       
+        //eventId
+        get eventId(){
+            return this._eventId
+        }
+
+        //points
+        get points(){
+            return this._points
+        }
+        set points(newPoints){
+            this._points = newPoints
+        }
+
+        static getLastId() {
+            let lastId = 0
+            if(arrayrating.length != 0) {
+            lastId = arrayrating[arrayrating.length-1].id
+            }
+            return lastId
+            }
+
+            static getUserId()
+            {
+                let tempLoggedUser = JSON.parse(localStorage.getItem("LoggedUser"))
+                let tempUser=JSON.parse(localStorage.getItem("User"))
+                let UserId=""
+                for(let i=0;i<tempUser.length;i++)
+                 {
+                   if(tempUser[i]._username==tempLoggedUser._username)
+                   {
+                    UserId=tempUser[i]._id
+                   }
+                 }
+                
+                    
+                return  UserId    
+                      
+                
+            }
+        
+            static getEventId()
+            {
+               let tempEventClick=JSON.parse(localStorage.getItem("EventClick"))
+               let EveClickId=tempEventClick._id
+               return EveClickId
+            }
+}
+
+
+class rating{
+    constructor(userId,eventId,points)
+    {
+        this._id=rating.getLastId()+1
+        this.userId=userId
+        this.eventId=eventId
+        this.points=points
+    }
+
+
+     //Id
+     get id() {
+        return this._id
+        }
+        
+        //userId
+        get userId(){
+            return this._userId
+        }
+        
+        set userId(newUserId) 
+        {
+            this._userId = newUserId
+        }
+        //eventId
+        get eventId(){
+            return this._eventId
+        }
+
+        set eventId(newEventId){
+            this._eventId = newEventId
+        }
+        //points
+        get points(){
+            return this._points
+        }
+
+        set points(newPoints){
+            this._points = newPoints
+        }
+
+        static getLastId() {
+            let lastId = 0
+            if(arrayrating.length != 0) {
+            lastId = arrayrating[arrayrating.length-1].id
+            }
+            return lastId
+            }
+
+
+}
+
 window.onload = function () {
     
     loadEventClickFromStorage()
+    verificarAddEve()
     loginChangesNav()
+    GlobalRate()
     console.log(localStorage.LoggedUser.id)
+   
 
 }
 //carregar o evento do local storage
 function loadEventClickFromStorage() {
     let a=false
     if(localStorage.Event){
-        let tempEveClick = JSON.parse(localStorage.getItem("EventClick"))
+        let tempEveClick = localStorage.getItem("eventId")
            
             ///vamos buscar o que guarda-mos no storage e guarda-mos numa variavel para depois imprimi-la
-            let newEventClick =  new Events(tempEveClick._eventname, tempEveClick._description,tempEveClick._date,"","","",tempEveClick._space,"","",tempEveClick._image,"","","")
-            let EventClickId=tempEveClick._id
+            //let newEventClick =  new Events(tempEveClick._eventname, tempEveClick._description,tempEveClick._date,"","","",tempEveClick._space,"","",tempEveClick._image,"","","")
+            //let EventClickId=tempEveClick._id
+            for(let i=0;i<arrayEvents.length;i++)
+            {
+                if(arrayEvents[i].id==tempEveClick)
+                {
              a=true
              let strHtmlClickEve=`<div class="jumbotron">
              <div class="row">
               <div class="col-md-3">
-               <img src="${newEventClick.image}" style="width:300px;height:200px; border-radius:5px 0px 0px 5px" >
+               <img src="${arrayEvents[i].image}" style="width:300px;height:200px; border-radius:5px 0px 0px 5px" >
               </div>
               <div class="col-md-9">
-               <h1 class="display-4" style="font-weight: bold;">${newEventClick.eventname}</h1>
+               <h1 class="display-4" style="font-weight: bold;">${arrayEvents[i].eventname}</h1>
                <br>
-               <p style="font-size: 25px;"> ${newEventClick.description}</p>
+               <p style="font-size: 25px;"> ${arrayEvents[i].description}</p>
                <div class="row">
                  <div class="col-md-4">
                     <p style="font-size: 15px;"><label style="font-size: 20px; font-weight: bold;"> Localização: </label> ${newEventClick.space}</p>
@@ -530,6 +663,32 @@ function loadEventClickFromStorage() {
                  </div>
                  <div class="col-md-4">
                     <p style="font-size: 15px;"><label style="font-size: 20px; font-weight: bold;"> Rating: </label> </p>
+                    <div id="globalrate">
+                    <!--
+                    <div class="star-rating">
+                    <input id="star-5" type="radio" name="rating" class = "estrela" value="5">
+                    <label for="star-5" title="5 stars">
+                            <i class="active fa fa-star" aria-hidden="true"></i>
+                    </label>
+                    <input id="star-4" type="radio" name="rating"  class = "estrela" value="4">
+                    <label for="star-4" title="4 stars">
+                            <i class="active fa fa-star" aria-hidden="true"></i>
+                    </label>
+                    <input id="star-3" type="radio" name="rating" class = "estrela" value="3">
+                    <label for="star-3" title="3 stars">
+                            <i class="active fa fa-star" aria-hidden="true"></i>
+                    </label>
+                    <input id="star-2" type="radio" name="rating"  class = "estrela" value="2">
+                    <label for="star-2" title="2 stars">
+                            <i class="active fa fa-star" aria-hidden="true"></i>
+                    </label>
+                    <input id="star-1" type="radio" name="rating" class = "estrela" value="1">
+                    <label for="star-1" title="1 star">
+                            <i class="active fa fa-star" aria-hidden="true"></i>
+                    </label>
+                </div>
+                -->
+                 </div>
                  </div>
                  <div class="col-md-4" id="coments">
                  <p style="font-size: 15px;"><label style="font-size: 20px; font-weight: bold;"> Coments: </label> ${comentarios(EventClickId)}</p>
@@ -541,17 +700,20 @@ function loadEventClickFromStorage() {
              <hr class="my-4">
              
              <p class="lead">
-               
-               <a id="btnAdd" class="btn btn-primary btn-lg" href="#" role="button">Adicionar aos eventos</a>
-               <a id="btnCom" class="btn btn-primary btn-lg" href="#" role="button">Comentar</a>
+             
+             <button id="btnAdd" class="btn btn-primary btn-lg">Adicionar aos eventos</button>
+             <button id="btnCom" class="btn btn-primary btn-lg"  >Comentar</button>
+             <button id="btnRate" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#rateModal" onclick="AddRatinge()">Classificar</button>
              </p>
              
              <div id="comentar">
              </div>
            </div>`
+                }
+            }
            let eventoClicado = document.getElementById("eventoClicado")
            eventoClicado.innerHTML = strHtmlClickEve
-           let btnAdd=document.getElementById("btnAdd")
+           
            let btnCom=document.getElementById("btnCom")
            let coments=document.getElementById("coments")
            btnCom.addEventListener("click",function(){
@@ -580,22 +742,48 @@ function loadEventClickFromStorage() {
            })
 
     }
+    let btnAdd=document.getElementById("btnAdd")
+    
     btnAdd.addEventListener("click",function addEvento(){
         loadAddEventosFromStorage()
         console.log( arrayEventosAdd)
+        
         let newAddEventb= new EventosAddNew()
         arrayEventosAdd.push(newAddEventb)
         localStorage.setItem("AddEvents", JSON.stringify(arrayEventosAdd))
+        location.reload(true)
+        alert("O evento foi adicionado")
      
     })
     
     
+}
+//verificar se o evento ja foi adicionado
+function verificarAddEve()
+{ let btnAdd=document.getElementById("btnAdd")
+   
+    loadAddEventosFromStorage()
+    let tempLoggedUser = JSON.parse(localStorage.getItem("LoggedUser"))
+    let userId=tempLoggedUser._id
+    let tempEventClick=JSON.parse(localStorage.getItem("EventClick"))
+       let EveClickId=tempEventClick._id
+    for(let i=0;i<arrayEventosAdd.length;i++)
+    {
+        if((arrayEventosAdd[i].userId==userId) &&(arrayEventosAdd[i].eventId==EveClickId))
+        {
+            console.log("btnAdd")
+            document.getElementById("btnAdd").disabled = true;
+            document.getElementById("btnAdd").style.display = "none"
+        
+        }
+    }
 }
  /// vamos buscar os comentarios
  function comentarios(EventClickId)
  {
     loadComentariosFromStorage()
     loadUsersFromStorage()
+    let tempLoggedUser = JSON.parse(localStorage.getItem("LoggedUser"))
     //loadEventClickFromStorage()
      let strComent=""
     for(let i=0;i<arrayComentarios.length;i++) 
@@ -613,15 +801,34 @@ function loadEventClickFromStorage() {
     <img src="${myUsers[b]._picture}" style="width: 60px;margin-top:15px">
 
 </div>
-<div class="col-9">
+<div class="col-8">
     <div class="row" style="margin-top:10px"><h3>${myUsers[b].username}</h3><p style="position:absolute;right:15px;margin-top:5px; color:grey">data</p> </div>
     <p>${arrayComentarios[i]._description}</p>
 </div>
+</div id="remover"class=" col-1">
 
+
+</div>
 </div>`
+
                   
                  
               }
+
+             /* if((tempLoggedUser._id==myUsers[b]._id) && (myUsers[b]._id==arrayComentarios[i]._userId))
+              {
+                  
+                  let remover=document.getElementById("remover")
+                  remover.innerHTML=` <button id="btnRemove" class="btnRemove btn btn-primary btn-lg"  >Eliminar</button>`
+                  let arrayRemove= document.getElementsByClassName("btnRemove")
+                  for(let c=0;c<arrayRemove.length;c++)
+                  {
+                      arrayRemove[c].addEventListener("click", function(){
+                          //arrayComentarios.splice(i,1)
+                      })
+                  }
+
+              }*/
           }
        }
     }
@@ -738,3 +945,104 @@ function buttonLogOut(){
     
     
 }
+
+//rating
+function AddRatinge()
+{
+    let btnRate = document.getElementById("btnRate")
+    let estrela = document.getElementsByClassName("estrela")
+    votRate.addEventListener("click", function(){
+    
+    let valorPontuacao=0
+    for (let i = 0; i < estrela.length; i++) {
+        if (estrela[i].checked == true) {
+            valorPontuacao = estrela[i].value
+        }
+    }
+    uploadRatingFromStotage()
+    let newRate= new AddRating(valorPontuacao)
+    arrayrating.push(newRate)
+    //guardar em storage
+    localStorage.setItem("Rating", JSON.stringify(arrayrating))
+    console.log("ola")
+
+    }
+    
+    
+)
+    
+}
+// upload ratingfor
+function uploadRatingFromStotage()
+{
+    
+    if(localStorage.Rating){
+        arrayrating=[]
+        let tempArray = JSON.parse(localStorage.getItem("Rating"))
+        for (var i = 0; i < tempArray.length; i++) {
+            
+            let newRating =  new rating(tempArray[i]._userId,tempArray[i]._eventId,tempArray[i]._points)
+            arrayrating.push(newRating)    
+              
+        }
+
+    }
+}
+
+//ratingglobal do evento
+function GlobalRate()
+{
+    uploadRatingFromStotage()
+    let globalrate=document.getElementById("globalrate")
+    let tempEveClick = JSON.parse(localStorage.getItem("EventClick"))
+    let soma=0
+    let total=0
+    let media=0
+    let str=""
+    for(let i=0;i<arrayrating.length;i++)
+    {
+        if(tempEveClick._id==arrayrating[i]._eventId)
+        {
+         soma+=parseInt(arrayrating[i]._points)
+         total++
+        }
+    }
+    media=soma/total
+    tempEveClick.rating=media
+    for(let i=0;i<arrayEvents.length;i++)
+    {
+       if(tempEveClick._id==arrayEvents[i]._id)
+       {
+        arrayEvents[i]._rating=media 
+       }
+    }
+
+   if(tempEveClick.rating==1)
+   {str=`
+    <div class="star-rating">
+    <input id="star-5" type="radio" name="rating" class = "estrela" value="5">
+    <label for="star-5" title="5 stars">
+            <i class="active fa fa-star" aria-hidden="false"></i>
+    </label>
+    <input id="star-4" type="radio" name="rating"  class = "estrela" value="4">
+    <label for="star-4" title="4 stars">
+            <i class="active fa fa-star" aria-hidden="true"></i>
+    </label>
+    <input id="star-3" type="radio" name="rating" class = "estrela" value="3">
+    <label for="star-3" title="3 stars">
+            <i class="active fa fa-star" aria-hidden="true"></i>
+    </label>
+    <input id="star-2" type="radio" name="rating"  class = "estrela" value="2">
+    <label for="star-2" title="2 stars">
+            <i class="active fa fa-star" aria-hidden="true"></i>
+    </label>
+    <input id="star-1" type="radio" name="rating" class = "estrela" value="1">
+    <label for="star-1" title="1 star">
+            <i class="active fa fa-star" aria-hidden="true"></i>
+    </label>
+</div> `
+   }
+   globalrate.innerHTML=str
+}
+
+

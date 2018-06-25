@@ -116,6 +116,16 @@ function AdicionarDocente()
 
     })
 }
+//selectoresDoc
+function selectoresDoc()
+{
+    let select=document.getElementById("docEve")
+    let strSeletores=""
+    for(let i=0;i<arrayTeachers;i++)
+    {
+      strSeletores+=`option value="volvo">${arrayTeachers[i]._name}</option>`
+    }
+}
 ///carregar Docentes do storage para o arrayTeachers
 function loadDocFromStorage()
 {
@@ -280,10 +290,11 @@ function editDocById(id) {
                  localStorage.removeItem("Docentes")
                  localStorage.setItem("Docentes", JSON.stringify(arrayTeachers))   
                  renderTableDoc()
-
+                 alert("O Docente foi editado")
 
 
             })
             
         }                  
-    }}
+    }
+}

@@ -306,7 +306,7 @@ function editParceById(id) {
                  localStorage.removeItem("Parcerias")
                  localStorage.setItem("Parcerias", JSON.stringify(arrayPartnerships))   
                  renderTableParc()
-
+alert("A parceria foi editada")
 
 
             })

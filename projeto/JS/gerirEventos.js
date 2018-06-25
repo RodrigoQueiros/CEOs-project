@@ -1,5 +1,84 @@
 let arrayEvents=[]
+let  arrayTeachers=[]
+class Teachers{
+    constructor(name,photo,formation,uc,shortCV)
+    {
+        this._id= Teachers.getLastId()+1
+        this.name=name
+        this.photo=photo
+        this.formation=formation
+        this.uc=uc
+        this.shortCV=shortCV
+    }
+  //id
+  get id() {
+    return this._id
+    }
 
+//name
+get name() 
+{
+ return this._name
+}
+
+set name(newName) 
+{
+this._name = newName
+}
+
+//photo
+get photo() 
+{
+ return this._photo
+}
+
+set photo(newPhoto) 
+{
+this._photo = newPhoto
+}
+
+//formation
+get formation() 
+{
+ return this._formation
+}
+
+set formation(newFormation) 
+{
+this._formation = newFormation
+}
+
+//uc
+get uc() 
+{
+ return this._uc
+}
+
+set uc(newUc) 
+{
+this._uc = newUc
+}
+
+//shortCV
+get shortCV() 
+{
+ return this._shortCV
+}
+
+set shortCV(newShortCV) 
+{
+this._shortCV = newShortCV
+}
+
+     //get id
+static getLastId() {
+    let lastId = 0
+    if(arrayTeachers.length != 0) {
+    lastId = arrayTeachers[arrayTeachers.length-1].id
+    }
+    return lastId
+    }
+}
 ////////////class EVENTOS////////////
 class Events{
     constructor(eventname,description,date,event_time,creat_time,state,space,category,responsable,image,coments,rating,views)
@@ -181,6 +260,7 @@ this._views = newViews
 }
 
 window.onload = function () {
+    
     loadEveFromStorage()
     renderTableEve()
     AdicionarEvento()
@@ -198,7 +278,7 @@ function AdicionarEvento()
     let horasEve=document.getElementById("horasEve")
     let docEve=document.getElementById("docEve")
 
-
+    selectoresDoc()
     formAddEve.addEventListener("submit", function(){
         let name= nameEve.value
         let image= ImagEve.value 
@@ -324,7 +404,7 @@ function renderTableEve() {
              // By clicking in a specific event, edit in the form
              let eveId = tdEdit[i].getAttribute("id")
              editEveById(eveId)
-                       
+                     
          })        
      }
 
@@ -402,6 +482,8 @@ function  editEveById(id) {
                  localStorage.removeItem("Event")
                  localStorage.setItem("Event", JSON.stringify(arrayEvents))   
                  renderTableEve()
+                 
+                 alertEditado()
 
 
 
@@ -409,8 +491,10 @@ function  editEveById(id) {
             
         }                  
     }
+    
 }
-
+function alertEditado(){
+alert("O evento foi editado")}
 //função para aplicar as changes a navbar quando esta logado
 function loginChangesNav(){
    
@@ -471,5 +555,43 @@ function buttonLogOut(){
     changeLogin.innerHTML = "Login"
     location.reload(true);
     
+    
+}
+let strSeletores=""
+//selectoresDoc
+function selectoresDoc()
+{
+    loadDocFromStorage()
+    //let select=document.getElementById("docEve")
+    console.log("hey")
+    console.log(arrayTeachers)
+    for (let index = 0; index < arrayTeachers.length; index++) {
+        console.log("hey")
+      strSeletores+=`<option value="${arrayTeachers[index]._name}">${arrayTeachers[index]._name}</option>`
+      console.log( strSeletores)
+    }
+    
+    docEve.innerHTML=strSeletores
+}
+///carregar Docentes do storage para o arrayTeachers
+function loadDocFromStorage()
+{
+   
+
+      
+            let tempDocArray = JSON.parse(localStorage.getItem("Docentes"))
+            for (var i = 0; i < tempDocArray.length; i++) 
+            {
+                
+                //name,photo,formaçao,Uc,short cv
+                let newDocc =  new Teachers(tempDocArray[i]._name, tempDocArray[i]._photo,tempDocArray[i]._formation,tempDocArray[i]._uc,tempDocArray[i]._shortCV)
+                arrayTeachers.push(newDocc) 
+                   
+                  
+            }
+    
+        
+     
+        
     
 }

@@ -5,7 +5,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+<!--Font awesome-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
       <!--Custom JS-->
@@ -67,7 +68,51 @@
    
    <div id="eventoClicado">
 
-   </div>   
+   </div>  
+   
+   <!--Modal rate-->
+<div class="modal fade" id="rateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalEveName" style="color:#1D76CE">Avaliar Evento</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+                <div class="star-rating">
+                        <input id="star-5" type="radio" name="rating" class = "estrela" value="5">
+                        <label for="star-5" title="5 stars">
+                                <i class="active fa fa-star" aria-hidden="true"></i>
+                        </label>
+                        <input id="star-4" type="radio" name="rating"  class = "estrela" value="4">
+                        <label for="star-4" title="4 stars">
+                                <i class="active fa fa-star" aria-hidden="true"></i>
+                        </label>
+                        <input id="star-3" type="radio" name="rating" class = "estrela" value="3">
+                        <label for="star-3" title="3 stars">
+                                <i class="active fa fa-star" aria-hidden="true"></i>
+                        </label>
+                        <input id="star-2" type="radio" name="rating"  class = "estrela" value="2">
+                        <label for="star-2" title="2 stars">
+                                <i class="active fa fa-star" aria-hidden="true"></i>
+                        </label>
+                        <input id="star-1" type="radio" name="rating" class = "estrela" value="1">
+                        <label for="star-1" title="1 star">
+                                <i class="active fa fa-star" aria-hidden="true"></i>
+                        </label> 
+  
+        </div>
+       
+        <div class="modal-footer">
+          <button type="button" id="votRate"class="btn btn-secondary" data-dismiss="modal" >Submeter</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+  
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
 
