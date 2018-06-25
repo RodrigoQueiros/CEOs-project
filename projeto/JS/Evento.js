@@ -650,6 +650,7 @@ window.onload = function () {
     comentarioRemove()
     verificarAddEve()
     loginChangesNav()
+    verificarRatEve()
     GlobalRate()
     console.log(localStorage.LoggedUser.id)
    
@@ -1119,7 +1120,26 @@ function uploadRatingFromStotage()
 
     }
 }
-
+///verificar se ja classificou
+function verificarRatEve()
+{ let btnRate=document.getElementById("btnRate")
+   
+uploadRatingFromStotage()
+    let tempLoggedUser = JSON.parse(localStorage.getItem("LoggedUser"))
+    let userId=tempLoggedUser._id
+    let eventId=JSON.parse(localStorage.getItem("eventId"))
+       let EveClickId=eventId
+    for(let i=0;i<arrayrating.length;i++)
+    {
+        if((arrayrating[i].userId==userId) &&(arrayrating[i].eventId==EveClickId))
+        {
+            console.log("btnAdd")
+            document.getElementById("btnRate").disabled = true;
+            document.getElementById("btnRate").style.display = "none"
+        
+        }
+    }
+}
 //ratingglobal do evento
 function GlobalRate()
 {
