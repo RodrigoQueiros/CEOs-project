@@ -276,7 +276,7 @@ function events()
             <div class="row" >`
         }
         strHtmlCard += `<div class="card m-3" style="width: 40rem; border-radius:5px;" >
-        <a id="zeLink" class="eventoclick" href="Evento.html" >
+        <a id="${arrayEvents[i].id}" class="eventoclick" href="Evento.html" >
         <div class="row " >
           <div class="col-md-4" >
               <img src="${arrayEvents[i].image}" style="width:100%;height:100%; border-radius:5px 0px 0px 5px" >
@@ -320,8 +320,8 @@ function events()
     {
         arrayClick[i].addEventListener("click",
         function (){
-                let eventoClicado=arrayEvents[arrayClick.length-1-i] 
-                localStorage.setItem("EventClick", JSON.stringify(eventoClicado))
+                let eventId=arrayClick[i].id
+                localStorage.setItem("eventId", eventId)
                 console.log("ola")
         
                  })
@@ -618,7 +618,7 @@ function updateFiltro()
     {
         if((eventName.value==arrayEvents[i].eventname||eventName.value=="") && (eventDate.value==arrayEvents[i].date||eventDate.value=="") && (filterTag.value==arrayEvents[i].category||filterTag.value=="") )
         {
-         b=i
+       console.log("id: "+arrayEvents[i].id)
         if(i==arrayEvents.length-1){
             strHtmlCard += `<h5 style="display: block;color: #1D76CE">Eventos:</h5>
             <div class="row" >`
@@ -673,6 +673,7 @@ function updateFiltro()
             arrayClick[i].addEventListener("click",
             function (){
                     let eventId = arrayClick[i].id 
+                    console.log(eventId)
                     localStorage.setItem("eventId", eventId)
                     console.log("ola")
             

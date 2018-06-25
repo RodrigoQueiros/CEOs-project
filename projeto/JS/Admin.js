@@ -98,7 +98,9 @@ class User {
     get picture() {
         return this._picture
     }
-
+    set picture(newPicture) {
+        this._picture = newPicture
+    }
 
 
     static getLastId() {

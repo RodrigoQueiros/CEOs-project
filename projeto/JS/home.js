@@ -745,7 +745,7 @@ function updateEvents(){
             <div class="row" >`
         }
         strHtmlCard += `<div class="card m-3" style="width: 40rem; border-radius:5px;border-width:3px" >
-        <a id="zeLink" href="#">
+        <a id="${arrayEvents[i].id}" class="eventoclick" href="Evento.html" >
         <div class="row " >
           <div class="col-md-4" >
               <img src="${arrayEvents[arrayEvents.length-i].image}" style="width:100%;height:100%; border-radius:5px 0px 0px 5px" >
@@ -798,7 +798,7 @@ function updateTestimonial_Docente()
              ` <h5 style="display: block;color: #1D76CE">Testemunho:</h5>
          <div class="row"> 
          <div class="card m-3" style="width: 40rm;" >
-            <a id="zeLink" href="#">
+            <a id="zeLink" class="eventoclick" href="#">
              <div class="row " style="height:5rm;">
               <div class="col-md-3 " >
                   <img  src="${arrayTestimonial[arrayTestimonial.length-1].image}" style="width:80%;height:80%; border-radius:5px;margin-left:20px;margin-top:20px;" >
@@ -822,7 +822,7 @@ function updateTestimonial_Docente()
         <h5 style="display: block;color: #1D76CE">Docente:</h5>
         <div class="row"> 
          <div class="card m-3" style="width: 40rm;" >
-            <a id="zeLink" href="#">
+            <a id="zeLink" class="eventoclick" href="#">
              <div class="row col-md-12">
               <div class="col-md-4 mr-auto mt-2 " style="padding:10px">
                   <img src="${arrayTeachers[arrayTeachers.length-1].photo}" style="float:left;border-radius:5px;width:95%;height:95%;" >
@@ -942,11 +942,11 @@ if(localStorage.LoggedUser){
     changeLogin.innerHTML = `<li class="nav-item dropdown">
      <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-       <a class="dropdown-item" href="#">Perfil</a>
-       <a class="dropdown-item" href="#">Registar evento</a>   
-       <a class="dropdown-item" href="#">Gerir Docentes</a>  
+       <a class="dropdown-item" href="perfil.html">Perfil</a>
+       <a class="dropdown-item" href="gerirEventos.html">Registar evento</a>   
+       <a class="dropdown-item" href="gerirDocentes.html">Gerir Docentes</a>  
        <a class="dropdown-item" href="gerirParcerias.html">Gerir Parcerias</a>  
-       <a class="dropdown-item" href="#">Definições</a>  
+       <a class="dropdown-item" href="Admin.html">Definições</a>  
        <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>         
        </div>
    </li>`
@@ -956,9 +956,9 @@ if(localStorage.LoggedUser){
      changeLogin.innerHTML = `<li class="nav-item dropdown">
      <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-       <a class="dropdown-item" href="#">Perfil</a>
-       <a class="dropdown-item" href="#">Registar evento</a>   
-       <a class="dropdown-item" href="#">Gerir Docentes</a>  
+       <a class="dropdown-item" href="perfil.html">Perfil</a>
+       <a class="dropdown-item" href="gerirEventos.html">Registar evento</a>   
+       <a class="dropdown-item" href="gerirDocentes.html">Gerir Docentes</a>  
        <a class="dropdown-item" href="gerirParcerias.html">Gerir Parcerias</a>  
        <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>       
        </div>
@@ -969,7 +969,7 @@ if(localStorage.LoggedUser){
      changeLogin.innerHTML = `<li class="nav-item dropdown">
      <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-       <a class="dropdown-item" href="#">Perfil</a>
+     <a class="dropdown-item" href="perfil.html">Perfil</a>
        <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>              
        </div>
    </li>`

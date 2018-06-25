@@ -60,12 +60,12 @@ background-color: grey;
     #TestDate{
         color: grey;
     }
-    #zeLink:link, #zeLink:visited{
+    .eventoclick:link, .eventoclick:visited{
        color:black;
        text-decoration: none;
         
     }
-    #zeLink:hover{
+    .eventoclick:hover{
         color:black;
         text-decoration: none;
         background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0) 52%, rgba(0,0,0,0.4) 100%);
