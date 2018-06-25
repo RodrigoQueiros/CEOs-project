@@ -104,14 +104,12 @@ if(b==false){
     //name,image,local,link,code
     let newParc1= new Partnerships ("Google","http://knowtechtoday.com/wp-content/uploads/2018/03/google-apps-thumb-559_120517104011_0.jpg ","","https://pt.wikipedia.org/wiki/Google","")
     arrayPartnerships.push(newParc1)
-    let newParc2= new Partnerships ("Facebook","http://knowtechtoday.com/wp-content/uploads/2018/03/google-apps-thumb-559_120517104011_0.jpg ","","https://pt.wikipedia.org/wiki/Google","")
+    let newParc2= new Partnerships ("Microsoft","https://cdn.vox-cdn.com/thumbor/NeSo4JAqv-fFJCIhb5K5eBqvXG4=/7x0:633x417/1200x800/filters:focal(7x0:633x417)/cdn.vox-cdn.com/assets/1311169/mslogo.jpg","","https://microsoft.com/pt-pt/","")
     arrayPartnerships.push(newParc2)
-    let newParc3= new Partnerships ("Youtube","http://knowtechtoday.com/wp-content/uploads/2018/03/google-apps-thumb-559_120517104011_0.jpg ","","https://pt.wikipedia.org/wiki/Google","")
+    let newParc3= new Partnerships ("Blip","http://www.empregopelomundo.com/wp-content/uploads/2013/06/sas.png","","https://blip.pt","")
     arrayPartnerships.push(newParc3)
-    let newParc4= new Partnerships ("Youtube","http://knowtechtoday.com/wp-content/uploads/2018/03/google-apps-thumb-559_120517104011_0.jpg ","","https://pt.wikipedia.org/wiki/Google","")
+    let newParc4= new Partnerships ("Sonae","https://i2.aroq.com/1/sonae.jpg","","https://sonae.pt/en/","")
     arrayPartnerships.push(newParc4)
-    let newParc5= new Partnerships ("Youtube","http://knowtechtoday.com/wp-content/uploads/2018/03/google-apps-thumb-559_120517104011_0.jpg ","","https://pt.wikipedia.org/wiki/Google","")
-    arrayPartnerships.push(newParc5)
     
 
     //colocar no storage

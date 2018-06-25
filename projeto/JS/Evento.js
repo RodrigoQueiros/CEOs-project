@@ -871,13 +871,13 @@ else if((tempLoggedUser._id==myUsers[b]._id) && (myUsers[b]._id==arrayComentario
     <img src="${myUsers[b]._picture}" style="width: 60px;margin-top:15px">
 
 </div>
-<div class="col-8">
-    <div class="row" style="margin-top:10px"><h3>${myUsers[b].username}</h3><p style="position:absolute;right:15px;margin-top:5px; color:grey">data</p> </div>
+<div class="col-9">
+    <div class="row" style="margin-top:10px"><h3>${myUsers[b].username}</h3><p style="position:absolute;right:15px;margin-top:5px; color:grey">${arrayComentarios[i]._date}</p> </div>
     <p>${arrayComentarios[i]._description}</p>
 </div>
-<div id="removerDiv" class=" col-1">
+<div id="removerDiv" class=" col-3" style="margin-left:70%;margin-bottom:5px;">
 
-<button id="${arrayComentarios[i]._id}" class="Remover">Remover</button>
+<button id="${arrayComentarios[i]._id}" class="Remover btn btn-danger">Remover</button>
 </div>
 </div>`}
 else if((tempLoggedUser._id!=myUsers[b]._id) && (myUsers[b]._id==arrayComentarios[i]._userId))

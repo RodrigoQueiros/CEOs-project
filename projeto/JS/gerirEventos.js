@@ -1,5 +1,74 @@
 let arrayEvents=[]
 let  arrayTeachers=[]
+let arrayCategory=[]
+/////class Tag
+let arrayTags=[]
+class Tag{
+    constructor(tagname)
+    {
+        this._id=Tag.getLastId()+1
+        this.tagname=tagname
+    }
+
+    //Id
+    get id() {
+        return this._id
+    }
+    ///tag name
+    get tagname()
+    {
+        return this._tagname  
+    }
+    set tagname(newTagname)
+    {
+        this._tagname=newTagname
+    }
+
+
+    static getLastId() {
+        
+        let lastId = 0
+        if (arrayTags.length != 0) {
+            lastId =arrayTags[arrayTags.length - 1].id
+        }
+        return lastId
+    }
+}
+//############ Class Category ############
+class Category{
+    constructor(category){
+        this._id= arrayCategory.getLastId()+1
+        this.category=category
+
+    }
+
+    //id
+    get id() {
+        return this._id
+        }
+
+    //category
+    get category() 
+    {
+     return this._category
+    }
+    
+    set category(newCategory) 
+    {
+    this._category = newCategory
+    }
+
+
+    //get id
+static getLastId() {
+    let lastId = 0
+    if(arrayCategory.length != 0) {
+    lastId = arrayCategory[arrayCategory.length-1].id
+    }
+    return lastId
+    }
+
+}
 class Teachers{
     constructor(name,photo,formation,uc,shortCV)
     {
@@ -277,8 +346,9 @@ function AdicionarEvento()
     let dataEve=document.getElementById("dataEve")
     let horasEve=document.getElementById("horasEve")
     let docEve=document.getElementById("docEve")
-
+    let catEve=document.getElementById("catEve")
     selectoresDoc()
+    updateTagsForm()
     formAddEve.addEventListener("submit", function(){
         let name= nameEve.value
         let image= ImagEve.value 
@@ -287,8 +357,9 @@ function AdicionarEvento()
         let data=dataEve.value
         let horas=horasEve.value
         let doc=docEve.value
+        let category=catEve.value
         //(eventname * ,description * ,date * ,event_time * ,creat_time,state,space * ,category ,responsable,image * ,coments,rating,views)
-        let addEvento= new Events(name, desc, data, horas, "", "", local, "", doc, image, "","","")
+        let addEvento= new Events(name, desc, data, horas, "", "", local, category, doc, image, "","","")
         
         arrayEvents.push(addEvento)
         //colocar no storage
@@ -340,6 +411,7 @@ function renderTableEve() {
       <th scope="col">Data</th>
       <th scope="col">Horas</th>
       <th scope="col">Responsavel</th>
+      <th scope="col">Categoria</th>
 
       
       <th scope="col">Butoes</th>
@@ -358,7 +430,7 @@ function renderTableEve() {
         "<td>" + arrayEvents[i].date + "</td>" +
         "<td>" + arrayEvents[i].event_time+ "</td>" +
         "<td>" + arrayEvents[i].responsable + "</td>" +
-       
+        "<td>" + arrayEvents[i].category + "</td>" +
         "<td>" +
         "<a id='" +arrayEvents[i]._id + "' class='edit'data-toggle='modal' data-target='#eveModalEdit'><i class='fas fa-edit'></i></a> " +
         "<a id='" + arrayEvents[i]._id + "' class='remove'><i class='fas fa-trash-alt'></i></a> " +
@@ -429,6 +501,7 @@ function removeEveById(id) {
             let  modalEveData=document.getElementById("modalEveData")
             let  modalEveHoras=document.getElementById("modalEveHoras")
             let  modalEveResp=document.getElementById("modalEveResp")
+            let modalEveCat=document.getElementById("modalEveCat")
             let modalEvedescrição=document.getElementById("modalEvedescrição")
             let modalEveCover=document.getElementById("modalEveCover")
 
@@ -437,6 +510,7 @@ function removeEveById(id) {
             modalEveData.innerHTML = arrayEvents[i].date
             modalEveHoras.innerHTML =  arrayEvents[i].event_time
             modalEveResp.innerHTML=arrayEvents[i].responsable
+            modalEveCat.innerHTML=arrayEvents[i].category
             modalEvedescrição.innerHTML=arrayEvents[i].description
             modalEveCover.setAttribute("src", arrayEvents[i].image)                
         }                  
@@ -452,6 +526,7 @@ function  editEveById(id) {
   let modalEveEdiData=document.getElementById("modalEveEdiData")
   let modalEveEdiTime=document.getElementById("modalEveEdiTime")
   let modalEveEdiResponsavel=document.getElementById("modalEveEdiResponsavel")
+  let modalEveEdiCate=document.getElementById("modalEveEdiCate")
   let modalEveEdiDesc=document.getElementById("modalEveEdiDesc")
   let modalEveEdiImag=document.getElementById("modalEveEdiImag")
   let modalEveEdiCover=document.getElementById("modalEveEdiCover")
@@ -465,6 +540,7 @@ function  editEveById(id) {
             modalEveEdiData.setAttribute("value", arrayEvents[i].date)
             modalEveEdiTime.setAttribute("value", arrayEvents[i].event_time)
             modalEveEdiResponsavel.setAttribute("value", arrayEvents[i].responsable)
+            modalEveEdiCate.setAttribute("value", arrayEvents[i].category)
             modalEveEdiDesc.setAttribute("value", arrayEvents[i].description)
             modalEveEdiImag.setAttribute("value", arrayEvents[i].image)
             modalEveEdiCover.setAttribute("src", arrayEvents[i].image)
@@ -474,6 +550,7 @@ function  editEveById(id) {
                 arrayEvents[i].date= modalEveEdiData.value
                 arrayEvents[i].event_time= modalEveEdiTime.value
                 arrayEvents[i].responsable= modalEveEdiResponsavel.value
+                arrayEvents[i].category=modalEveEdiCate.value
                 arrayEvents[i].description=modalEveEdiDesc.value
                 arrayEvents[i].image=modalEveEdiImag.value
 
@@ -594,4 +671,35 @@ function loadDocFromStorage()
      
         
     
+}
+//função update tags do filtro
+function updateTagsForm()
+{
+    let catEve=document.getElementById("catEve")
+    loadTagsFromStorage()
+    let strTagFiltro=""
+    console.log(arrayTags)
+    for(let i=0;i<arrayTags.length;i++)
+    {
+        strTagFiltro+= `<option value="${arrayTags[i]._tagname}">${arrayTags[i]._tagname}</option>`
+    }
+    catEve.innerHTML=strTagFiltro
+}
+//
+//loadTagsFromStorage
+function loadTagsFromStorage(){
+     
+    if(localStorage.Tags)
+    {
+    arrayTags=[]
+    let tempTagsArray = JSON.parse(localStorage.getItem("Tags"))
+        for (var i = 0; i < tempTagsArray.length; i++) 
+        {
+            //tagname
+            let newtag =  new Tag(tempTagsArray[i]._tagname)
+            arrayTags.push(newtag)    
+              
+        }
+    
+    }
 }

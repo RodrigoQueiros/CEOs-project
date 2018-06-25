@@ -644,20 +644,33 @@ window.onload = function(){
     updateTagsFiltro()
     loginChances()
     loadFromStorage()
+    ///apagar no storage os filtros anteriores
+    if(localStorage.eventDate)
+    {
+        localStorage.setItem("eventDate","")
+    }
+    if(localStorage.eventname)
+    {
+        localStorage.setItem("eventname","")
+    }
+    if(localStorage.filterTag)
+    {
+        localStorage.setItem("filterTag","") 
+    }
     filtroHome()
 //eventos
 
 updateEvents()
 console.log(arrayEvents)
 //testemunho
-let testemunho= new Testimonial("Roloi","Este site esta no ponto mesmo! Feito por grandes futuros CEOs sem duvida","../Outros/event5.jpg","12/05/2018")
+let testemunho= new Testimonial("Rodrigo","Adoro o site! Feito por grandes futuros programadores sem duvida","https://scontent.flis1-1.fna.fbcdn.net/v/t1.0-9/29683169_1433337813437899_821953977863520960_n.jpg?_nc_cat=0&oh=d3bccafcd80d7b146e9fd8f0a9c2e552&oe=5BE3759B","2018-06-20")
 arrayTestimonial.push(testemunho)
 
 console.log(arrayTestimonial)
 //docente
 
-let teacher= new Teachers("Ricardo Queiros", "../Outros/event5.jpg","","POO","")
-arrayTeachers.push(teacher)
+/*let teacher= new Teachers("Ricardo Queiros", "../Outros/event5.jpg","","POO","")
+arrayTeachers.push(teacher)*/
 updateTestimonial_Docente()
 
 //Admin
@@ -738,14 +751,14 @@ function updateEvents(){
     console.log(arrayEvents)
     //iterar sobre o array de eventos
     let strHtmlCard = ""
-    for(let i=1;i<5;i++)
+    for(let i=1;i<4;i++)
     {
         if(i==1){
             strHtmlCard += `<h5 style="display: block;color: #1D76CE">Eventos:</h5>
             <div class="row" >`
         }
         strHtmlCard += `<div class="card m-3" style="width: 40rem; border-radius:5px;border-width:3px" >
-        <a id="${arrayEvents[i].id}" class="eventoclick" href="Evento.html" >
+        <a id="${arrayEvents[arrayEvents.length-i]._id}" class="eventoclick" href="Evento.html" >
         <div class="row " >
           <div class="col-md-4" >
               <img src="${arrayEvents[arrayEvents.length-i].image}" style="width:100%;height:100%; border-radius:5px 0px 0px 5px" >
@@ -761,7 +774,7 @@ function updateEvents(){
                 
               </div>
               <div id="descrição" class="row col-md-12">
-              <p style="height:40px">${arrayEvents[arrayEvents.length-i].description}</p>
+              <p style="height:40px" >${arrayEvents[arrayEvents.length-i].description}</p>
               </div>
               <div id="localição" class"row col-md-12">
               <p>${arrayEvents[arrayEvents.length-i].space}</p>
@@ -775,7 +788,7 @@ function updateEvents(){
         
         `
         // Fecha a linha
-        if(i== 4) {
+        if(i== 3) {
             strHtmlCard += `</div>`    
             //Console.log(strHtmlCard)
     let eventsCatalog = document.getElementById("eventsCatalog")
@@ -904,14 +917,13 @@ function loadEventFromStorage() {
     else
     {
         arrayEvents=[]
-        let eventoUm= new Events ("ioAcademy Challenge","O ioAcademy Challenge é apoiado pela ESMAD e é direcionada para um público estudantil, mas que deve desde logo quer tomar contacto com empresas e o mundo do trabalho.","27-06-2018","","","","ESMAD","","","https://scontent.flis1-1.fna.fbcdn.net/v/t1.0-9/35923109_387772041735241_8475168770883584000_o.jpg?_nc_cat=0&oh=25580f9bf5716027728ad293092c1e16&oe=5BB2D1EF","","","")
+        let eventoUm= new Events ("ioAcademy Challenge","O ioAcademy Challenge é apoiado pela ESMAD e é direcionada para um público estudantil!!!","27-06-2018","","","","ESMAD","WorkShops","","https://scontent.flis1-1.fna.fbcdn.net/v/t1.0-9/35923109_387772041735241_8475168770883584000_o.jpg?_nc_cat=0&oh=25580f9bf5716027728ad293092c1e16&oe=5BB2D1EF","","","")
         arrayEvents.push(eventoUm)
-        let eventoDois= new Events ("Ressaca","vai ser Top","12/05/2018","","","","Rua Alto do Parque,Penamaior","","","../Outros/event5.jpg","","","")
+        let eventoDois= new Events ("WIT IAMCP ","A WIT tem como objectivo promover ajuda mútua para atingir os objetivos pessoais e profissionais","30-06-2018","","","","Rua Passos Manuel, 223 - 4º Andar,Porto","Seminario","","https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F46100074%2F210400993975%2F1%2Foriginal.jpg?w=800&auto=compress&rect=1%2C159%2C1020%2C510&s=8f93bcf54ac1f5ca6d008f1e639a3718","","","")
         arrayEvents.push(eventoDois)
-        let eventoTres= new Events ("SecondRound","vai ser Top","12/05/2018","","","","queimodromo","","","../Outros/event5.jpg","","","")
+        let eventoTres= new Events ("Web Summit","Volunteering at Web Summit is a surefire way of making new connections and learning new skills","27-06-2018","","","","ALTICE ARENA, LISBON","Encontros","","https://external.fopo3-1.fna.fbcdn.net/safe_image.php?d=AQD1935O8ZiJnN6a&w=540&h=282&url=https%3A%2F%2Fwebsummit.com%2Fwp-content%2Fuploads%2F2016%2F05%2Fsportsfile-web-500x300.jpg&cfs=1&upscale=1&fallback=news_d_placeholder_publisher&_nc_hash=AQCIu_ztG0vc6cT6","","","")
         arrayEvents.push(eventoTres)
-        let eventoQuatro= new Events("projeto","esta a ser complicado","16/05/2018","","","","biblioteca","","","../Outros/event5.jpg","","","")
-        arrayEvents.push(eventoQuatro)  
+         console.log(arrayEvents)
     }
     
 }
