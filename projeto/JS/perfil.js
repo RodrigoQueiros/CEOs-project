@@ -273,9 +273,69 @@ class Events {
 /////////////FUNCTIONS///////////////////
 
 window.onload = function () {
+    let tempLoggedUser= JSON.parse(localStorage.getItem("LoggedUser"))
     loadEventFromStorage()
     procurarEvent()
     getNotification()
+    let fotoPerfil = document.getElementById("ImagemPerfil")
+    fotoPerfil.src = tempLoggedUser._picture
+
+    let editProfile = document.getElementById("btnEditar")
+
+    editProfile.addEventListener("click", function() {
+
+        let nomeE = document.getElementById("a")
+        let passE = document.getElementById("b")
+        let mailE = document.getElementById("c")
+        let fotoE = document.getElementById("d")
+        let saveEdit = document.getElementById("saveEdit")
+
+
+//carregar o loggeduser
+loadUsersFromStorage()
+let tempLoggedUser= JSON.parse(localStorage.getItem("LoggedUser"))
+    let LoggedId=tempLoggedUser._id
+    nomeE.value = tempLoggedUser._username
+    mailE.value = tempLoggedUser._email
+    fotoE.value = tempLoggedUser._picture
+
+        saveEdit.addEventListener("click", function(event) { //Guardar alterações
+
+           for(let i=0;i<myUsers.length;i++)
+           {
+               if(myUsers[i].id==LoggedId)
+               {
+                myUsers[i].username=nomeE.value
+                myUsers[i].email= mailE.value
+                myUsers[i].picture=fotoE.value
+                tempLoggedUser=myUsers[i]
+                //atualizar storage
+                localStorage.setItem("User", JSON.stringify(myUsers))
+                localStorage.setItem("LoggedUser", JSON.stringify(tempLoggedUser))
+               }
+           }
+
+
+
+
+
+
+
+
+            // Fechar a modal
+            $('#modelId').modal('hide')
+            
+            event.preventDefault()
+
+            localStorage.setItem("User", JSON.stringify(utilizadores))
+            localStorage.setItem("LoggedUser", JSON.stringify(utilizadorLogado))
+            location.reload()
+        })
+
+
+
+    })
+
 
 }
 /*function events()
@@ -417,6 +477,7 @@ function loadUsersFromStorage() {
 
     if (localStorage.User) {
         let tempArray = JSON.parse(localStorage.getItem("User"))
+        myUsers=[]
         for (var i = 0; i < tempArray.length; i++) {
 
             let newUser = new User(tempArray[i]._username, tempArray[i]._password, tempArray[i]._type, tempArray[i]._email)
