@@ -919,13 +919,14 @@ function loadEventFromStorage() {
     else
     {
         arrayEvents=[]
-        let eventoUm= new Events ("ioAcademy Challenge","O ioAcademy Challenge é apoiado pela ESMAD e é direcionada para um público estudantil!!!","27-06-2018","","","","ESMAD","WorkShops","","https://scontent.flis1-1.fna.fbcdn.net/v/t1.0-9/35923109_387772041735241_8475168770883584000_o.jpg?_nc_cat=0&oh=25580f9bf5716027728ad293092c1e16&oe=5BB2D1EF","","","")
+        let eventoUm= new Events ("ioAcademy Challenge","O ioAcademy Challenge é apoiado pela ESMAD e é direcionada para um público estudantil!!!","2018-06-27","","","","ESMAD","WorkShops","","https://scontent.flis1-1.fna.fbcdn.net/v/t1.0-9/35923109_387772041735241_8475168770883584000_o.jpg?_nc_cat=0&oh=25580f9bf5716027728ad293092c1e16&oe=5BB2D1EF","","","")
         arrayEvents.push(eventoUm)
-        let eventoDois= new Events ("WIT IAMCP ","A WIT tem como objectivo promover ajuda mútua para atingir os objetivos pessoais e profissionais","30-06-2018","","","","Rua Passos Manuel, 223 - 4º Andar,Porto","Seminario","","https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F46100074%2F210400993975%2F1%2Foriginal.jpg?w=800&auto=compress&rect=1%2C159%2C1020%2C510&s=8f93bcf54ac1f5ca6d008f1e639a3718","","","")
+        let eventoDois= new Events ("WIT IAMCP ","A WIT tem como objectivo promover ajuda mútua para atingir os objetivos pessoais e profissionais","2018-06-30","","","","Rua Passos Manuel, 223 - 4º Andar,Porto","Seminario","","https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F46100074%2F210400993975%2F1%2Foriginal.jpg?w=800&auto=compress&rect=1%2C159%2C1020%2C510&s=8f93bcf54ac1f5ca6d008f1e639a3718","","","")
         arrayEvents.push(eventoDois)
         let eventoTres= new Events ("Web Summit","Volunteering at Web Summit is a surefire way of making new connections and learning new skills","27-06-2018","","","","ALTICE ARENA, LISBON","Encontros","","https://external.fopo3-1.fna.fbcdn.net/safe_image.php?d=AQD1935O8ZiJnN6a&w=540&h=282&url=https%3A%2F%2Fwebsummit.com%2Fwp-content%2Fuploads%2F2016%2F05%2Fsportsfile-web-500x300.jpg&cfs=1&upscale=1&fallback=news_d_placeholder_publisher&_nc_hash=AQCIu_ztG0vc6cT6","","","")
         arrayEvents.push(eventoTres)
          console.log(arrayEvents)
+         localStorage.setItem("Event",JSON.stringify(arrayEvents))
     }
     
 }
@@ -1016,7 +1017,8 @@ function updateTagsFiltro()
 //loadTagsFromStorage
 function loadTagsFromStorage(){
      
-    
+    if(localStorage.Tags)
+    {
     arrayTags=[]
     let tempTagsArray = JSON.parse(localStorage.getItem("Tags"))
         for (var i = 0; i < tempTagsArray.length; i++) 
@@ -1026,7 +1028,7 @@ function loadTagsFromStorage(){
             arrayTags.push(newtag)    
               
         }
-    
+    }
     
 }
 //função filtrar

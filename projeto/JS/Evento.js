@@ -846,7 +846,7 @@ function verificarAddEve()
               {     console.log(myUsers[b]._picture)
                   console.log(arrayComentarios[i]._userId)
  if(localStorage.LoggedUser) { 
-     a=true
+     //a=true
 let tempLoggedUser = JSON.parse(localStorage.getItem("LoggedUser"))              
 if(tempLoggedUser._id==myUsers[0]._id)
 {strComent+="<br>"+
@@ -898,8 +898,9 @@ else if((tempLoggedUser._id!=myUsers[b]._id) && (myUsers[b]._id==arrayComentario
 
 </div>
 </div>`}}
-if(a=false)
+else 
 {
+    console.log("a: false")
     if(myUsers[b]._id==arrayComentarios[i]._userId)
     {
         strComent+="<br>"+
@@ -909,7 +910,7 @@ if(a=false)
 
 </div>
 <div class="col-8">
-<div class="row" style="margin-top:10px"><h3>${myUsers[b].username}</h3><p style="position:absolute;right:15px;margin-top:5px; color:grey">data</p> </div>
+<div class="row" style="margin-top:10px"><h3>${myUsers[b].username}</h3><p style="position:absolute;right:15px;margin-top:5px; color:grey">${arrayComentarios[i]._date}</p> </div>
 <p>${arrayComentarios[i]._description}</p>
 </div>
 <div id="removerDiv" class=" col-1">

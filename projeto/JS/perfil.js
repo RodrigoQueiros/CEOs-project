@@ -615,7 +615,7 @@ if(localStorage.LoggedUser){
        <a class="dropdown-item" href="gerirDocentes.html">Gerir Docentes</a>  
        <a class="dropdown-item" href="gerirParcerias.html">Gerir Parcerias</a>  
        <a class="dropdown-item" href="Admin.html">Definições</a>  
-       <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>         
+       <a class="dropdown-item"  href="projetoHomePage.html" onclick="buttonLogOut()">Logout</a>         
        </div>
    </li>`
     }
@@ -628,7 +628,7 @@ if(localStorage.LoggedUser){
        <a class="dropdown-item" href="gerirEventos.html">Registar evento</a>   
        <a class="dropdown-item" href="gerirDocentes.html">Gerir Docentes</a>  
        <a class="dropdown-item" href="gerirParcerias.html">Gerir Parcerias</a>  
-       <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>       
+       <a class="dropdown-item"  href="projetoHomePage.html" onclick="buttonLogOut()">Logout</a>       
        </div>
    </li>`
     }
@@ -638,7 +638,7 @@ if(localStorage.LoggedUser){
      <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
      <a class="dropdown-item" href="perfil.html">Perfil</a>
-       <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>              
+       <a class="dropdown-item" href="projetoHomePage.html" onclick="buttonLogOut()">Logout</a>              
        </div>
    </li>`
 
@@ -646,4 +646,13 @@ if(localStorage.LoggedUser){
 
     }   
 }      
+}
+//função para dar logout
+function buttonLogOut(){
+    let changeLogin = document.getElementById("textLogin")  
+    localStorage.removeItem("LoggedUser")
+    changeLogin.innerHTML = "Login"
+    location.reload(true);
+    
+    
 }

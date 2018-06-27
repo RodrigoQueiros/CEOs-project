@@ -547,7 +547,7 @@ function loadEventFromStorage() {
         let tempEveArray = JSON.parse(localStorage.getItem("Event"))
         for (var i = 0; i < tempEveArray.length; i++) {
             
-            let newEvent =  new Events(tempEveArray[i]._eventname, tempEveArray[i]._description,tempEveArray[i]._date,"","","",tempEveArray[i]._space,"","",tempEveArray[i]._image,"","","")
+            let newEvent =  new Events(tempEveArray[i]._eventname, tempEveArray[i]._description,tempEveArray[i]._date,"","","",tempEveArray[i]._space,tempEveArray[i]._category,"",tempEveArray[i]._image,"","","")
             arrayEvents.push(newEvent)    
               
         }
@@ -607,7 +607,7 @@ function updateFiltro()
      eventName.value=eventNameFilt
      eventDate.value=eventDateFilt
      filterTag.value=eventTagFilt
-
+ console.log(filterTag.value)
     //E carregar filtro
     btnFiltroEvent.addEventListener("click", function(){
       
@@ -616,7 +616,7 @@ function updateFiltro()
     let b=0
     for(let i=arrayEvents.length-1;i>=0;i--)
     {
-        if((eventName.value==arrayEvents[i].eventname||eventName.value=="") && (eventDate.value==arrayEvents[i].date||eventDate.value=="") && (filterTag.value==arrayEvents[i].category||filterTag.value=="") )
+        if((eventName.value==arrayEvents[i].eventname||eventName.value=="") && (eventDate.value==arrayEvents[i].date||eventDate.value=="") && (filterTag.value==arrayEvents[i].category||filterTag.value==""))
         {
        console.log("id: "+arrayEvents[i].id)
         if(i==arrayEvents.length-1){
