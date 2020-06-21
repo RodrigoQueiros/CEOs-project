@@ -20,3 +20,9 @@ The CE0s is a website where you can check events on a catalog, filter for keywor
 
 ### Loginpage
 ![Login page](projeto/Outros/Screenshot_3.png)
+
+#### Authors
+
+* **Eloi Leitão** - [eloileitao](https://github.com/eloileitao)
+
+* **Rodrigo Queirós** - [RodrigoQueiros](https://github.com/RodrigoQueiros)
