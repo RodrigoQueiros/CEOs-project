@@ -1,5 +1,153 @@
 let arrayEvents=[]
+let  arrayTeachers=[]
+let arrayCategory=[]
+/////class Tag
+let arrayTags=[]
+class Tag{
+    constructor(tagname)
+    {
+        this._id=Tag.getLastId()+1
+        this.tagname=tagname
+    }
 
+    //Id
+    get id() {
+        return this._id
+    }
+    ///tag name
+    get tagname()
+    {
+        return this._tagname  
+    }
+    set tagname(newTagname)
+    {
+        this._tagname=newTagname
+    }
+
+
+    static getLastId() {
+        
+        let lastId = 0
+        if (arrayTags.length != 0) {
+            lastId =arrayTags[arrayTags.length - 1].id
+        }
+        return lastId
+    }
+}
+//############ Class Category ############
+class Category{
+    constructor(category){
+        this._id= arrayCategory.getLastId()+1
+        this.category=category
+
+    }
+
+    //id
+    get id() {
+        return this._id
+        }
+
+    //category
+    get category() 
+    {
+     return this._category
+    }
+    
+    set category(newCategory) 
+    {
+    this._category = newCategory
+    }
+
+
+    //get id
+static getLastId() {
+    let lastId = 0
+    if(arrayCategory.length != 0) {
+    lastId = arrayCategory[arrayCategory.length-1].id
+    }
+    return lastId
+    }
+
+}
+class Teachers{
+    constructor(name,photo,formation,uc,shortCV)
+    {
+        this._id= Teachers.getLastId()+1
+        this.name=name
+        this.photo=photo
+        this.formation=formation
+        this.uc=uc
+        this.shortCV=shortCV
+    }
+  //id
+  get id() {
+    return this._id
+    }
+
+//name
+get name() 
+{
+ return this._name
+}
+
+set name(newName) 
+{
+this._name = newName
+}
+
+//photo
+get photo() 
+{
+ return this._photo
+}
+
+set photo(newPhoto) 
+{
+this._photo = newPhoto
+}
+
+//formation
+get formation() 
+{
+ return this._formation
+}
+
+set formation(newFormation) 
+{
+this._formation = newFormation
+}
+
+//uc
+get uc() 
+{
+ return this._uc
+}
+
+set uc(newUc) 
+{
+this._uc = newUc
+}
+
+//shortCV
+get shortCV() 
+{
+ return this._shortCV
+}
+
+set shortCV(newShortCV) 
+{
+this._shortCV = newShortCV
+}
+
+     //get id
+static getLastId() {
+    let lastId = 0
+    if(arrayTeachers.length != 0) {
+    lastId = arrayTeachers[arrayTeachers.length-1].id
+    }
+    return lastId
+    }
+}
 ////////////class EVENTOS////////////
 class Events{
     constructor(eventname,description,date,event_time,creat_time,state,space,category,responsable,image,coments,rating,views)
@@ -181,9 +329,11 @@ this._views = newViews
 }
 
 window.onload = function () {
+    
     loadEveFromStorage()
     renderTableEve()
     AdicionarEvento()
+    loginChances()
 
 }
 
@@ -197,8 +347,9 @@ function AdicionarEvento()
     let dataEve=document.getElementById("dataEve")
     let horasEve=document.getElementById("horasEve")
     let docEve=document.getElementById("docEve")
-
-
+    let catEve=document.getElementById("catEve")
+    selectoresDoc()
+    updateTagsForm()
     formAddEve.addEventListener("submit", function(){
         let name= nameEve.value
         let image= ImagEve.value 
@@ -207,8 +358,9 @@ function AdicionarEvento()
         let data=dataEve.value
         let horas=horasEve.value
         let doc=docEve.value
+        let category=catEve.value
         //(eventname * ,description * ,date * ,event_time * ,creat_time,state,space * ,category ,responsable,image * ,coments,rating,views)
-        let addEvento= new Events(name, desc, data, horas, "", "", local, "", doc, image, "","","")
+        let addEvento= new Events(name, desc, data, horas, "", "", local, category, doc, image, "","","")
         
         arrayEvents.push(addEvento)
         //colocar no storage
@@ -260,6 +412,7 @@ function renderTableEve() {
       <th scope="col">Data</th>
       <th scope="col">Horas</th>
       <th scope="col">Responsavel</th>
+      <th scope="col">Categoria</th>
 
       
       <th scope="col">Butoes</th>
@@ -278,7 +431,7 @@ function renderTableEve() {
         "<td>" + arrayEvents[i].date + "</td>" +
         "<td>" + arrayEvents[i].event_time+ "</td>" +
         "<td>" + arrayEvents[i].responsable + "</td>" +
-       
+        "<td>" + arrayEvents[i].category + "</td>" +
         "<td>" +
         "<a id='" +arrayEvents[i]._id + "' class='edit'data-toggle='modal' data-target='#eveModalEdit'><i class='fas fa-edit'></i></a> " +
         "<a id='" + arrayEvents[i]._id + "' class='remove'><i class='fas fa-trash-alt'></i></a> " +
@@ -324,7 +477,7 @@ function renderTableEve() {
              // By clicking in a specific event, edit in the form
              let eveId = tdEdit[i].getAttribute("id")
              editEveById(eveId)
-                       
+                     
          })        
      }
 
@@ -349,6 +502,7 @@ function removeEveById(id) {
             let  modalEveData=document.getElementById("modalEveData")
             let  modalEveHoras=document.getElementById("modalEveHoras")
             let  modalEveResp=document.getElementById("modalEveResp")
+            let modalEveCat=document.getElementById("modalEveCat")
             let modalEvedescrição=document.getElementById("modalEvedescrição")
             let modalEveCover=document.getElementById("modalEveCover")
 
@@ -357,6 +511,7 @@ function removeEveById(id) {
             modalEveData.innerHTML = arrayEvents[i].date
             modalEveHoras.innerHTML =  arrayEvents[i].event_time
             modalEveResp.innerHTML=arrayEvents[i].responsable
+            modalEveCat.innerHTML=arrayEvents[i].category
             modalEvedescrição.innerHTML=arrayEvents[i].description
             modalEveCover.setAttribute("src", arrayEvents[i].image)                
         }                  
@@ -372,6 +527,7 @@ function  editEveById(id) {
   let modalEveEdiData=document.getElementById("modalEveEdiData")
   let modalEveEdiTime=document.getElementById("modalEveEdiTime")
   let modalEveEdiResponsavel=document.getElementById("modalEveEdiResponsavel")
+  let modalEveEdiCate=document.getElementById("modalEveEdiCate")
   let modalEveEdiDesc=document.getElementById("modalEveEdiDesc")
   let modalEveEdiImag=document.getElementById("modalEveEdiImag")
   let modalEveEdiCover=document.getElementById("modalEveEdiCover")
@@ -385,6 +541,7 @@ function  editEveById(id) {
             modalEveEdiData.setAttribute("value", arrayEvents[i].date)
             modalEveEdiTime.setAttribute("value", arrayEvents[i].event_time)
             modalEveEdiResponsavel.setAttribute("value", arrayEvents[i].responsable)
+            modalEveEdiCate.setAttribute("value", arrayEvents[i].category)
             modalEveEdiDesc.setAttribute("value", arrayEvents[i].description)
             modalEveEdiImag.setAttribute("value", arrayEvents[i].image)
             modalEveEdiCover.setAttribute("src", arrayEvents[i].image)
@@ -394,6 +551,7 @@ function  editEveById(id) {
                 arrayEvents[i].date= modalEveEdiData.value
                 arrayEvents[i].event_time= modalEveEdiTime.value
                 arrayEvents[i].responsable= modalEveEdiResponsavel.value
+                arrayEvents[i].category=modalEveEdiCate.value
                 arrayEvents[i].description=modalEveEdiDesc.value
                 arrayEvents[i].image=modalEveEdiImag.value
 
@@ -402,6 +560,8 @@ function  editEveById(id) {
                  localStorage.removeItem("Event")
                  localStorage.setItem("Event", JSON.stringify(arrayEvents))   
                  renderTableEve()
+                 
+                 alertEditado()
 
 
 
@@ -409,10 +569,12 @@ function  editEveById(id) {
             
         }                  
     }
+    
 }
-
+function alertEditado(){
+alert("O evento foi editado")}
 //função para aplicar as changes a navbar quando esta logado
-function loginChangesNav(){
+function loginChances(){
    
     let verifyType
     
@@ -428,11 +590,11 @@ if(localStorage.LoggedUser){
     changeLogin.innerHTML = `<li class="nav-item dropdown">
      <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-       <a class="dropdown-item" href="#">Perfil</a>
-       <a class="dropdown-item" href="gerirEventos.html">Gerir Eventos</a>   
+       <a class="dropdown-item" href="perfil.html">Perfil</a>
+       <a class="dropdown-item" href="gerirEventos.html">Registar evento</a>   
        <a class="dropdown-item" href="gerirDocentes.html">Gerir Docentes</a>  
        <a class="dropdown-item" href="gerirParcerias.html">Gerir Parcerias</a>  
-       <a class="dropdown-item" href="#">Definições</a>  
+       <a class="dropdown-item" href="Admin.html">Definições</a>  
        <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>         
        </div>
    </li>`
@@ -442,11 +604,11 @@ if(localStorage.LoggedUser){
      changeLogin.innerHTML = `<li class="nav-item dropdown">
      <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-       <a class="dropdown-item" href="#">Perfil</a>
-       <a class="dropdown-item" href="gerirEventos.html">Gerir Eventos</a>   
+       <a class="dropdown-item" href="perfil.html">Perfil</a>
+       <a class="dropdown-item" href="gerirEventos.html">Registar evento</a>   
        <a class="dropdown-item" href="gerirDocentes.html">Gerir Docentes</a>  
        <a class="dropdown-item" href="gerirParcerias.html">Gerir Parcerias</a>  
-       <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>              
+       <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>       
        </div>
    </li>`
     }
@@ -455,15 +617,16 @@ if(localStorage.LoggedUser){
      changeLogin.innerHTML = `<li class="nav-item dropdown">
      <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-       <a class="dropdown-item" href="#">Perfil</a>
-       <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>             
+     <a class="dropdown-item" href="perfil.html">Perfil</a>
+       <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>              
        </div>
    </li>`
 
 
 
     }   
-}}
+}      
+}
 //função para dar logout
 function buttonLogOut(){
     let changeLogin = document.getElementById("textLogin")  
@@ -472,4 +635,73 @@ function buttonLogOut(){
     location.reload(true);
     
     
+}
+let strSeletores=""
+//selectoresDoc
+function selectoresDoc()
+{
+    loadDocFromStorage()
+    //let select=document.getElementById("docEve")
+    console.log("hey")
+    console.log(arrayTeachers)
+    for (let index = 0; index < arrayTeachers.length; index++) {
+        console.log("hey")
+      strSeletores+=`<option value="${arrayTeachers[index]._name}">${arrayTeachers[index]._name}</option>`
+      console.log( strSeletores)
+    }
+    
+    docEve.innerHTML=strSeletores
+}
+///carregar Docentes do storage para o arrayTeachers
+function loadDocFromStorage()
+{
+   
+
+      
+            let tempDocArray = JSON.parse(localStorage.getItem("Docentes"))
+            for (var i = 0; i < tempDocArray.length; i++) 
+            {
+                
+                //name,photo,formaçao,Uc,short cv
+                let newDocc =  new Teachers(tempDocArray[i]._name, tempDocArray[i]._photo,tempDocArray[i]._formation,tempDocArray[i]._uc,tempDocArray[i]._shortCV)
+                arrayTeachers.push(newDocc) 
+                   
+                  
+            }
+    
+        
+     
+        
+    
+}
+//função update tags do filtro
+function updateTagsForm()
+{
+    let catEve=document.getElementById("catEve")
+    loadTagsFromStorage()
+    let strTagFiltro=""
+    console.log(arrayTags)
+    for(let i=0;i<arrayTags.length;i++)
+    {
+        strTagFiltro+= `<option value="${arrayTags[i]._tagname}">${arrayTags[i]._tagname}</option>`
+    }
+    catEve.innerHTML=strTagFiltro
+}
+//
+//loadTagsFromStorage
+function loadTagsFromStorage(){
+     
+    if(localStorage.Tags)
+    {
+    arrayTags=[]
+    let tempTagsArray = JSON.parse(localStorage.getItem("Tags"))
+        for (var i = 0; i < tempTagsArray.length; i++) 
+        {
+            //tagname
+            let newtag =  new Tag(tempTagsArray[i]._tagname)
+            arrayTags.push(newtag)    
+              
+        }
+    
+    }
 }

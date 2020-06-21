@@ -35,7 +35,7 @@
                 </li>
                 <!--OPÇÃO Calendario -->
                 <li class="nav-item" style="margin-right: 5%; font-size:14pt;margin-top: 1%;color:#1D76CE" >
-                    <b><a class="nav-link" id="navCalendario" href="#"><label>Calendario</label></a></b>
+                    <b><a class="nav-link" id="navCalendario" href="testemunhos.html"><label>Testemunhos</label></a></b>
                 </li>                  
             
               <!--OPÇÃO Parcerias-->
@@ -44,7 +44,7 @@
               </li>
               <!--OPÇÃO Docentes-->
               <li id="optRegister" class="nav-item" style="margin-right: 5%; font-size:14pt;margin-top: 1%;color:#1D76CE" >
-                  <b><a class="nav-link" id="navDocentes" href="#">Docentes</a></b>
+                  <b><a class="nav-link" id="navDocentes" href="Docentes.html">Docentes</a></b>
               </li>
               <!--OPÇÃO Login-->
               <li id="optLogout" class="nav-item"  style="margin-right: 5%; font-size:14pt;margin-top: 1%;color:#1D76CE">
@@ -67,7 +67,7 @@
       
 
 
-
+      
       <!-- Perfil -->
 
       <div class="container">
@@ -75,10 +75,11 @@
 
                 <div class="col-3">
                         <div style="margin-top: 20%;">
-                            <img class="img-thumbnail " alt="Foto de perfil" src="http://www2.uol.com.br/guiadolitoral/imgnoticia/conheca-a-historia-por-tras-da-iconica-foto-de-einstein-mostrando-a-lingua-4030-f1.jpg">
+                            <img class="img-thumbnail " id="ImagemPerfil" alt="Foto de perfil" src="">
                         </div>
                         <div style="margin-top: 5%;"></div>
-                    <a name="" id="" class="btn btn-primary col-12" href="#" role="button" >Alterar Foto</a>
+                    <a name="" id="btnEditar" class="btn btn-primary col-12" href="#" role="button" data-toggle='modal' data-target='#modelId'>Editar</a>
+                    
                 <div style="margin-top: 3%;"> <a name="" id="" class="btn btn-primary col-12" href="#" role="button"  >Log out</a></div>
                         <h4 style="margin-top: 5%;color:#1D76CE">Notificações</h3>
                             <p id="notificaçõesId"></p> <!-- Escrever aqui as notificações -->
@@ -108,7 +109,60 @@
 
 
 
+<!-- Button trigger modal -->
 
+  
+  <!-- Modal Editar Perfil -->
+  <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                    <h4 class="modal-title" id="modelTitleId">Editar</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                  
+              </div>
+              <div class="modal-body">
+                  
+                <div class="form-group">
+                  <label for="a">Nome</label>
+                  <input type="text"
+                    class="form-control" name="" id="a" aria-describedby="helpId" placeholder="">
+                  
+                </div>
+
+                <div class="form-group">
+                        <label for="b">Palavra-passe</label>
+                        <input type="text"
+                          class="form-control" name="" id="b" aria-describedby="helpId" placeholder="">
+                        
+                      </div>
+
+                <div class="form-group">
+                        <label for="c">Email</label>
+                        <input type="text"
+                        class="form-control" name="" id="c" aria-describedby="helpId" placeholder="">
+                           
+                     </div>        
+
+                     <div class="form-group">
+                            <label for="d">Imagem</label>
+                            <input type="text"
+                            class="form-control" name="" id="d" aria-describedby="helpId" placeholder="">
+                               
+                         </div> 
+
+
+              </div>
+              <div class="modal-footer">
+                    <button type="submit" id="saveEdit" class="btn btn-primary">Save</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  
+              </div>
+          </div>
+      </div>
+  </div>
 
 
 
@@ -129,3 +183,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
 </html>
+
+
+

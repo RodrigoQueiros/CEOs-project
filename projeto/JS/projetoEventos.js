@@ -1,3 +1,38 @@
+
+/////class Tag
+let arrayTags=[]
+class Tag{
+    constructor(tagname)
+    {
+        this._id=Tag.getLastId()+1
+        this.tagname=tagname
+    }
+
+    //Id
+    get id() {
+        return this._id
+    }
+    ///tag name
+    get tagname()
+    {
+        return this._tagname  
+    }
+    set tagname(newTagname)
+    {
+        this._tagname=newTagname
+    }
+
+
+    static getLastId() {
+        
+        let lastId = 0
+        if (arrayTags.length != 0) {
+            lastId =arrayTags[arrayTags.length - 1].id
+        }
+        return lastId
+    }
+}
+
 let arrayEvents=[]
 let myUsers = []
 
@@ -208,21 +243,22 @@ if(b==false){
 
     
     //eventos
-    let newPrevEvent1= new Events ("Queima","vai ser Top  v Top Top Top Top Top Top Top Top v v Top Top sfasfasfasfa asfas fafa awwfaws afgasfasdgfsg  ","11/05/2018","","","","queimodromo","","","../Outros/event5.jpg","","","")
-    arrayEvents.push(newPrevEvent1)
-    let newPrevEvent2= new Events ("Ressaca","vai ser Top","12/05/2018","","","","Rua Alto do Parque,Penamaior","","","../Outros/event5.jpg","","","")
-    arrayEvents.push(newPrevEvent2)
-    let newPrevEvent3= new Events ("SecondRound","vai ser Top","12/05/2018","","","","queimodromo","","","../Outros/event5.jpg","","","")
-    arrayEvents.push(newPrevEvent3)
-    let newPrevEvent4= new Events("projeto","esta a ser complicado","16/05/2018","","","","biblioteca","","","../Outros/event5.jpg","","","")
-    arrayEvents.push(newPrevEvent4)
+    let eventoUm= new Events ("ioAcademy Challenge","O ioAcademy Challenge é apoiado pela ESMAD e é direcionada para um público estudantil!!!","27-06-2018","","","","ESMAD","WorkShops","","https://scontent.flis1-1.fna.fbcdn.net/v/t1.0-9/35923109_387772041735241_8475168770883584000_o.jpg?_nc_cat=0&oh=25580f9bf5716027728ad293092c1e16&oe=5BB2D1EF","","","")
+        arrayEvents.push(eventoUm)
+        let eventoDois= new Events ("WIT IAMCP ","A WIT tem como objectivo promover ajuda mútua para atingir os objetivos pessoais e profissionais","30-06-2018","","","","Rua Passos Manuel, 223 - 4º Andar,Porto","Seminario","","https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F46100074%2F210400993975%2F1%2Foriginal.jpg?w=800&auto=compress&rect=1%2C159%2C1020%2C510&s=8f93bcf54ac1f5ca6d008f1e639a3718","","","")
+        arrayEvents.push(eventoDois)
+        let eventoTres= new Events ("Web Summit","Volunteering at Web Summit is a surefire way of making new connections and learning new skills","27-06-2018","","","","ALTICE ARENA, LISBON","Encontros","","https://external.fopo3-1.fna.fbcdn.net/safe_image.php?d=AQD1935O8ZiJnN6a&w=540&h=282&url=https%3A%2F%2Fwebsummit.com%2Fwp-content%2Fuploads%2F2016%2F05%2Fsportsfile-web-500x300.jpg&cfs=1&upscale=1&fallback=news_d_placeholder_publisher&_nc_hash=AQCIu_ztG0vc6cT6","","","")
+        arrayEvents.push(eventoTres)
+         console.log(arrayEvents)
 
     //colocar no storage
     localStorage.setItem("Event", JSON.stringify(arrayEvents))
    
 }
-loginChangesNav()
+loginChances()
 events()
+updateTagsFiltro()
+updateFiltro()
 //loginChangesPagEvent()
 
 
@@ -239,7 +275,7 @@ function events()
             <div class="row" >`
         }
         strHtmlCard += `<div class="card m-3" style="width: 40rem; border-radius:5px;" >
-        <a id="zeLink" class="eventoclick" href="Evento.html" >
+        <a id="${arrayEvents[i].id}" class="eventoclick" href="Evento.html" >
         <div class="row " >
           <div class="col-md-4" >
               <img src="${arrayEvents[i].image}" style="width:100%;height:100%; border-radius:5px 0px 0px 5px" >
@@ -283,8 +319,8 @@ function events()
     {
         arrayClick[i].addEventListener("click",
         function (){
-                let eventoClicado=arrayEvents[arrayClick.length-1-i] 
-                localStorage.setItem("EventClick", JSON.stringify(eventoClicado))
+                let eventId=arrayClick[i].id
+                localStorage.setItem("eventId", eventId)
                 console.log("ola")
         
                  })
@@ -442,7 +478,7 @@ events()
 }
 
 //função para aplicar as changes a navbar quando esta logado
-function loginChangesNav(){
+function loginChances(){
    
     let verifyType
     
@@ -458,11 +494,11 @@ if(localStorage.LoggedUser){
     changeLogin.innerHTML = `<li class="nav-item dropdown">
      <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-       <a class="dropdown-item" href="#">Perfil</a>
-       <a class="dropdown-item" href="gerirEventos.html">Gerir Eventos</a>   
+       <a class="dropdown-item" href="perfil.html">Perfil</a>
+       <a class="dropdown-item" href="gerirEventos.html">Registar evento</a>   
        <a class="dropdown-item" href="gerirDocentes.html">Gerir Docentes</a>  
        <a class="dropdown-item" href="gerirParcerias.html">Gerir Parcerias</a>  
-       <a class="dropdown-item" href="#">Definições</a>  
+       <a class="dropdown-item" href="Admin.html">Definições</a>  
        <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>         
        </div>
    </li>`
@@ -472,11 +508,11 @@ if(localStorage.LoggedUser){
      changeLogin.innerHTML = `<li class="nav-item dropdown">
      <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-       <a class="dropdown-item" href="#">Perfil</a>
-       <a class="dropdown-item" href="gerirEventos.html">Gerir evento</a>   
+       <a class="dropdown-item" href="perfil.html">Perfil</a>
+       <a class="dropdown-item" href="gerirEventos.html">Registar evento</a>   
        <a class="dropdown-item" href="gerirDocentes.html">Gerir Docentes</a>  
        <a class="dropdown-item" href="gerirParcerias.html">Gerir Parcerias</a>  
-       <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>              
+       <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>       
        </div>
    </li>`
     }
@@ -485,15 +521,16 @@ if(localStorage.LoggedUser){
      changeLogin.innerHTML = `<li class="nav-item dropdown">
      <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-       <a class="dropdown-item" href="#">Perfil</a>
-       <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>             
+     <a class="dropdown-item" href="perfil.html">Perfil</a>
+       <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>              
        </div>
    </li>`
 
 
 
     }   
-}}
+}      
+}
 //função para dar logout
 function buttonLogOut(){
     let changeLogin = document.getElementById("textLogin")  
@@ -510,7 +547,7 @@ function loadEventFromStorage() {
         let tempEveArray = JSON.parse(localStorage.getItem("Event"))
         for (var i = 0; i < tempEveArray.length; i++) {
             
-            let newEvent =  new Events(tempEveArray[i]._eventname, tempEveArray[i]._description,tempEveArray[i]._date,"","","",tempEveArray[i]._space,"","",tempEveArray[i]._image,"","","")
+            let newEvent =  new Events(tempEveArray[i]._eventname, tempEveArray[i]._description,tempEveArray[i]._date,"","","",tempEveArray[i]._space,tempEveArray[i]._category,"",tempEveArray[i]._image,"","","")
             arrayEvents.push(newEvent)    
               
         }
@@ -534,4 +571,144 @@ function loadUsersFromStorage() {
     
 }
 
-             
+//função para carregar os elementos do filtro do storage caso eles existam
+function updateFiltro()
+{
+    let eventNameFilt=""
+    let eventDateFilt=""
+    let eventTagFilt=""
+    ////eventName
+    if(localStorage.eventname)
+    {
+        eventNameFilt=JSON.parse(localStorage.getItem("eventname"))
+    }
+    
+  
+    ///eventDate
+    if(localStorage.eventDate)
+    {
+        eventDateFilt=JSON.parse(localStorage.getItem("eventDate"))   
+    }
+
+   
+    //eventTag
+    if(localStorage.filterTag)
+    {
+        eventTagFilt=JSON.parse(localStorage.getItem("filterTag"))  
+    }
+
+
+    ///substituir no filtro
+     let eventName=document.getElementById("eventName")
+     let eventDate=document.getElementById("eventDate")
+     let filterTag=document.getElementById("filterTag")
+     let btnFiltroEvent=document.getElementById("btnFiltroEvent")
+
+     eventName.value=eventNameFilt
+     eventDate.value=eventDateFilt
+     filterTag.value=eventTagFilt
+ console.log(filterTag.value)
+    //E carregar filtro
+    btnFiltroEvent.addEventListener("click", function(){
+      
+            let strHtmlCard = ""
+    //iterar sobre o array de eventos
+    let b=0
+    for(let i=arrayEvents.length-1;i>=0;i--)
+    {
+        if((eventName.value==arrayEvents[i].eventname||eventName.value=="") && (eventDate.value==arrayEvents[i].date||eventDate.value=="") && (filterTag.value==arrayEvents[i].category||filterTag.value==""))
+        {
+       console.log("id: "+arrayEvents[i].id)
+        if(i==arrayEvents.length-1){
+            strHtmlCard += `<h5 style="display: block;color: #1D76CE">Eventos:</h5>
+            <div class="row" >`
+        }
+        strHtmlCard += `<div class="card m-3" style="width: 40rem; border-radius:5px;" >
+        <a id="${arrayEvents[i].id}" class="eventoclick" href="Evento.html" >
+        <div class="row " >
+          <div class="col-md-4" >
+              <img src="${arrayEvents[i].image}" style="width:100%;height:100%; border-radius:5px 0px 0px 5px" >
+            </div>
+            <div class="col-md-8">
+              <div id="NomeData" class="row ">
+                 <div id="eventoNome" class="mr-auto col-md-6">
+                 <h5 class="" style="margin-top:10px">${arrayEvents[i].eventname}</h5>
+                 </div>
+                 <div id="eventoData" class="mr-2 col-md-4" style=" font-size:12px;">
+                 <p style="float:right;">${arrayEvents[i].date}</p>
+                 </div>
+                
+              </div>
+              <div id="descrição" class="row col-md-12">
+              <p style="height:40px">${arrayEvents[i].description}</p>
+              </div>
+              <div id="localição" class"row col-md-12">
+              <p>${arrayEvents[i].space}</p>
+              </div>
+
+            </div>
+        
+          </div>
+          </a>
+        </div>
+        
+        `
+        // Fecha a linha
+        if(i==0) {
+            strHtmlCard += `</div>`    
+        }
+        
+        
+    }
+    let eventsCatalog = document.getElementById("eventsPagCatalog")
+    eventsCatalog.innerHTML = strHtmlCard
+        }
+    
+    
+    
+        ////
+        let arrayClick=document.getElementsByClassName("eventoclick")
+        for(let i=0;i<arrayClick.length;i++)
+        {
+            arrayClick[i].addEventListener("click",
+            function (){
+                    let eventId = arrayClick[i].id 
+                    console.log(eventId)
+                    localStorage.setItem("eventId", eventId)
+                    console.log("ola")
+            
+                     })
+        }}
+    )
+
+   
+}
+//função update tags do filtro
+function updateTagsFiltro()
+{
+    let filterTag=document.getElementById("filterTag")
+    loadTagsFromStorage()
+    let strTagFiltro=""
+    console.log(arrayTags)
+    for(let i=0;i<arrayTags.length;i++)
+    {
+        strTagFiltro+= `<option value="${arrayTags[i]._tagname}">${arrayTags[i]._tagname}</option>`
+    }
+    filterTag.innerHTML=strTagFiltro
+}
+//loadTagsFromStorage
+function loadTagsFromStorage(){
+     
+    
+    arrayTags=[]
+    let tempTagsArray = JSON.parse(localStorage.getItem("Tags"))
+        for (var i = 0; i < tempTagsArray.length; i++) 
+        {
+            //tagname
+            let newtag =  new Tag(tempTagsArray[i]._tagname)
+            arrayTags.push(newtag)    
+              
+        }
+    
+    
+}

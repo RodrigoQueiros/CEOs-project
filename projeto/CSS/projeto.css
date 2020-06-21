@@ -60,12 +60,12 @@ background-color: grey;
     #TestDate{
         color: grey;
     }
-    #zeLink:link, #zeLink:visited{
+    .eventoclick:link, .eventoclick:visited{
        color:black;
        text-decoration: none;
         
     }
-    #zeLink:hover{
+    .eventoclick:hover{
         color:black;
         text-decoration: none;
         background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0) 52%, rgba(0,0,0,0.4) 100%);
@@ -78,4 +78,36 @@ background-color: grey;
     }
 
     #carrosselFiltro{border-bottom:3px solid black;}
+
+
+
+    .star-rating {
+        direction: rtl;
+        display: inline-block;
+    
+    }
+    
+    .star-rating input[type=radio] {
+        display: none
+    }
+    
+    .star-rating label {
+        color: #bbb;
+        font-size: 18px;
+        padding: 0;
+        cursor: pointer;
+        -webkit-transition: all .3s ease-in-out;
+        transition: all .3s ease-in-out
+    }
+    
+    .star-rating label:hover,
+    .star-rating label:hover ~ label,
+    .star-rating input[type=radio]:checked ~ label {
+        color: #f2b600
+    }
+    
+    .checked {
+        color: #f2b600;
+    }
+   
 

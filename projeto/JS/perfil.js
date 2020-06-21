@@ -273,9 +273,70 @@ class Events {
 /////////////FUNCTIONS///////////////////
 
 window.onload = function () {
+    let tempLoggedUser= JSON.parse(localStorage.getItem("LoggedUser"))
     loadEventFromStorage()
+    loginChances()
     procurarEvent()
     getNotification()
+    let fotoPerfil = document.getElementById("ImagemPerfil")
+    fotoPerfil.src = tempLoggedUser._picture
+
+    let editProfile = document.getElementById("btnEditar")
+
+    editProfile.addEventListener("click", function() {
+
+        let nomeE = document.getElementById("a")
+        let passE = document.getElementById("b")
+        let mailE = document.getElementById("c")
+        let fotoE = document.getElementById("d")
+        let saveEdit = document.getElementById("saveEdit")
+
+
+//carregar o loggeduser
+loadUsersFromStorage()
+let tempLoggedUser= JSON.parse(localStorage.getItem("LoggedUser"))
+    let LoggedId=tempLoggedUser._id
+    nomeE.value = tempLoggedUser._username
+    mailE.value = tempLoggedUser._email
+    fotoE.value = tempLoggedUser._picture
+
+        saveEdit.addEventListener("click", function(event) { //Guardar alterações
+
+           for(let i=0;i<myUsers.length;i++)
+           {
+               if(myUsers[i].id==LoggedId)
+               {
+                myUsers[i].username=nomeE.value
+                myUsers[i].email= mailE.value
+                myUsers[i].picture=fotoE.value
+                tempLoggedUser=myUsers[i]
+                //atualizar storage
+                localStorage.setItem("User", JSON.stringify(myUsers))
+                localStorage.setItem("LoggedUser", JSON.stringify(tempLoggedUser))
+               }
+           }
+
+
+
+
+
+
+
+
+            // Fechar a modal
+            $('#modelId').modal('hide')
+            
+            event.preventDefault()
+
+            localStorage.setItem("User", JSON.stringify(utilizadores))
+            localStorage.setItem("LoggedUser", JSON.stringify(utilizadorLogado))
+            location.reload()
+        })
+
+
+
+    })
+
 
 }
 /*function events()
@@ -362,7 +423,7 @@ function procurarEvent() {
                                 <div class="row" >`
                             }
                             strHtmlCard += `<div class="card m-3" style="width: 40rem; border-radius:5px;" >
-                            <a id="zeLink" class="eventoclick" href="Evento.html" >
+                            <a id="${arrayEvents[c].id}" class="eventoclick" href="Evento.html" >
                             <div class="row " >
                               <div class="col-md-4" >
                                   <img src="${arrayEvents[c].image}" style="width:100%;height:100%; border-radius:5px 0px 0px 5px" >
@@ -417,6 +478,7 @@ function loadUsersFromStorage() {
 
     if (localStorage.User) {
         let tempArray = JSON.parse(localStorage.getItem("User"))
+        myUsers=[]
         for (var i = 0; i < tempArray.length; i++) {
 
             let newUser = new User(tempArray[i]._username, tempArray[i]._password, tempArray[i]._type, tempArray[i]._email)
@@ -532,3 +594,65 @@ for (let i=0;i<arrayInscrito.length;i++)
   
   let str = "25-12-2017";
   let d = new Date(...prepareDate(str));*/
+  function loginChances(){
+   
+    let verifyType
+    
+if(localStorage.LoggedUser){
+    verifyType = JSON.parse(localStorage.getItem("LoggedUser"))
+
+    let changeLogin = document.getElementById("textLogin")
+
+
+    if (verifyType._type == "admin") {
+    userType = "admin"
+
+    changeLogin.innerHTML = `<li class="nav-item dropdown">
+     <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
+     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+       <a class="dropdown-item" href="perfil.html">Perfil</a>
+       <a class="dropdown-item" href="gerirEventos.html">Registar evento</a>   
+       <a class="dropdown-item" href="gerirDocentes.html">Gerir Docentes</a>  
+       <a class="dropdown-item" href="gerirParcerias.html">Gerir Parcerias</a>  
+       <a class="dropdown-item" href="Admin.html">Definições</a>  
+       <a class="dropdown-item"  href="projetoHomePage.html" onclick="buttonLogOut()">Logout</a>         
+       </div>
+   </li>`
+    }
+    else if (verifyType._type == "teacher"){
+     userType = "teacher"
+     changeLogin.innerHTML = `<li class="nav-item dropdown">
+     <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
+     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+       <a class="dropdown-item" href="perfil.html">Perfil</a>
+       <a class="dropdown-item" href="gerirEventos.html">Registar evento</a>   
+       <a class="dropdown-item" href="gerirDocentes.html">Gerir Docentes</a>  
+       <a class="dropdown-item" href="gerirParcerias.html">Gerir Parcerias</a>  
+       <a class="dropdown-item"  href="projetoHomePage.html" onclick="buttonLogOut()">Logout</a>       
+       </div>
+   </li>`
+    }
+    else if(verifyType._type == "standard"){
+     userType = "standard"
+     changeLogin.innerHTML = `<li class="nav-item dropdown">
+     <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
+     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+     <a class="dropdown-item" href="perfil.html">Perfil</a>
+       <a class="dropdown-item" href="projetoHomePage.html" onclick="buttonLogOut()">Logout</a>              
+       </div>
+   </li>`
+
+
+
+    }   
+}      
+}
+//função para dar logout
+function buttonLogOut(){
+    let changeLogin = document.getElementById("textLogin")  
+    localStorage.removeItem("LoggedUser")
+    changeLogin.innerHTML = "Login"
+    location.reload(true);
+    
+    
+}

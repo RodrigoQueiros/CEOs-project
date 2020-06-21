@@ -82,7 +82,7 @@ static getLastId() {
 }
 /////////////
 window.onload = function () {
-    loginChangesNav()
+    loginChances()
     verificarPart()
     updateParc()
 
@@ -104,14 +104,12 @@ if(b==false){
     //name,image,local,link,code
     let newParc1= new Partnerships ("Google","http://knowtechtoday.com/wp-content/uploads/2018/03/google-apps-thumb-559_120517104011_0.jpg ","","https://pt.wikipedia.org/wiki/Google","")
     arrayPartnerships.push(newParc1)
-    let newParc2= new Partnerships ("Facebook","http://knowtechtoday.com/wp-content/uploads/2018/03/google-apps-thumb-559_120517104011_0.jpg ","","https://pt.wikipedia.org/wiki/Google","")
+    let newParc2= new Partnerships ("Microsoft","https://cdn.vox-cdn.com/thumbor/NeSo4JAqv-fFJCIhb5K5eBqvXG4=/7x0:633x417/1200x800/filters:focal(7x0:633x417)/cdn.vox-cdn.com/assets/1311169/mslogo.jpg","","https://microsoft.com/pt-pt/","")
     arrayPartnerships.push(newParc2)
-    let newParc3= new Partnerships ("Youtube","http://knowtechtoday.com/wp-content/uploads/2018/03/google-apps-thumb-559_120517104011_0.jpg ","","https://pt.wikipedia.org/wiki/Google","")
+    let newParc3= new Partnerships ("Blip","http://www.empregopelomundo.com/wp-content/uploads/2013/06/sas.png","","https://blip.pt","")
     arrayPartnerships.push(newParc3)
-    let newParc4= new Partnerships ("Youtube","http://knowtechtoday.com/wp-content/uploads/2018/03/google-apps-thumb-559_120517104011_0.jpg ","","https://pt.wikipedia.org/wiki/Google","")
+    let newParc4= new Partnerships ("Sonae","https://i2.aroq.com/1/sonae.jpg","","https://sonae.pt/en/","")
     arrayPartnerships.push(newParc4)
-    let newParc5= new Partnerships ("Youtube","http://knowtechtoday.com/wp-content/uploads/2018/03/google-apps-thumb-559_120517104011_0.jpg ","","https://pt.wikipedia.org/wiki/Google","")
-    arrayPartnerships.push(newParc5)
     
 
     //colocar no storage
@@ -178,7 +176,7 @@ function updateParc(){
 }
 
 //função para aplicar as changes a navbar quando esta logado
-function loginChangesNav(){
+function loginChances(){
    
     let verifyType
     
@@ -194,11 +192,11 @@ if(localStorage.LoggedUser){
     changeLogin.innerHTML = `<li class="nav-item dropdown">
      <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-       <a class="dropdown-item" href="#">Perfil</a>
-       <a class="dropdown-item" href="gerirEventos.html">Gerir Eventos</a>   
+       <a class="dropdown-item" href="perfil.html">Perfil</a>
+       <a class="dropdown-item" href="gerirEventos.html">Registar evento</a>   
        <a class="dropdown-item" href="gerirDocentes.html">Gerir Docentes</a>  
        <a class="dropdown-item" href="gerirParcerias.html">Gerir Parcerias</a>  
-       <a class="dropdown-item" href="#">Definições</a>  
+       <a class="dropdown-item" href="Admin.html">Definições</a>  
        <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>         
        </div>
    </li>`
@@ -208,11 +206,11 @@ if(localStorage.LoggedUser){
      changeLogin.innerHTML = `<li class="nav-item dropdown">
      <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-       <a class="dropdown-item" href="#">Perfil</a>
-       <a class="dropdown-item" href="gerirEventos.html">Gerir Eventos</a>   
+       <a class="dropdown-item" href="perfil.html">Perfil</a>
+       <a class="dropdown-item" href="gerirEventos.html">Registar evento</a>   
        <a class="dropdown-item" href="gerirDocentes.html">Gerir Docentes</a>  
        <a class="dropdown-item" href="gerirParcerias.html">Gerir Parcerias</a>  
-       <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>              
+       <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>       
        </div>
    </li>`
     }
@@ -221,15 +219,16 @@ if(localStorage.LoggedUser){
      changeLogin.innerHTML = `<li class="nav-item dropdown">
      <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-       <a class="dropdown-item" href="#">Perfil</a>
-       <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>             
+     <a class="dropdown-item" href="perfil.html">Perfil</a>
+       <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>              
        </div>
    </li>`
 
 
 
     }   
-}}
+}      
+}
 //função para dar logout
 function buttonLogOut(){
     let changeLogin = document.getElementById("textLogin")  

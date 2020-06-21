@@ -89,6 +89,41 @@ class User{
    
 }
 
+
+/////class Tag
+let arrayTags=[]
+class Tag{
+    constructor(tagname)
+    {
+        this._id=Tag.getLastId()+1
+        this.tagname=tagname
+    }
+
+    //Id
+    get id() {
+        return this._id
+    }
+    ///tag name
+    get tagname()
+    {
+        return this._tagname  
+    }
+    set tagname(newTagname)
+    {
+        this._tagname=newTagname
+    }
+
+
+    static getLastId() {
+        
+        let lastId = 0
+        if (arrayTags.length != 0) {
+            lastId =arrayTags[arrayTags.length - 1].id
+        }
+        return lastId
+    }
+}
+
 //############ Class Events ############
 
 class Events{
@@ -606,29 +641,37 @@ static getLastId() {
 //Window on Load
 
 window.onload = function(){
-
+    updateTagsFiltro()
+    verificarDoc()
     loginChances()
     loadFromStorage()
+    ///apagar no storage os filtros anteriores
+    if(localStorage.eventDate)
+    {
+        localStorage.setItem("eventDate","")
+    }
+    if(localStorage.eventname)
+    {
+        localStorage.setItem("eventname","")
+    }
+    if(localStorage.filterTag)
+    {
+        localStorage.setItem("filterTag","") 
+    }
+    filtroHome()
 //eventos
-let eventoUm= new Events ("Queima","vai ser Top  v Top Top Top Top Top Top Top Top v v Top Top sfasfasfasfa asfas fafa awwfaws afgasfasdgfsg  ","11/05/2018","","","","queimodromo","","","../Outros/event5.jpg","","","")
-arrayEvents.push(eventoUm)
-let eventoDois= new Events ("Ressaca","vai ser Top","12/05/2018","","","","Rua Alto do Parque,Penamaior","","","../Outros/event5.jpg","","","")
-arrayEvents.push(eventoDois)
-let eventoTres= new Events ("SecondRound","vai ser Top","12/05/2018","","","","queimodromo","","","../Outros/event5.jpg","","","")
-arrayEvents.push(eventoTres)
-let eventoQuatro= new Events("projeto","esta a ser complicado","16/05/2018","","","","biblioteca","","","../Outros/event5.jpg","","","")
-arrayEvents.push(eventoQuatro)
+
 updateEvents()
 console.log(arrayEvents)
 //testemunho
-let testemunho= new Testimonial("Roloi","Este site esta no ponto mesmo! Feito por grandes futuros CEOs sem duvida","../Outros/event5.jpg","12/05/2018")
+let testemunho= new Testimonial("Rodrigo","Adoro o site! Feito por grandes futuros programadores sem duvida","https://scontent.flis1-1.fna.fbcdn.net/v/t1.0-9/29683169_1433337813437899_821953977863520960_n.jpg?_nc_cat=0&oh=d3bccafcd80d7b146e9fd8f0a9c2e552&oe=5BE3759B","2018-06-20")
 arrayTestimonial.push(testemunho)
 
 console.log(arrayTestimonial)
 //docente
 
-let teacher= new Teachers("Ricardo Queiros", "../Outros/event5.jpg","","POO","")
-arrayTeachers.push(teacher)
+/*let teacher= new Teachers("Ricardo Queiros", "../Outros/event5.jpg","","POO","")
+arrayTeachers.push(teacher)*/
 updateTestimonial_Docente()
 
 //Admin
@@ -637,6 +680,7 @@ arrayUser.push(newAdmin)
 
 
 //Get elements by ids
+/*
 let formFilter = document.getElementById("a") //Form dos filtros 
 let formSignIn = document.getElementById("formSignIn") //Form de registo
 let formLogIn = document.getElementById("a") //Form de Log in
@@ -647,7 +691,7 @@ let formLogIn = document.getElementById("a") //Form de Log in
 
 
 
-})*/
+})
 
 let rUser = document.getElementById("rUser")
 let rEmail = document.getElementById("rEmail")
@@ -698,22 +742,24 @@ else{ //Se n tiver tudo bem
 event.preventDefault()
 })
 
-
+*/
 
 
 }
 
 function updateEvents(){
-    let strHtmlCard = ""
+    loadEventFromStorage()
+    console.log(arrayEvents)
     //iterar sobre o array de eventos
-    for(let i=1;i<5;i++)
+    let strHtmlCard = ""
+    for(let i=1;i<4;i++)
     {
         if(i==1){
             strHtmlCard += `<h5 style="display: block;color: #1D76CE">Eventos:</h5>
             <div class="row" >`
         }
-        strHtmlCard += `<div class="card m-3" style="width: 40rem; border-radius:5px;" >
-        <a id="zeLink" href="#">
+        strHtmlCard += `<div class="card m-3" style="width: 40rem; border-radius:5px;border-width:3px" >
+        <a id="${arrayEvents[arrayEvents.length-i]._id}" class="eventoclick" href="Evento.html" >
         <div class="row " >
           <div class="col-md-4" >
               <img src="${arrayEvents[arrayEvents.length-i].image}" style="width:100%;height:100%; border-radius:5px 0px 0px 5px" >
@@ -729,7 +775,7 @@ function updateEvents(){
                 
               </div>
               <div id="descrição" class="row col-md-12">
-              <p style="height:40px">${arrayEvents[arrayEvents.length-i].description}</p>
+              <p style="height:40px" >${arrayEvents[arrayEvents.length-i].description}</p>
               </div>
               <div id="localição" class"row col-md-12">
               <p>${arrayEvents[arrayEvents.length-i].space}</p>
@@ -743,12 +789,14 @@ function updateEvents(){
         
         `
         // Fecha a linha
-        if(i== 4) {
+        if(i== 3) {
             strHtmlCard += `</div>`    
-        }  
-    }
+            //Console.log(strHtmlCard)
     let eventsCatalog = document.getElementById("eventsCatalog")
     eventsCatalog.innerHTML = strHtmlCard
+        }  
+    }
+    
 }
 
 
@@ -756,7 +804,7 @@ function updateEvents(){
 
 function updateTestimonial_Docente()
 {
-
+    loadDocFromStorage()
     let strHtmlTest = ""
     //iterar sobre o array de testemunhos
   
@@ -764,7 +812,7 @@ function updateTestimonial_Docente()
              ` <h5 style="display: block;color: #1D76CE">Testemunho:</h5>
          <div class="row"> 
          <div class="card m-3" style="width: 40rm;" >
-            <a id="zeLink" href="#">
+            <a id="zeLink" class="eventoclick" href="#">
              <div class="row " style="height:5rm;">
               <div class="col-md-3 " >
                   <img  src="${arrayTestimonial[arrayTestimonial.length-1].image}" style="width:80%;height:80%; border-radius:5px;margin-left:20px;margin-top:20px;" >
@@ -788,14 +836,14 @@ function updateTestimonial_Docente()
         <h5 style="display: block;color: #1D76CE">Docente:</h5>
         <div class="row"> 
          <div class="card m-3" style="width: 40rm;" >
-            <a id="zeLink" href="#">
+            <a id="zeLink" class="eventoclick" href="#">
              <div class="row col-md-12">
-              <div class="col-md-4 mr-auto mt-2 " >
+              <div class="col-md-4 mr-auto mt-2 " style="padding:10px">
                   <img src="${arrayTeachers[arrayTeachers.length-1].photo}" style="float:left;border-radius:5px;width:95%;height:95%;" >
               </div>
               <div class="mr-auto col-md-8 mt-2" id="docNameDesc" style="float:left;">
                  <div class="mr-auto" >
-                     <h5 id="doncenteName" style="margin-left:0px;margin-top">${arrayTeachers[arrayTeachers.length-1].name}</h5>
+                     <h5 id="doncenteName" style="margin-left:0px;margin-top:10px">${arrayTeachers[arrayTeachers.length-1].name}</h5>
                  </div>
 
                  <div class="mr-auto" >
@@ -814,9 +862,28 @@ function updateTestimonial_Docente()
     testemunhosCatalog.innerHTML = strHtmlTest
 }
 
-function updateDocente()
+///carregar Docentes do storage para o arrayTeachers
+function loadDocFromStorage()
 {
-    let strHtmlTest = ""  
+   
+
+      if(localStorage.Docentes)
+      {arrayTeachers=[]
+            let tempDocArray = JSON.parse(localStorage.getItem("Docentes"))
+            for (var i = 0; i < tempDocArray.length; i++) 
+            {
+                
+                //name,photo,formaçao,Uc,short cv
+                let newDocc =  new Teachers(tempDocArray[i]._name, tempDocArray[i]._photo,tempDocArray[i]._formation,tempDocArray[i]._uc,tempDocArray[i]._shortCV)
+                arrayTeachers.push(newDocc) 
+                   
+                  
+            }
+        }
+        
+     
+        
+    
 }
 
 function loadFromStorage() {
@@ -830,6 +897,36 @@ function loadFromStorage() {
               
         }
 
+    }
+    
+}
+
+
+//carregar eventos do storage
+function loadEventFromStorage() {
+
+    if(localStorage.Event){
+        let tempEveArray = JSON.parse(localStorage.getItem("Event"))
+        arrayEvents=[]
+        for (var i = 0; i < tempEveArray.length; i++) {
+            
+            let newEvent =  new Events(tempEveArray[i]._eventname, tempEveArray[i]._description,tempEveArray[i]._date,"","","",tempEveArray[i]._space,"","",tempEveArray[i]._image,"","","")
+            arrayEvents.push(newEvent)    
+              
+        }
+
+    }
+    else
+    {
+        arrayEvents=[]
+        let eventoUm= new Events ("ioAcademy Challenge","O ioAcademy Challenge é apoiado pela ESMAD e é direcionada para um público estudantil!!!","2018-06-27","","","","ESMAD","WorkShops","","https://scontent.flis1-1.fna.fbcdn.net/v/t1.0-9/35923109_387772041735241_8475168770883584000_o.jpg?_nc_cat=0&oh=25580f9bf5716027728ad293092c1e16&oe=5BB2D1EF","","","")
+        arrayEvents.push(eventoUm)
+        let eventoDois= new Events ("WIT IAMCP ","A WIT tem como objectivo promover ajuda mútua para atingir os objetivos pessoais e profissionais","2018-06-30","","","","Rua Passos Manuel, 223 - 4º Andar,Porto","Seminario","","https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F46100074%2F210400993975%2F1%2Foriginal.jpg?w=800&auto=compress&rect=1%2C159%2C1020%2C510&s=8f93bcf54ac1f5ca6d008f1e639a3718","","","")
+        arrayEvents.push(eventoDois)
+        let eventoTres= new Events ("Web Summit","Volunteering at Web Summit is a surefire way of making new connections and learning new skills","27-06-2018","","","","ALTICE ARENA, LISBON","Encontros","","https://external.fopo3-1.fna.fbcdn.net/safe_image.php?d=AQD1935O8ZiJnN6a&w=540&h=282&url=https%3A%2F%2Fwebsummit.com%2Fwp-content%2Fuploads%2F2016%2F05%2Fsportsfile-web-500x300.jpg&cfs=1&upscale=1&fallback=news_d_placeholder_publisher&_nc_hash=AQCIu_ztG0vc6cT6","","","")
+        arrayEvents.push(eventoTres)
+         console.log(arrayEvents)
+         localStorage.setItem("Event",JSON.stringify(arrayEvents))
     }
     
 }
@@ -860,11 +957,11 @@ if(localStorage.LoggedUser){
     changeLogin.innerHTML = `<li class="nav-item dropdown">
      <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-       <a class="dropdown-item" href="#">Perfil</a>
-       <a class="dropdown-item" href="#">Registar evento</a>   
-       <a class="dropdown-item" href="#">Gerir Docentes</a>  
+       <a class="dropdown-item" href="perfil.html">Perfil</a>
+       <a class="dropdown-item" href="gerirEventos.html">Registar evento</a>   
+       <a class="dropdown-item" href="gerirDocentes.html">Gerir Docentes</a>  
        <a class="dropdown-item" href="gerirParcerias.html">Gerir Parcerias</a>  
-       <a class="dropdown-item" href="#">Definições</a>  
+       <a class="dropdown-item" href="Admin.html">Definições</a>  
        <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>         
        </div>
    </li>`
@@ -874,9 +971,9 @@ if(localStorage.LoggedUser){
      changeLogin.innerHTML = `<li class="nav-item dropdown">
      <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-       <a class="dropdown-item" href="#">Perfil</a>
-       <a class="dropdown-item" href="#">Registar evento</a>   
-       <a class="dropdown-item" href="#">Gerir Docentes</a>  
+       <a class="dropdown-item" href="perfil.html">Perfil</a>
+       <a class="dropdown-item" href="gerirEventos.html">Registar evento</a>   
+       <a class="dropdown-item" href="gerirDocentes.html">Gerir Docentes</a>  
        <a class="dropdown-item" href="gerirParcerias.html">Gerir Parcerias</a>  
        <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>       
        </div>
@@ -887,7 +984,7 @@ if(localStorage.LoggedUser){
      changeLogin.innerHTML = `<li class="nav-item dropdown">
      <a class="nav-link dropdown-toggle" style="display:inline" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">` + verifyType._username + `</a> 
      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-       <a class="dropdown-item" href="#">Perfil</a>
+     <a class="dropdown-item" href="perfil.html">Perfil</a>
        <a class="dropdown-item" onclick="buttonLogOut()">Logout</a>              
        </div>
    </li>`
@@ -904,3 +1001,80 @@ if(localStorage.LoggedUser){
 
 }
 
+//função update tags do filtro
+function updateTagsFiltro()
+{
+    let filterTag=document.getElementById("filterTag")
+    loadTagsFromStorage()
+    let strTagFiltro=""
+    console.log(arrayTags)
+    for(let i=0;i<arrayTags.length;i++)
+    {
+        strTagFiltro+= `<option value="${arrayTags[i]._tagname}">${arrayTags[i]._tagname}</option>`
+    }
+    filterTag.innerHTML=strTagFiltro
+}
+//loadTagsFromStorage
+function loadTagsFromStorage(){
+     
+    if(localStorage.Tags)
+    {
+    arrayTags=[]
+    let tempTagsArray = JSON.parse(localStorage.getItem("Tags"))
+        for (var i = 0; i < tempTagsArray.length; i++) 
+        {
+            //tagname
+            let newtag =  new Tag(tempTagsArray[i]._tagname)
+            arrayTags.push(newtag)    
+              
+        }
+    }
+    
+}
+//função filtrar
+function filtroHome()
+{
+   let btnFiltroHome=document.getElementById("btnFiltroHome")
+   let eventNameHome = document.getElementById("eventName")
+   let eventDateHome = document.getElementById("eventDate")
+   let filterTagHome = document.getElementById("filterTag")
+   let formFilter=document.getElementById("formFilter")
+   btnFiltroHome.addEventListener("click",function(){
+       let eventname=eventNameHome.value
+       let eventDate=eventDateHome.value
+       let filterTag=filterTagHome.value
+    //Colocar no storage para depois carregar na seguinte pagina
+    localStorage.setItem("eventname", JSON.stringify(eventname))
+    localStorage.setItem("eventDate",JSON.stringify(eventDate))
+    localStorage.setItem("filterTag",JSON.stringify(filterTag))
+    })
+    eventNameHome.value=""
+    filterTagHome.value=""
+    eventDateHome.value=""
+}
+function verificarDoc()
+{
+    let b = false
+if (localStorage.getItem("Docentes")){
+    loadDocFromStorage()
+    b=true
+        
+                
+}
+if(b==false){
+
+    console.log("ola")
+    //parcerias adicionadas hardcode
+    //name,photo,formation,uc,shortCV
+    let newDocc1= new Teachers ("Ricardo Queiros","https://scontent.flis1-1.fna.fbcdn.net/v/t1.0-9/21317517_10212941804634127_2533581123657042195_n.jpg?_nc_cat=0&oh=f399c82d3692c0af6db39709942bf919&oe=5BA37C68 ","","POO"," ")
+    arrayTeachers.push(newDocc1)
+    let newDocc2= new Teachers ("Mario Pinto","https://scontent.flis1-1.fna.fbcdn.net/v/t1.0-9/22852969_1686309991379118_1792211636139421050_n.jpg?_nc_cat=0&oh=8885dde4f53bda197fcfde60c87a33a6&oe=5BE3D50A"," ","AED"," ")
+    arrayTeachers.push(newDocc2)
+    let newDocc3= new Teachers ("Lino Oliveira","https://scontent.flis1-1.fna.fbcdn.net/v/t1.0-9/1005812_10202054191375221_1395673250_n.jpg?_nc_cat=0&oh=7ac79c784d748caf350a25e4c9c46627&oe=5BBA2671"," ","TAW"," ")
+    arrayTeachers.push(newDocc3)
+    
+
+    //colocar no storage
+    localStorage.setItem("Docentes", JSON.stringify(arrayTeachers))
+   
+}}
